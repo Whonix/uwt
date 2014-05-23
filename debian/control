@@ -6,7 +6,8 @@ Source: uwt
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@riseup.net>
-Build-Depends: debhelper (>= 8), faketime, git, ruby-ronn (>= 0.7.3)
+Build-Depends: debhelper (>= 8), faketime, git, ruby-ronn (>= 0.7.3),
+ config-package-dev (>= 5.1)
 Homepage: https://github.com/Whonix/uwt
 Vcs-Browser: https://github.com/Whonix/uwt
 Vcs-Git: https://github.com/Whonix/uwt.git
@@ -16,6 +17,8 @@ Package: uwt
 Architecture: all
 Depends: torsocks, faketime, ${misc:Depends}
 Recommends: timezone-utc
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}
 Description: Use Applications over Tor with Stream Isolation and Time Privacy
  Can add "torsocks" and/or "timeprivacy" before invocation of applications when
  configured to do so. For example, when simply typing "apt-get" instead of
