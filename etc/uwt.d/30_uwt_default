@@ -45,7 +45,7 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
    uwtwrapper_gateway_ip="UWT_DEV_PASSTHROUGH"
 else
    if [ -f "/usr/share/anon-ws-base-files/workstation" ]; then
-      uwtwrapper_gateway_ip="192.168.0.10"
+      uwtwrapper_gateway_ip="11.150.150.150"
    elif [ -f "/usr/share/anon-gw-base-files/gateway" ]; then
       uwtwrapper_gateway_ip="127.0.0.1"
    else
