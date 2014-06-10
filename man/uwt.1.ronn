@@ -81,7 +81,7 @@ This is useful for development and building Whonix.
 ## EXAMPLES MANUAL USE
 `uwt -t 5 -i 127.0.0.1 -p 9050 wget https://check.torproject.org`
 
-`sudo uwt -t 5 -i 11.150.150.150 -p 9104 /usr/bin/apt-get.anondist-orig --yes dist-upgrade`
+`sudo uwt -t 5 -i 10.152.152.10 -p 9104 /usr/bin/apt-get.anondist-orig --yes dist-upgrade`
 
 ## EXAMPLES WRAPPER USE
 If you wish enforce the proxy settings without entering such a long command
@@ -90,7 +90,7 @@ every time, you can use a wrapper. The wrapper has to be placed in PATH
 
     #!/bin/bash
     set -x
-    uwt -t 5 -i 11.150.150.150 -p 9109 /usr/bin/wget ${1+"$@"}
+    uwt -t 5 -i 10.152.152.10 -p 9109 /usr/bin/wget ${1+"$@"}
 
 From now, any invocation of wget will automatically have uwt added in front of
 it.
