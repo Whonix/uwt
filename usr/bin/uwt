@@ -193,7 +193,6 @@ echo "
 	local = 169.254.0.0/255.255.0.0
 	local = 172.16.0.0/255.240.0.0
 	local = 192.168.0.0/255.255.0.0
-	local = 11.150.128.0/255.255.192.0
 	server = $ip
 	## Ignoring -t server_type and therefore defaulting to 4.
 	## 5 does not work well with the torsocks version from Debian testing.
