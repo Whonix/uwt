@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Update 22
+## Update 23
 
 ## https://trac.torproject.org/projects/tor/wiki/doc/torsocks
 
@@ -46,13 +46,12 @@
 ## 	export UWT_VERBOSE="1"
 ## to enable verbose output.
 
-## UWT_DEV_PASSTHROUGH is only supported in Whonix.
-## Only supposed to be used by developers.
+## UWT_DEV_PASSTHROUGH is nly supposed to be used by developers.
 ## Torsocks will not be used.
 ## Traffic will be send in the clear.
 ## Thus, if behind a transparent proxy, traffic will go through that transparent proxy.
 ## Just as uwt would not be used.
-## This is useful for development and building Whonix.
+## This is useful for development and building.
 #	export UWT_DEV_PASSTHROUGH="1"
 
 ## Note:
@@ -239,12 +238,6 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
     echo "exec torsocks \"$@\""
   fi
 
-  if [ ! -d "/usr/share/whonix" ]; then
-    echo "UWT_DEV_PASSTHROUGH is only supported in Whonix." >&2
-    exit 1
-  fi
-
-  ## Safe in Whonix.
   exec "$@"
 
   exitcode="$?"
@@ -258,12 +251,12 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
     echo "exec torsocks \"$@\""
   fi
 
-  if [ ! -d "/usr/share/whonix" ]; then
+  if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
     echo "uwt will not work for localhost connections." >&2
     exit 1
   fi
 
-  ## Safe in Whonix.
+  ## Safe in anonymity distributions.
   exec "$@"
 
 else
