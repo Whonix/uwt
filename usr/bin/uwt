@@ -58,7 +58,7 @@
 ## When running applications as root, you also have to set and
 ## export that variable as root.
 
-NAME=$(basename $0)
+NAME=$(basename $BASH_SOURCE)
 
 ## Define and ensure we have tsocks
 ## XXX: what if we do not have which?

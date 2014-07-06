@@ -29,7 +29,7 @@
 
 #set -x
 
-SCRIPTNAME="$(basename $0)"
+SCRIPTNAME="$(basename $BASH_SOURCE)"
 
 usage() {
    echo "$SCRIPTNAME
