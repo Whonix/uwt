@@ -19,7 +19,7 @@
 
 set -o pipefail
 
-SCRIPTNAME="$(basename $BASH_SOURCE)"
+SCRIPTNAME="$(basename "$BASH_SOURCE")"
 
 error_handler() {
    echo "
