@@ -259,6 +259,8 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
   ## Safe in anonymity distributions.
   exec "$@"
 
+  exitcode="$?"
+  exit "$exitcode"
 else
 
   if [ "$UWT_VERBOSE" = "1" ]; then
@@ -269,6 +271,8 @@ else
 
   exec torsocks "$@"
 
+  exitcode="$?"
+  exit "$exitcode"
 fi
 
 ## End of uwt script.
