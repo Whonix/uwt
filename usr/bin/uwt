@@ -235,12 +235,15 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
 
   if [ "$UWT_VERBOSE" = "1" ]; then
     echo "uwt: UWT_DEV_PASSTHROUGH detected."
-    echo "exec torsocks \"$@\""
+    echo "\"$@\""
   fi
 
-  exec "$@"
-
+  "$@" &
+  wait "$!"
   exitcode="$?"
+  if [ -f "$TORSOCKS_CONF_FILE" ]; then
+     rm -f "$TORSOCKS_CONF_FILE"
+  fi
   exit "$exitcode"
 fi
 
@@ -248,7 +251,7 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
 
   if [ "$UWT_VERBOSE" = "1" ]; then
     echo "uwt: localhost detected."
-    echo "exec torsocks \"$@\""
+    echo "\"$@\""
   fi
 
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
@@ -257,9 +260,12 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
   fi
 
   ## Safe in anonymity distributions.
-  exec "$@"
-
+  "$@" &
+  wait "$!"
   exitcode="$?"
+  if [ -f "$TORSOCKS_CONF_FILE" ]; then
+     rm -f "$TORSOCKS_CONF_FILE"
+  fi
   exit "$exitcode"
 else
 
@@ -269,9 +275,12 @@ else
     #echo "exec torsocks $command"
   fi
 
-  exec torsocks "$@"
-
+  torsocks "$@" &
+  wait "$!"
   exitcode="$?"
+  if [ -f "$TORSOCKS_CONF_FILE" ]; then
+     rm -f "$TORSOCKS_CONF_FILE"
+  fi
   exit "$exitcode"
 fi
 
