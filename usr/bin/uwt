@@ -46,7 +46,7 @@
 ## 	export UWT_VERBOSE="1"
 ## to enable verbose output.
 
-## UWT_DEV_PASSTHROUGH is nly supposed to be used by developers.
+## UWT_DEV_PASSTHROUGH is only supposed to be used by developers.
 ## Torsocks will not be used.
 ## Traffic will be send in the clear.
 ## Thus, if behind a transparent proxy, traffic will go through that transparent proxy.
@@ -57,6 +57,13 @@
 ## Note:
 ## When running applications as root, you also have to set and
 ## export that variable as root.
+
+error_handler() {
+  true "${red}${bold}BASH_COMMAND${reset}: $BASH_COMMAND
+${red}${bold}ERROR $BASH_SOURCE: | caller: $(caller)${reset}"
+}
+
+trap error_handler ERR
 
 NAME=$(basename "$BASH_SOURCE")
 
@@ -70,11 +77,6 @@ if [ -z "$UWT_VERBOSE" ]; then
 else
 	if [ "$UWT_VERBOSE" = "1" ]; then
 		set -x
-		error_handler() {
-			true "${red}${bold}BASH_COMMAND${reset}: $BASH_COMMAND
-${red}${bold}ERROR $BASH_SOURCE: | caller: $(caller)${reset}"
-		}
-		trap error_handler ERR
 	fi
 fi
 #echo "UWT_VERBOSE: $UWT_VERBOSE"
@@ -173,7 +175,7 @@ fi
 true "UWT: We are armed with the following torsocks: $TORSOCKS"
 
 ## Define our torsocks config file.
-TORSOCKS_CONF_FILE="$(mktemp)"
+TORSOCKS_CONF_FILE="$(mktemp --tmpdir="/tmp/uwt")"
 if [ ! "$?" = "0" ]; then
    echo "mktemp failed with exit code $?!"
    exit 1
@@ -237,12 +239,9 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
   true "\$@: \"$@\""
 
-  "$@" &
-  wait "$!"
+  exec "$@"
+
   exitcode="$?"
-  if [ -f "$TORSOCKS_CONF_FILE" ]; then
-     rm -f "$TORSOCKS_CONF_FILE"
-  fi
   exit "$exitcode"
 fi
 
@@ -257,26 +256,15 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
   fi
 
   ## Safe in anonymity distributions.
-  "$@" &
-  wait "$!"
-  exitcode="$?"
-  if [ -f "$TORSOCKS_CONF_FILE" ]; then
-     rm -f "$TORSOCKS_CONF_FILE"
-  fi
-  exit "$exitcode"
+  exec "$@"
+
 else
 
   true "uwt: localhost not detected. Using torsocks."
   true "exec torsocks \"$@\""
-  #true "exec torsocks $command"
 
-  torsocks "$@" &
-  wait "$!"
-  exitcode="$?"
-  if [ -f "$TORSOCKS_CONF_FILE" ]; then
-     rm -f "$TORSOCKS_CONF_FILE"
-  fi
-  exit "$exitcode"
+  exec torsocks "$@"
+
 fi
 
 ## End of uwt script.
