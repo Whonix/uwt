@@ -70,6 +70,11 @@ if [ -z "$UWT_VERBOSE" ]; then
 else
 	if [ "$UWT_VERBOSE" = "1" ]; then
 		set -x
+		error_handler() {
+			true "${red}${bold}BASH_COMMAND${reset}: $BASH_COMMAND
+${red}${bold}ERROR $BASH_SOURCE: | caller: $(caller)${reset}"
+		}
+		trap error_handler ERR
 	fi
 fi
 #echo "UWT_VERBOSE: $UWT_VERBOSE"
@@ -148,9 +153,7 @@ if [ -z "$command" ]; then
 	exit 1
 fi
 
-if [ "$UWT_VERBOSE" = "1" ]; then
-  echo "uwt command: \"$@\""
-fi
+true "uwt command: \"$@\""
 
 if [ ! -x "$command" ]; then
         echo "UWT ERROR: $1 is not an executable." >&2
@@ -167,14 +170,15 @@ if [ ! -x "$TORSOCKS" ]; then
 	exit 1
 fi
 
-if [ "$UWT_VERBOSE" = "1" ]; then
-	echo "UWT: We are armed with the following torsocks: $TORSOCKS"
-fi
+true "UWT: We are armed with the following torsocks: $TORSOCKS"
 
 ## Define our torsocks config file.
 TORSOCKS_CONF_FILE="$(mktemp)"
+if [ ! "$?" = "0" ]; then
+   echo "mktemp failed with exit code $?!"
+   exit 1
+fi
 export TORSOCKS_CONF_FILE
-#echo "TORSOCKS_CONF_FILE: $TORSOCKS_CONF_FILE"
 
 ## Fix permissions.
 ## This fixes a bug.
@@ -210,14 +214,11 @@ if [ ! -r "$TORSOCKS_CONF_FILE" ]; then
   exit 1
 fi
 
-if [ "$UWT_VERBOSE" = "1" ]; then
-    echo "uwt"
-    echo "ip: $ip port: $port"
-fi
+true "ip: $ip port: $port"
 
 UWT_LOCALHOST="0"
 
-#echo "uwt: $ *: $*"
+#true "uwt: $ *: $*"
 case "$*" in
   *127.0.0.1*)
     UWT_LOCALHOST="1"
@@ -233,10 +234,8 @@ esac
 
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
 
-  if [ "$UWT_VERBOSE" = "1" ]; then
-    echo "uwt: UWT_DEV_PASSTHROUGH detected."
-    echo "\"$@\""
-  fi
+  true "uwt: UWT_DEV_PASSTHROUGH detected."
+  true "\$@: \"$@\""
 
   "$@" &
   wait "$!"
@@ -249,10 +248,8 @@ fi
 
 if [ "$UWT_LOCALHOST" = "1" ]; then
 
-  if [ "$UWT_VERBOSE" = "1" ]; then
-    echo "uwt: localhost detected."
-    echo "\"$@\""
-  fi
+  true "uwt: localhost detected."
+  true "\$@: \"$@\""
 
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
     echo "uwt will not work for localhost connections." >&2
@@ -269,11 +266,9 @@ if [ "$UWT_LOCALHOST" = "1" ]; then
   exit "$exitcode"
 else
 
-  if [ "$UWT_VERBOSE" = "1" ]; then
-    echo "uwt: localhost not detected. Using torsocks."
-    echo "exec torsocks \"$@\""
-    #echo "exec torsocks $command"
-  fi
+  true "uwt: localhost not detected. Using torsocks."
+  true "exec torsocks \"$@\""
+  #true "exec torsocks $command"
 
   torsocks "$@" &
   wait "$!"
