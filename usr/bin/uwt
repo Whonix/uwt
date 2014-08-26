@@ -174,6 +174,10 @@ fi
 
 true "UWT: We are armed with the following torsocks: $TORSOCKS"
 
+if [ ! -d "/tmp/uwt" ]; then
+   mkdir --parents --mode=g+rw "/tmp/uwt"
+fi
+
 ## Define our torsocks config file.
 TORSOCKS_CONF_FILE="$(mktemp --tmpdir="/tmp/uwt")"
 if [ ! "$?" = "0" ]; then
