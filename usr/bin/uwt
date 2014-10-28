@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Update 23
+## Update 24
 
 ## https://trac.torproject.org/projects/tor/wiki/doc/torsocks
 
@@ -174,6 +174,12 @@ fi
 
 true "UWT: We are armed with the following torsocks: $TORSOCKS"
 
+dpkg_query_exit_code="0"
+torsocks_installed_version="$(dpkg-query --show --showformat='${Version}' "torsocks")" || { dpkg_query_exit_code="$?" ; true; };
+
+dpkg_compare_versions_equals_exit_code="0"
+dpkg --compare-versions "$torsocks_installed_version" ge "2" || { dpkg_compare_versions_equals_exit_code="$?" ; true; };
+
 if [ ! -d "/tmp/uwt" ]; then
    mkdir --parents --mode=g+rw "/tmp/uwt"
 fi
@@ -194,7 +200,9 @@ export TORSOCKS_CONF_FILE
 chmod g+r "$TORSOCKS_CONF_FILE"
 chmod o+r "$TORSOCKS_CONF_FILE"
 
-echo "
+if [ ! "$dpkg_compare_versions_equals_exit_code" = "0" ]; then
+   ## torsocks 1.x
+   echo "
 	## Temporary torsocks configuration file created by uwt.
 	## Safe to delete.
 	local = 127.0.0.0/255.128.0.0
@@ -211,6 +219,17 @@ echo "
 	#server_type = $server_type
 	server_port = $port
 " > "$TORSOCKS_CONF_FILE"
+else
+   ## torsocks 2.0
+   ## It does not like '"tab" ##'.
+   echo "
+## Temporary torsocks configuration file created by uwt.
+## Safe to delete.
+TorAddress $ip
+TorPort $port
+OnionAddrRange 10.192.0.0/10
+" > "$TORSOCKS_CONF_FILE"
+fi
 
 ## Check that we have got a torsocks config file
 if [ ! -r "$TORSOCKS_CONF_FILE" ]; then
