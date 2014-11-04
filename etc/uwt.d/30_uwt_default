@@ -31,7 +31,7 @@ declare -A -g uwtwrapper
 declare -A -g uwtport
 
 uwtport["/usr/bin/git"]="9107"
-uwtport["/usr/bin/apt-get"]="9105"
+uwtport["/usr/bin/apt-get"]="9104"
 uwtport["/usr/bin/curl"]="9117"
 uwtport["/usr/bin/gpg"]="9105"
 uwtport["/usr/bin/mixmaster-update"]="9120"
