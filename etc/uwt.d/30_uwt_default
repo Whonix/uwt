@@ -49,8 +49,12 @@ else
    elif [ -f "/usr/share/anon-gw-base-files/gateway" ]; then
       uwtwrapper_gateway_ip="127.0.0.1"
    else
-      error "/usr/bin/$SCRIPTNAME uwt wrapper could not determine if this is Whonix-Workstation or Whonix-Gateway."
-      error "Please report this bug!"
+      error "\
+uwt wrapper could not determine if this is Whonix-Workstation or Whonix-Gateway.
+Variable uwtwrapper_gateway_ip does not exist early enough in /etc/uwt.d.
+If you are using a Custom-Workstation, please consider installing the
+anon-gw-base-files or anon-ws-base-files package.
+If you are not using a Custom-Workstation: please report this bug!"
    fi
 fi
 
