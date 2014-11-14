@@ -49,7 +49,7 @@ else
    elif [ -f "/usr/share/anon-gw-base-files/gateway" ]; then
       uwtwrapper_gateway_ip="127.0.0.1"
    else
-      error "/usr/bin/"$SCRIPTNAME" uwt wrapper could not determine if this is Whonix-Workstation or Whonix-Gateway."
+      error "/usr/bin/$SCRIPTNAME uwt wrapper could not determine if this is Whonix-Workstation or Whonix-Gateway."
       error "Please report this bug!"
    fi
 fi
