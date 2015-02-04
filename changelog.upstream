@@ -1,0 +1,297 @@
+commit 49538d9c2a3c3ab4edffbcc55f334b35758fc42e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Feb 4 00:40:56 2015 +0000
+
+    updated makefile generic to version 1.3
+
+commit e0d36f7f2a9021044b1ed52edd22741342884756
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Feb 3 23:58:58 2015 +0000
+
+    Added creation of upstream changelog to debian/rules
+
+commit 94d52483c3f5b1879205cfd9023ead1f88614692
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 7 19:34:59 2015 +0000
+
+    bumped compat from 8 to 9
+
+commit 04de1c0817fed87331b00b35e21dce16e51af1e9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 5 19:01:22 2014 +0000
+
+    updated generic makefile
+
+commit 64ebc857893cf10d4e8305b8157d6f46f0d6d011
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Nov 14 09:19:35 2014 +0000
+
+    output
+
+commit 7fec0442bef59610c5e83ac16ac8bf21e9c41883
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Nov 14 09:15:04 2014 +0000
+
+    quotes
+
+commit b5bb328adfa3c07e78bbf99cfb42223933a8af9b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Nov 4 16:14:57 2014 +0000
+
+    Fixed apt-get stream isolation port, thanks to nrgaway for the report!
+
+commit 5c11ac822e9235662394bba231a397409fd6aaa3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 28 22:35:32 2014 +0000
+
+    makefile: refactoring, avoid using IFS
+
+commit 4f8aabe31c07496e9c24c09f11de7c8b20ae345b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Oct 28 04:02:34 2014 +0000
+
+    torsocks 2.0 support https://github.com/Whonix/uwt/issues/1
+
+commit 0b5b1e525de272a1c1a25ec29fd1e157a94140e3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 25 01:58:54 2014 +0000
+
+    makefile:
+    - make debdist; make undebdist
+    - cleanup
+    - refactoring
+
+commit e3aa6f68ebeafc04446f484b480400fdd743c0c4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 23 22:43:05 2014 +0000
+
+    makefile:
+    - new target "make undist", which deletes the upstream tarball
+    - $DISTDIR variable for make (un)dist, which defaults to ".." and can be used to create upstream tarballs in arbitrary locations
+    - refactoring, all function names and global variables now start with "make_" to make the script `source`ing friendly
+    - made `source`able
+
+commit 4d25a2234044f8636f974d2c54682569ff426f16
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 13 12:36:59 2014 +0000
+
+    readme
+
+commit 10ce69d7dea6f1812c0bb8d78b3dd6eda12aa73f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 26 15:26:43 2014 +0000
+
+    fix
+
+commit c412467d78ac43b5c22eb3fa028eccd9a21008a2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 25 18:23:51 2014 +0000
+
+    reverted "fix, cleanup temporary file on exit"; all temporary files are now in /tmp/uwt; debugging; comments
+
+commit 2ea020b86ed5cf2b88c2d75490375be96b4adb9f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 25 17:42:42 2014 +0000
+
+    debugging
+
+commit 4eae4c4ac9a73d29309966acaf0fb0c9d1f7863d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Aug 23 00:55:03 2014 +0000
+
+    uwt: fix, cleanup temporary file on exit
+
+commit 69d4a7b55b01d9e8d43ed07000b4d39878b2b81a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Aug 22 23:07:01 2014 +0000
+
+    refactoring
+
+commit 844847bda3f9afcd7410d57492e5d771a577608f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 19 18:52:45 2014 +0000
+
+    makefile: added new feature "make deb-chl-bumpup" - Bump upstream version number in debian/changelog.
+
+commit ff4aea265c68bec46398bee0fdfa62c18b80fcc8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:54:27 2014 +0000
+
+    Updated debian/changelog.
+
+commit 4d3d7fe56678b4784900703837ac2bc8c3cad799
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 20:47:30 2014 +0000
+
+    Fixed changelog date.
+
+commit 479f5397a9dc44e828524b61c8148db746a06fbe
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Aug 17 18:03:32 2014 +0000
+
+    bump version number
+
+commit 2a4f4ff3b1626fc7bfd4f40d047859816ffb7750
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Aug 14 13:35:21 2014 +0000
+
+    Implemented make deb-icup: Combination of make deb-pkg, make deb-pkg-install and make deb-pkg-cleanup.
+
+commit c84e0167532f1c099feddd368a5a068fdfb9fd2f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 12:42:30 2014 +0000
+
+    packaging
+
+commit 1bb76a74635653a0634fef30de455958d1f74d17
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 27 04:01:15 2014 +0000
+
+    packaging
+
+commit c97815a959dc2aa0443c0ae81b469b46573f01d9
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 15:26:40 2014 +0000
+
+    packaging
+
+commit 3bbeb0903681cc2b47bbdeb04162cd63e9ea3fa7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 26 15:16:08 2014 +0000
+
+    packaging: removed build dependency on git, since the .git folder won't be included in the upstream tarball.
+
+commit d268d692b8960ba1d274ef8d222187366d0ee49d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jul 14 01:54:34 2014 +0000
+
+    quotes
+
+commit 4f12ebe595294e2abcd2c525fe8ea110b104cc41
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:31:36 2014 +0000
+
+    packaging
+
+commit 10e229a865b6bc16c78c4bb710c06ec89a1c1f17
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 17:11:04 2014 +0000
+
+    packaging
+
+commit 0d1423fef1f401b3824a88b70d28b8e6d870c077
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 12 15:34:21 2014 +0000
+
+    packaging
+
+commit 1dd6f88d0a9074f4d9487a3d3a53e28100e9f5d2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 13:31:30 2014 +0000
+
+    quotes
+
+commit aab91cc3491570d85f3a219a17ab7264521f42fa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 13:27:07 2014 +0000
+
+    use $BASH_SOURCE instead of $0
+
+commit dccf1dc8df97d6e79a1c3bc9826555f5923b6e98
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jul 6 11:32:22 2014 +0000
+
+    sanity test
+
+commit 0cb71ba0a7673fd9cdaba629c9c0efa568d2c203
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 08:14:26 2014 +0000
+
+    fix upstream version number
+
+commit 954510e365e78c69ccdcd9c933720fa65b2022e5
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jul 5 08:11:34 2014 +0000
+
+    Bumped debian revision number to avoid lintian warning "new-package-should-close-itp-bug" so we can use lintian --fail-on-warnings as sanity test.
+
+commit de6a0558a554445a65ee248216e8bfd8f86be727
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 24 15:45:15 2014 +0000
+
+    added debian epoch; added dotglob
+
+commit f86b3545dc16b10fd940880d8420b2942da25e11
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 15 02:38:17 2014 +0000
+
+    stop patronizing users, allow usage of UWT_DEV_PASSTHROUGH outside of Whonix; removed Whonix specificness
+
+commit 10d8ac7e7ee97a909695235100fcd792a593c43c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jun 12 15:03:48 2014 +0000
+
+    added lintian override
+
+commit b8083c5eec5888e533542ebba91d7370504d3289
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 10 15:59:44 2014 +0000
+
+    Revert "added "local = 11.150.128.0/255.255.192.0" to be able to switch Whonix's internal IPs"
+    
+    This reverts commit a36e86e6c22eecc30c412a3b3afd659dd555169e.
+
+commit b68dab1ccac543b95f01513a6ec6e2ad74b0f9ed
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 10 14:17:49 2014 +0000
+
+    update IP as per https://www.whonix.org/forum/index.php/topic,107.0.html
+
+commit 00cd916f052aab4a96f72b9b265fbd21f63c64f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 9 13:45:24 2014 +0000
+
+    changed gateway ip from 192.168.0.10 to 11.150.150.150
+
+commit a36e86e6c22eecc30c412a3b3afd659dd555169e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Jun 9 13:33:13 2014 +0000
+
+    added "local = 11.150.128.0/255.255.192.0" to be able to switch Whonix's internal IPs
+
+commit bae088085106635e27729d5cfb89279d9abbc422
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 3 18:27:38 2014 +0000
+
+    readme
+
+commit 45bbafb486f10b83579f1f794bc81e523c41f10d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jun 1 15:38:38 2014 +0000
+
+    readme
+
+commit 41d81a599fd7c4e7ec3456b133bb8bf0c69a8218
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 31 14:40:01 2014 +0000
+
+    # On branch master
+    nothing to commit (working directory clean)
+
+commit 76d1ded8eab138a9e399854a504f09a2fe82314b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 23 15:48:23 2014 +0000
+
+    packaging
+
+commit f87edef7c3e2fd08a14329237c09966b564395ed
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 23 15:08:17 2014 +0000
+
+    added uwtwrappers
+
+commit 907b6e5d80db78b0b1cb4bcf03b0a4c9f0cf022e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 23 14:51:28 2014 +0000
+
+    initial import from github.com/Whonix/Whonix
