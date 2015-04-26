@@ -11,7 +11,7 @@ Build-Depends: debhelper (>= 9), faketime, genmkfile, ruby-ronn (>= 0.7.3),
 Homepage: https://github.com/Whonix/uwt
 Vcs-Browser: https://github.com/Whonix/uwt
 Vcs-Git: https://github.com/Whonix/uwt.git
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 
 Package: uwt
 Architecture: all
