@@ -1,3 +1,15 @@
+commit 68b44f34929ab992072342a07b278d8827bc088a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 23 01:36:07 2015 +0000
+
+    disable torsocks warning spam - https://phabricator.whonix.org/T317
+
+commit 9fc85ac8d510fbaa47f35a448a1ed225b6faf851
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 30 17:57:03 2015 +0000
+
+    bumped changelog version
+
 commit 0bebeee1ef794bf8c3a4e85d3f6783e78f17012c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Apr 28 13:43:28 2015 +0000

@@ -1,3 +1,9 @@
+uwt (3:1.5-1) unstable; urgency=low
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@riseup.net>  Sat, 23 May 2015 01:37:23 +0000
+
 uwt (3:1.4-1) unstable; urgency=low
 
   * New upstream version (local package).
