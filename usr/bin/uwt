@@ -233,7 +233,7 @@ fi
 
 ## Check that we have got a torsocks config file
 if [ ! -r "$TORSOCKS_CONF_FILE" ]; then
-  ## Since identity corelation through circuit sharing is at risk,
+  ## Since identity correlation through circuit sharing is at risk,
   ## we should no longer let torsocks default to 9050.
   echo "$NAME: Missing torsocks configuration file \"$TORSOCKS_CONF_FILE\."
   exit 1
