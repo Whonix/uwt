@@ -179,10 +179,6 @@ fi
 
 ## Define our torsocks config file.
 TORSOCKS_CONF_FILE="$(mktemp --tmpdir="/tmp/uwt")"
-if [ ! "$?" = "0" ]; then
-   echo "mktemp failed with exit code $?!"
-   exit 1
-fi
 export TORSOCKS_CONF_FILE
 
 ## Fix permissions.
