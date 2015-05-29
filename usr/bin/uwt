@@ -67,9 +67,11 @@ trap "error_handler" ERR
 
 NAME="$(basename "$BASH_SOURCE")"
 
-## Define and ensure we have tsocks
-## XXX: what if we do not have which?
-TORSOCKS="$(command -v torsocks)"
+if ! command -v torsocks >/dev/null 2>&1 ; then
+	echo "$NAME: Unable to find torsocks in PATH." >&2
+	echo "    Perhaps you have not installed it?" >&2
+	exit 1
+fi
 
 if [ -z "$UWT_VERBOSE" ]; then
 	#echo "UWT_VERBOSE: did not exist."
@@ -165,14 +167,6 @@ elif [ -u "$command" ]; then
 elif [ -g "$command" ]; then
 	set_id $1 g
 fi
-
-if [ ! -x "$TORSOCKS" ]; then
-	echo "$NAME: Unable to find torsocks in PATH." >&2
-	echo "    Perhaps you have not installed it?" >&2
-	exit 1
-fi
-
-true "UWT: We are armed with the following torsocks: $TORSOCKS"
 
 dpkg_query_exit_code="0"
 torsocks_installed_version="$(dpkg-query --show --showformat='${Version}' "torsocks")" || { dpkg_query_exit_code="$?" ; true; };
