@@ -255,34 +255,24 @@ case "$*" in
 esac
 
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
-
   true "uwt: UWT_DEV_PASSTHROUGH detected."
   true "\$@: \"$@\""
-
   exec "$@"
-
   exitcode="$?"
   exit "$exitcode"
 fi
 
 if [ "$UWT_LOCALHOST" = "1" ]; then
-
   true "uwt: localhost detected."
   true "\$@: \"$@\""
-
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
     echo "uwt will not work for localhost connections." >&2
     exit 1
   fi
-
   ## Safe in anonymity distributions.
   exec "$@"
-
 else
-
   true "uwt: localhost not detected. Using torsocks."
   true "exec torsocks \"$@\""
-
   exec torsocks "$@"
-
 fi
