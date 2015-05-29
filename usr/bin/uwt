@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Update 26
+## Update 27
 
 ## https://trac.torproject.org/projects/tor/wiki/doc/torsocks
 
@@ -173,16 +173,15 @@ torsocks_installed_version="$(dpkg-query --show --showformat='${Version}' "torso
 dpkg_compare_versions_equals_exit_code="0"
 dpkg --compare-versions "$torsocks_installed_version" ge "2" || { dpkg_compare_versions_equals_exit_code="$?" ; true; };
 
-## Creating a sub_folder to prevent a massive amount of tmp.xxx files piling up
-## in /tmp. Appending the user name to the sub folder to prevent permission issues.
-sub_folder="/tmp/uwt_$(whoami)"
-if [ ! -d "$sub_folder" ]; then
-   mkdir --parents "$sub_folder"
-fi
-
 ## Define our torsocks config file.
-TORSOCKS_CONF_FILE="$(mktemp --tmpdir="$sub_folder")"
+TORSOCKS_CONF_FILE="$(mktemp)"
 export TORSOCKS_CONF_FILE
+
+cleanup_function() {
+   rm --force "$TORSOCKS_CONF_FILE"
+}
+
+trap "cleanup_function" EXIT
 
 ## Fix permissions.
 ## This fixes a bug.
@@ -252,26 +251,21 @@ case "$*" in
   ;;
 esac
 
-## XXX: exec is non-ideal, because then we cannot delete the temporary
-##      TORSOCKS_CONF_FILE at the end.
-
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
-  true "\$@: \"$@\""
-  exec "$@"
-fi
-
-if [ "$UWT_LOCALHOST" = "1" ]; then
+  trap - ERR
+  "$@"
+elif [ "$UWT_LOCALHOST" = "1" ]; then
   true "uwt: localhost detected."
-  true "\$@: \"$@\""
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
     echo "uwt will not work for localhost connections." >&2
     exit 1
   fi
   ## Safe in anonymity distributions.
-  exec "$@"
+  trap - ERR
+  "$@"
 else
   true "uwt: localhost not detected. Using torsocks."
-  true "exec torsocks \"$@\""
-  exec torsocks "$@"
+  trap - ERR
+  torsocks "$@"
 fi
