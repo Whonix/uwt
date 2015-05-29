@@ -63,9 +63,9 @@ error_handler() {
 ${red}${bold}ERROR $BASH_SOURCE: | caller: $(caller)${reset}"
 }
 
-trap error_handler ERR
+trap "error_handler" ERR
 
-NAME=$(basename "$BASH_SOURCE")
+NAME="$(basename "$BASH_SOURCE")"
 
 ## Define and ensure we have tsocks
 ## XXX: what if we do not have which?
