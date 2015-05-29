@@ -252,6 +252,9 @@ case "$*" in
   ;;
 esac
 
+## XXX: exec is non-ideal, because then we cannot delete the temporary
+##      TORSOCKS_CONF_FILE at the end.
+
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
   true "\$@: \"$@\""
