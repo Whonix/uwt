@@ -1,3 +1,21 @@
+commit ddd02496e535dc00ceb1c601ad0c2fc80fe0f558
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 19:44:04 2015 +0000
+
+    refactoring
+
+commit 2e6a7f55fc914acfb6c5c4c4db3569722c9d451d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 19:36:52 2015 +0000
+
+    fixed signal handling
+
+commit 30ed7ffc4468de394467bf043256eea7db140b93
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 14:44:57 2015 +0000
+
+    bumped changelog version
+
 commit c92234cb9d294d266b94b77ab1ef7ff3c63220bb
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri May 29 14:38:30 2015 +0000
