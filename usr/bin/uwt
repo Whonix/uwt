@@ -81,7 +81,6 @@ else
 		set -x
 	fi
 fi
-#echo "UWT_VERBOSE: $UWT_VERBOSE"
 
 if [ -z "$UWT_DEV_PASSTHROUGH" ]; then
 	#echo "UWT_DEV_PASSTHROUGH: did not exist."
@@ -233,8 +232,6 @@ if [ ! -r "$TORSOCKS_CONF_FILE" ]; then
   exit 1
 fi
 
-true "ip: $ip port: $port"
-
 if [ "$TORSOCKS_LOG_LEVEL" = "" ]; then
    ## Disable torsocks warning spam such as.
    ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
@@ -244,7 +241,6 @@ fi
 
 UWT_LOCALHOST="0"
 
-#true "uwt: $ *: $*"
 case "$*" in
   *127.0.0.1*)
     UWT_LOCALHOST="1"
@@ -290,5 +286,3 @@ else
   exec torsocks "$@"
 
 fi
-
-## End of uwt script.
