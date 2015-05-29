@@ -1,3 +1,81 @@
+commit c92234cb9d294d266b94b77ab1ef7ff3c63220bb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 14:38:30 2015 +0000
+
+    delete temporary torsocks configuration file at the end
+
+commit 5810db822ba6d942753756d40f174720d3dad283
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 14:06:15 2015 +0000
+
+    comment
+
+commit 676a1612f5d1649187d59518de8de38688446cfb
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 14:05:58 2015 +0000
+
+    comment
+
+commit 506c9bb1567cfae7ca90556558333e01079a5df1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 14:02:18 2015 +0000
+
+    uwt multi user fix
+
+commit f81bd1a63c980fd6bf13c88eacbf5d19ece4ef14
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:21:30 2015 +0000
+
+    quotes
+
+commit 9eea26f7f65b8ab52b8a015a7fe62b3dd9561b56
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:18:49 2015 +0000
+
+    removed ineffective test that is unnecessary because already covered by trap ERR
+
+commit ba11416730302f67a922b397c50ce81fc9d4df7e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:18:08 2015 +0000
+
+    refactoring
+
+commit 4edabec1acdebb3c5af12c44b08005c9f79cc492
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:16:21 2015 +0000
+
+    cleanup
+
+commit 940debe5616e65e2b07d1b03ae804b802d90ab2c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:15:55 2015 +0000
+
+    refactoring
+
+commit d47d7d762bfc5d74cc288f92defa8697f17a176e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:14:51 2015 +0000
+
+    cleanup
+
+commit 312eece3b817b6cdfd70300acb4754984bd78130
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:13:42 2015 +0000
+
+    refactoring
+
+commit a077a7ba87704469f281dc974ce4a3361e801146
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 13:09:44 2015 +0000
+
+    quotes
+
+commit e3b76b83e99bbd5eb86285fab7af491d062fd996
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue May 26 15:59:04 2015 +0000
+
+    bumped changelog version
+
 commit c93bffdc64042ff885556eefd19d5c6b27044ff8
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue May 26 15:58:43 2015 +0000
