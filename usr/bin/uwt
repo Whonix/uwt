@@ -183,6 +183,34 @@ cleanup_function() {
 
 trap "cleanup_function" EXIT
 
+signal_handler() {
+   if [ ! "$pid" = "" ]; then
+      true "$NAME $FUNCNAME: kill -$1 $pid"
+      kill "-$1" "$pid"
+   fi
+}
+
+## Thanks to:
+## camh
+## http://stackoverflow.com/a/2183063/2605155
+errorhandlersetup() {
+   local handler signal
+   ## $1 contains the name of the error handler function.
+   handler="$1" ; shift
+   for signal ; do
+       trap "$handler $signal" "$signal"
+   done
+}
+
+counter="0"
+while true; do
+   counter="$(( $counter + 1 ))"
+   errorhandlersetup "signal_handler" "$counter"
+   if [ "$counter" -gt "31" ]; then
+      break
+   fi
+done
+
 ## Fix permissions.
 ## This fixes a bug.
 ##    Unpacking flashplugin-nonfree (from .../flashplugin-nonfree_1%3a2.8.5_i386.deb) ...
@@ -254,7 +282,9 @@ esac
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
   trap - ERR
-  "$@"
+  "$@" &
+  pid="$!"
+  wait "$pid"
 elif [ "$UWT_LOCALHOST" = "1" ]; then
   true "uwt: localhost detected."
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
@@ -263,9 +293,13 @@ elif [ "$UWT_LOCALHOST" = "1" ]; then
   fi
   ## Safe in anonymity distributions.
   trap - ERR
-  "$@"
+  "$@" &
+  pid="$!"
+  wait "$pid"
 else
   true "uwt: localhost not detected. Using torsocks."
   trap - ERR
-  torsocks "$@"
+  torsocks "$@" &
+  pid="$!"
+  wait "$pid"
 fi
