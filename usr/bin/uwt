@@ -127,7 +127,7 @@ while [ -n "$1" ]; do
           shift
           ;;
       *)
-          command="$(command -v $1)"
+          command="$(command -v "$1")"
           ## From now on the complete to-be wrapped command + its args
           ## are stored in $@, which will expand like we want it for
           ## handling quoted arguments with whitespaces in it, etc.
@@ -162,9 +162,9 @@ if [ ! -x "$command" ]; then
         echo "UWT ERROR: $1 is not an executable." >&2
 	exit 1
 elif [ -u "$command" ]; then
-	set_id $1 u
+	set_id "$1" u
 elif [ -g "$command" ]; then
-	set_id $1 g
+	set_id "$1" g
 fi
 
 dpkg_query_exit_code="0"
