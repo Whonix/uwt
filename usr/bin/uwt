@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Update 27
+## Update 28
 
 ## https://trac.torproject.org/projects/tor/wiki/doc/torsocks
 
@@ -281,10 +281,7 @@ esac
 
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
-  trap - ERR
-  "$@" &
-  pid="$!"
-  wait "$pid"
+  use_torsocks_maybe=""
 elif [ "$UWT_LOCALHOST" = "1" ]; then
   true "uwt: localhost detected."
   if [ ! -f "/usr/share/anon-gw-base-files/gateway" ] && [ ! -f "/usr/share/anon-ws-base-files/workstation" ]; then
@@ -292,14 +289,13 @@ elif [ "$UWT_LOCALHOST" = "1" ]; then
     exit 1
   fi
   ## Safe in anonymity distributions.
-  trap - ERR
-  "$@" &
-  pid="$!"
-  wait "$pid"
+  use_torsocks_maybe=""
 else
   true "uwt: localhost not detected. Using torsocks."
-  trap - ERR
-  torsocks "$@" &
-  pid="$!"
-  wait "$pid"
+  use_torsocks_maybe="torsocks"
 fi
+
+trap - ERR
+$use_torsocks_maybe "$@" &
+pid="$!"
+wait "$pid"
