@@ -258,8 +258,6 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
   true "uwt: UWT_DEV_PASSTHROUGH detected."
   true "\$@: \"$@\""
   exec "$@"
-  exitcode="$?"
-  exit "$exitcode"
 fi
 
 if [ "$UWT_LOCALHOST" = "1" ]; then
