@@ -173,15 +173,24 @@ torsocks_installed_version="$(dpkg-query --show --showformat='${Version}' "torso
 dpkg_compare_versions_equals_exit_code="0"
 dpkg --compare-versions "$torsocks_installed_version" ge "2" || { dpkg_compare_versions_equals_exit_code="$?" ; true; };
 
+## XXX: https://www.whonix.org/forum/index.php/topic,1267
+## Creating a sub_folder to prevent a massive amount of tmp.xxx files piling up
+## in /tmp. Appending the user name to the sub folder to prevent permission issues.
+sub_folder="/tmp/uwt_$(whoami)"
+if [ ! -d "$sub_folder" ]; then
+   mkdir --parents "$sub_folder"
+fi
+
 ## Define our torsocks config file.
-TORSOCKS_CONF_FILE="$(mktemp)"
+TORSOCKS_CONF_FILE="$(mktemp --tmpdir="$sub_folder")"
 export TORSOCKS_CONF_FILE
 
 cleanup_function() {
    rm --force "$TORSOCKS_CONF_FILE"
 }
 
-trap "cleanup_function" EXIT
+## XXX: https://www.whonix.org/forum/index.php/topic,1267
+#trap "cleanup_function" EXIT
 
 signal_handler() {
    if [ ! "$pid" = "" ]; then
@@ -202,14 +211,15 @@ errorhandlersetup() {
    done
 }
 
-counter="0"
-while true; do
-   counter="$(( $counter + 1 ))"
-   errorhandlersetup "signal_handler" "$counter"
-   if [ "$counter" -gt "31" ]; then
-      break
-   fi
-done
+## XXX: https://www.whonix.org/forum/index.php/topic,1267
+#counter="0"
+#while true; do
+   #counter="$(( $counter + 1 ))"
+   #errorhandlersetup "signal_handler" "$counter"
+   #if [ "$counter" -gt "31" ]; then
+      #break
+   #fi
+#done
 
 ## Fix permissions.
 ## This fixes a bug.
@@ -296,6 +306,7 @@ else
 fi
 
 trap - ERR
-$use_torsocks_maybe "$@" &
-pid="$!"
-wait "$pid"
+exec $use_torsocks_maybe "$@" #&
+## XXX: https://www.whonix.org/forum/index.php/topic,1267
+#pid="$!"
+#wait "$pid"
