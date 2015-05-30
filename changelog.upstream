@@ -1,3 +1,15 @@
+commit 568a0e4737e2e5f2d698c017d78bfa9e5624a433
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat May 30 13:48:30 2015 +0000
+
+    fix - https://www.whonix.org/forum/index.php/topic,1267
+
+commit 6c96e96114095a9441a268997d9705a4f40e7db3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri May 29 21:02:06 2015 +0000
+
+    bumped changelog version
+
 commit ddd02496e535dc00ceb1c601ad0c2fc80fe0f558
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri May 29 19:44:04 2015 +0000
