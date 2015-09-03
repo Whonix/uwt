@@ -9,3 +9,5 @@ uwt: binary-without-manpage usr/bin/mixmaster-update.anondist
 uwt: binary-without-manpage usr/bin/rawdog.anondist
 uwt: binary-without-manpage usr/bin/ssh.anondist
 uwt: binary-without-manpage usr/bin/wget.anondist
+uwt: binary-without-manpage usr/bin/yum.anondist
+uwt: binary-without-manpage usr/bin/yumdownloader.anondist
