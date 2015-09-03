@@ -41,6 +41,7 @@ uwtport["/usr/bin/ssh"]="9106"
 uwtport["/usr/bin/wget"]="9109"
 uwtport["/usr/bin/aptitude"]="9124"
 uwtport["/usr/bin/yum"]="9125"
+uwtport["/usr/bin/yumdownloader"]="9125"
 
 if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
    ## Can be the case when building Whonix from source code.

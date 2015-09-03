@@ -12,3 +12,4 @@
 /usr/bin/ssh.anondist
 /usr/bin/wget.anondist
 /usr/bin/yum.anondist
+/usr/bin/yumdownloader.anondist
