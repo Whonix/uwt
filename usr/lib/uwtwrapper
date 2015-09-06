@@ -97,6 +97,11 @@ sanity_tests_timeprivacy() {
    fi
 }
 
+## Remove the leading '.anondist' file extension. This is useful in case for
+## example uwtwrapper_parent is called by running
+## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+
 ## Files in /etc/uwt.d/* set variables such as
 ## port_aptget, port_gpg, ... and variables such as
 ## timeprivacy_aptget, timeprivacy_gpg, ... and variables such as
