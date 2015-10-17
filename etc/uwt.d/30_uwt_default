@@ -57,7 +57,7 @@ uwtwrapper_gateway_ip_detection() {
       qubes_vm_type="$(qubesdb-read /qubes-vm-type)"
       if [ "$qubes_vm_type" = "TemplateVM" ] || [ -f "/usr/share/anon-ws-base-files/workstation" ]; then
          ## 'qubesdb-read /qubes-gateway' could fail if NetVM is set to 'none'.
-         uwtwrapper_gateway_ip="$(qubesdb-read /qubes-gateway)"
+         uwtwrapper_gateway_ip="$(qubesdb-read /qubes-gateway 2>/dev/null)" || { uwtwrapper_gateway_ip_error="qubesdb_read_failed"; uwtwrapper_gateway_ip="127.0.0.1"; };
          return 0
       fi
    fi
