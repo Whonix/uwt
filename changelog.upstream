@@ -1,3 +1,57 @@
+commit 6aeff4e842b9af3517000578f38acbcb6d88ab15
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 17 17:28:04 2015 +0000
+
+    fixed bug when Qubes NetVM was set to 'none'
+
+commit ed001a2e61dbc648e4e98995764cd16226f47954
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Oct 17 17:09:15 2015 +0000
+
+    comment
+
+commit ba3116b52ed415ae65285a1ae31b0c3a906dcdb1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 20 03:55:39 2015 +0000
+
+    fixed lintian warnings
+
+commit 42234b0ef5ec130764e7a105476489367794c774
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Sep 16 15:53:17 2015 +0000
+
+    native Qubes support
+
+commit 5b5cf85ea2cfa09649275085bbaa02ba63ddfe0c
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Sep 6 19:34:38 2015 +0000
+
+    Fix: Removed the leading '.anondist' file extension from uwtwrapper_parent variable. This is useful in case for example uwtwrapper_parent is called by running 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+
+commit ddc9fbc6822b643ff0bbf1cac872d65a86ff8c70
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 3 13:32:49 2015 +0000
+
+    added stream isolation wrapper for yumdownloader
+
+commit 621efc5822b88b8bda593f53247a4b1e119345bd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 3 13:30:31 2015 +0000
+
+    fixed lintian warning
+
+commit e86f3497832626f16721cd0fc493fb4ba4a12ee6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Sep 3 13:03:36 2015 +0000
+
+    added stream isolation wrapper for yum
+
+commit 9489d1edfb7ffee28172bed9a1500dd96d3217d3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Aug 25 14:08:28 2015 +0000
+
+    bumped changelog version
+
 commit 1d5dafe50e3d4dc2ea774ccfce8c07cfc5bd2993
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jun 3 15:00:30 2015 +0000
