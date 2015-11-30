@@ -1,0 +1,2 @@
+rm_conffile /etc/uwt.d/30_timeprivacy_default
+rm_conffile /etc/uwt.d/30_uwt_default

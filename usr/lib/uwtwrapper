@@ -106,21 +106,9 @@ uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
 ## port_aptget, port_gpg, ... and variables such as
 ## timeprivacy_aptget, timeprivacy_gpg, ... and variables such as
 ## uwtwrapper_aptget, uwtwrapper_gpg, ... and ip.
-for i in /etc/uwt.d/*; do
-   if [ -f "$i" ]; then
-      ## If the last character is a ~, ignore that file, because it was created
-      ## by some editor, which creates backup files.
-      if [ "${i: -1}" = "~" ]; then
-         continue
-      fi
-      ## Skipping files such as .dpkg-old and .dpkg-dist.
-      if ( echo "$i" | grep -q ".dpkg-" ); then
-         true "skip $i"
-         continue
-      fi
-      bash -n "$i"
-      source "$i"
-   fi
+for i in /etc/uwt.d/*.conf; do
+   bash -n "$i"
+   source "$i"
 done
 
 port="${uwtport["$uwtwrapper_parent"]}"
