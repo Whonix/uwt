@@ -169,11 +169,11 @@ if [ "$fake_time" = "faketime" ]; then
    sanity_tests_uwt
    sanity_tests_timeprivacy
    exit_code="0"
-   exec "$fake_time" "$privacy_time" "/usr/bin/uwt" -t 5 -i "$uwtwrapper_gateway_ip" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+   exec "$fake_time" "$privacy_time" "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
 else
    sanity_tests_general ${1+"$@"}
    sanity_tests_uwt
    exit_code="0"
-   exec "/usr/bin/uwt" -t 5 -i "$uwtwrapper_gateway_ip" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+   exec "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
 fi
 exit "$exit_code"
