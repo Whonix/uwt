@@ -106,6 +106,7 @@ uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
 ## port_aptget, port_gpg, ... and variables such as
 ## timeprivacy_aptget, timeprivacy_gpg, ... and variables such as
 ## uwtwrapper_aptget, uwtwrapper_gpg, ... and ip.
+shopt -s nullglob
 for i in /etc/uwt.d/*.conf; do
    bash -n "$i"
    source "$i"
