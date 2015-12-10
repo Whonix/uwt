@@ -111,12 +111,10 @@ sanity_tests_general() {
          exit 1
       fi
       ## Example basename_uwtwrapper_parent:
-      ## /usr/bin/ssh
+      ## aptitude
       basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
-      ## Example basename_uwtwrapper_parent:
-      ## ssh
       ## --ignore-installed is used, because the uwt wrapper (for example
-      ## /usr/bin/ssh) will already be installed.
+      ## /usr/bin/aptitude) will already be installed.
       local command_not_found_exit_code="0"
       exec command-not-found --ignore-installed "$basename_uwtwrapper_parent" || { command_not_found_exit_code="$?" ; true; };
       exit "$command_not_found_exit_code"
@@ -169,6 +167,25 @@ sanity_tests_timeprivacy() {
 ## example uwtwrapper_parent is called by running
 ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
 uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+
+## {{{ Debian 'alternatives' mechanism support
+if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
+   ## For example /usr/bin/aptitude.anondist-orig does not exist.
+
+   ## Example basename_uwtwrapper_parent:
+   ## aptitude
+   basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
+
+   ## Lets see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
+   if [ -e "/etc/alternatives/$basename_uwtwrapper_parent" ]; then
+      ## Lets see where for example /etc/alternatives/aptitude links to and use it.
+      if readlink_result="$(readlink "/etc/alternatives/$basename_uwtwrapper_parent")" ; then
+         ## Symlink could be read. Lets use it.
+         uwtwrapper_parent="$readlink_result"
+      fi
+   fi
+fi
+## }}}
 
 ## Files in /etc/uwt.d/* set variables such as
 ## port_aptget, port_gpg, ... and variables such as
