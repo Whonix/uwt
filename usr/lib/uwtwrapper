@@ -34,7 +34,75 @@ error_handler() {
 
 trap "error_handler" ERR
 
+show_help() {
+   echo "\
+$0 help.
+
+$0 is not supposed to be used manually by users.
+Manual usage is difficult. Use uwt instead. See:
+man uwt
+
+If you are a very advanced user or developer, who wants to learn more about
+uwt wrappers, read ahead.
+
+uwtwrappers and $0 are hacks socksify applications that do
+not support native socks proxy settings. Used to implement Stream Isolation.
+https://www.whonix.org/wiki/Stream_Isolation
+
+In essence, uwtwrappers are installed so users can type commands like
+apt-get normally while transparently injecting torsocks, thereby stream
+isolating them.
+
+To understand better how uwt wrappers function, you could for example open
+/usr/bin/apt-get.anondist in an editor.
+
+Also useful to run:
+ls -la /usr/bin/apt-get*
+
+You will see, that /usr/bin/apt-get has been replaced with a symlink to
+/usr/bin/apt-get.anondist. (This was done using config-package-dev.)
+
+/usr/bin/apt-get.anondist is a uwt wrapper.
+
+/usr/bin/apt-get.anondist-orig is the original apt-get binary.
+
+If you want to add additional uwtwrappers you need the files and symlink in
+place as well as uwt settings. See also the /etc/uwt.d configuration folder.
+
+source code:
+https://github.com/Whonix/uwt"
+}
+
+## Thanks to:
+## http://mywiki.wooledge.org/BashFAQ/035
+
+while true;
+do
+    case $1 in
+        -h|-\?|--help)
+            show_help
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            break
+    esac
+    shift
+done
+
+# If there are input files (for example) that follow the options, they
+# will remain in the "$@" positional parameters.
+
 sanity_tests_general() {
+   if [ "$uwtwrapper_parent" = "" ]; then
+      echo "ERROR: You are not supposed to run $0 manually from the command line."
+      echo "See:" >&2
+      echo "$0 --help" >&2
+      exit 255
+   fi
    if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
       local command_v_exit_code="0"
       command -v command-not-found >/dev/null 2>/dev/null || { command_v_exit_code="$?" ; true; };
