@@ -10,7 +10,7 @@ as long as torsocks does not feature native stream isolation support.
 The uwt package comes with the following applications pre-configured to use
 uwtwrapper, Tor and stream isolation:
 - apt-get
-- aptitude
+- aptitude-curses
 - curl
 - git
 - gpg

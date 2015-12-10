@@ -3,7 +3,7 @@
 ## See the file COPYING for copying conditions.
 
 /usr/bin/apt-get.anondist
-/usr/bin/aptitude.anondist
+/usr/bin/aptitude-curses.anondist
 /usr/bin/curl.anondist
 /usr/bin/git.anondist
 /usr/bin/gpg.anondist
