@@ -73,13 +73,14 @@ source code:
 https://github.com/Whonix/uwt"
 }
 
-## Thanks to:
-## http://mywiki.wooledge.org/BashFAQ/035
+parse_cmd() {
+   ## Thanks to:
+   ## http://mywiki.wooledge.org/BashFAQ/035
 
-while true;
-do
-    case $1 in
-        -h|-\?|--help)
+   while true;
+   do
+      case $1 in
+         -h|-\?|--help)
             show_help
             exit 0
             ;;
@@ -89,12 +90,13 @@ do
             ;;
         *)
             break
-    esac
-    shift
-done
+      esac
+      shift
+   done
 
-# If there are input files (for example) that follow the options, they
-# will remain in the "$@" positional parameters.
+   # If there are input files (for example) that follow the options, they
+   # will remain in the "$@" positional parameters.
+}
 
 sanity_tests_general() {
    if [ "$uwtwrapper_parent" = "" ]; then
@@ -162,6 +164,14 @@ sanity_tests_timeprivacy() {
       exit 1
    fi
 }
+
+## Only use the command line parser if $uwtwrapper_parent is empty. I.e. when
+## manually called from command line instead by a wrapper. Otherwise it would
+## interfere with the forwarded options to application. I.e. for example
+## 'apt-get --help' would break.
+if [ "$uwtwrapper_parent" = "" ]; then
+   parse_cmd ${1+"$@"}
+fi
 
 ## Remove the leading '.anondist' file extension. This is useful in case for
 ## example uwtwrapper_parent is called by running
