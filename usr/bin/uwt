@@ -173,7 +173,7 @@ torsocks_installed_version="$(dpkg-query --show --showformat='${Version}' "torso
 dpkg_compare_versions_equals_exit_code="0"
 dpkg --compare-versions "$torsocks_installed_version" ge "2" || { dpkg_compare_versions_equals_exit_code="$?" ; true; };
 
-## XXX: https://www.whonix.org/forum/index.php/topic,1267
+## XXX: https://www.whonix.org/forum-old/index.php/topic,1267
 ## Creating a sub_folder to prevent a massive amount of tmp.xxx files piling up
 ## in /tmp. Appending the user name to the sub folder to prevent permission issues.
 sub_folder="/tmp/uwt_$(whoami)"
@@ -189,7 +189,7 @@ cleanup_function() {
    rm --force "$TORSOCKS_CONF_FILE"
 }
 
-## XXX: https://www.whonix.org/forum/index.php/topic,1267
+## XXX: https://www.whonix.org/forum-old/index.php/topic,1267
 #trap "cleanup_function" EXIT
 
 signal_handler() {
@@ -211,7 +211,7 @@ errorhandlersetup() {
    done
 }
 
-## XXX: https://www.whonix.org/forum/index.php/topic,1267
+## XXX: https://www.whonix.org/forum-old/index.php/topic,1267
 #counter="0"
 #while true; do
    #counter="$(( $counter + 1 ))"
@@ -307,6 +307,6 @@ fi
 
 trap - ERR
 exec $use_torsocks_maybe "$@" #&
-## XXX: https://www.whonix.org/forum/index.php/topic,1267
+## XXX: https://www.whonix.org/forum-old/index.php/topic,1267
 #pid="$!"
 #wait "$pid"
