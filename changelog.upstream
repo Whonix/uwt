@@ -1,3 +1,83 @@
+commit 213d85eed31823cabb118bdb674bef8fa3437307
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 15 21:05:57 2015 +0000
+
+    updated README.md
+
+commit 0a42a48011f5d14bbe8f964e7ce9be81dffcd951
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Dec 14 21:44:39 2015 +0000
+
+    comments
+
+commit 4c22f04041bd1287eb73dcc599cca831f74e938a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 11 10:47:36 2015 +0000
+
+    Fix, make '/usr/lib/uwtwrapper --help' only work when manually run without env.
+    
+    Only use the command line parser if $uwtwrapper_parent is empty. I.e. when
+    manually called from command line instead by a wrapper. Otherwise it would
+    interfere with the forwarded options to application. I.e. for example
+    'apt-get --help' would break.
+
+commit e1c5be36a2f136173a8ffa3098f0c1fcc5f32342
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 10 18:15:35 2015 +0000
+
+    fixed aptitude that uses Debian 'alternatives' mechanism
+
+commit f19f9339c2ef7638886c497577edd3a3c9d7e5dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 10 17:30:46 2015 +0000
+
+    fixed aptitude uwt wrapper
+    
+    Thanks to rAntOCauDgb for the report!
+    
+    https://forums.whonix.org/t/aptitude-update-fails-most-of-the-time-on-whonix-gateway-only-it-turns-out
+
+commit 9a3c180d674183edf13e662e8b930820d88ba574
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 10 15:59:01 2015 +0000
+
+    - implemented uwtwrapper --help
+    - output help if uwtwrapper is called without arguments
+
+commit 0f1f6c9c8ced919e2244a65a4a0f5297fe3fb884
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 22:02:54 2015 +0000
+
+    refactoring
+
+commit e042b679561d3ef2e5e141873af2620d368905f3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 21:52:38 2015 +0000
+
+    refactoring
+
+commit 5a8f500a5a793948ae5fd75b522b240ea5525894
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Dec 1 21:39:26 2015 +0000
+
+    fixed config file parser if config folder does not exist
+
+commit 4dd48f16329d9701d8d86c3dc4931251a15372c6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Nov 30 19:47:06 2015 +0000
+
+    Only source configuration files that end with the '.conf' extension.
+    
+    Thanks to @nrgaway for the suggestion!
+    
+    https://phabricator.whonix.org/T286
+
+commit 68c4bcb06ea226962f99ab310a5f4b515076b0ab
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Oct 22 23:12:41 2015 +0000
+
+    bumped changelog version
+
 commit 6aeff4e842b9af3517000578f38acbcb6d88ab15
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sat Oct 17 17:28:04 2015 +0000
