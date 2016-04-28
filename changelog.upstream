@@ -1,3 +1,24 @@
+commit 651d2af8417fb0b7f77a88493a37935972ed444b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 28 02:59:27 2016 +0000
+
+    sane defaults even without config files
+    
+    https://phabricator.whonix.org/T286
+    https://phabricator.whonix.org/T503
+
+commit 058be3075f1079269f8a0264df3b3e7dadf5bfa3
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 28 02:48:56 2016 +0000
+
+    output
+
+commit e9596f971e22ffe68f1d9b251e3ba1b4218807db
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Apr 7 22:54:52 2016 +0000
+
+    bumped changelog version
+
 commit 213d85eed31823cabb118bdb674bef8fa3437307
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Dec 15 21:05:57 2015 +0000
