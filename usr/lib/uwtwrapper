@@ -45,7 +45,7 @@ man uwt
 If you are a very advanced user or developer, who wants to learn more about
 uwt wrappers, read ahead.
 
-uwtwrappers and $0 are hacks socksify applications that do
+uwtwrappers and $0 are hacks to socksify applications that do
 not support native socks proxy settings. Used to implement Stream Isolation.
 https://www.whonix.org/wiki/Stream_Isolation
 
