@@ -254,7 +254,7 @@ If you are not using a Custom-Workstation: please report this bug!"
 settings_detection
 
 shopt -s nullglob
-for i in /etc/uwt.d/*.conf; do
+for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
    bash -n "$i"
    source "$i"
 done
