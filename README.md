@@ -19,6 +19,7 @@ uwtwrapper, Tor and stream isolation:
 - ssh
 - wget
 - yum
+- yumdownloader
 
 To circumvent a uwt wrapper on a by case base, you append ".anondist-real" to
 the command, for example "apt-get.anondist-real". You can also deactivate
