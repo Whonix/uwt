@@ -1,0 +1,28 @@
+#!/bin/bash
+
+## This file is part of Whonix.
+## Copyright (C) 2012 - 2014 Patrick Schleizer <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+set -e
+
+shopt -s nullglob
+for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
+   bash -n "$i"
+   source "$i"
+done
+
+if [ $uwtwrapper_global = "1" ]; then
+   enabled=true
+fi
+
+if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
+   enabled=false
+fi
+
+if [ "$enabled" = "true" ]; then
+   echo "uwt INFO: Stream isolation for some applications enabled. uwt / torsocks will be automatically prepended to some commands. What is that? See:"
+   echo "uwt INFO: https://www.whonix.org/wiki/Stream_Isolation/Easy"
+else
+   echo "uwt INFO: disabled."
+fi
