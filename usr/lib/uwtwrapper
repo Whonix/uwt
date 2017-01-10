@@ -186,6 +186,7 @@ variables() {
 
    [ -n "${bindp_use["/usr/bin/onionshare"]}" ] || bindp_use["/usr/bin/onionshare"]="true"
    [ -n "${bindp_use["/usr/bin/onionshare-gui"]}" ] || bindp_use["/usr/bin/onionshare-gui"]="true"
+   [ -n "${bindp_use["/usr/bin/ricochet"]}" ] || bindp_use["/usr/bin/ricochet"]="true"
 
    for bindp_use_item in "${!bindp_use[@]}" ; do
      if [ "$uwtwrapper_parent" = "$bindp_use_item" ]; then
