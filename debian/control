@@ -14,8 +14,8 @@ Vcs-Git: https://github.com/Whonix/uwt.git
 Standards-Version: 3.9.6
 
 Package: uwt
-Architecture: all
-Depends: torsocks, faketime, ${misc:Depends}
+Architecture: any
+Depends: torsocks, faketime, ${shlibs:Depends}, ${misc:Depends}
 Recommends: timezone-utc
 Provides: ${diverted-files}
 Conflicts: ${diverted-files}

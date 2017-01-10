@@ -11,3 +11,5 @@ uwt: binary-without-manpage usr/bin/ssh.anondist
 uwt: binary-without-manpage usr/bin/wget.anondist
 uwt: binary-without-manpage usr/bin/yum.anondist
 uwt: binary-without-manpage usr/bin/yumdownloader.anondist
+uwt: binary-without-manpage usr/bin/onionshare.anondist
+uwt: binary-without-manpage usr/bin/onionshare-gui.anondist

@@ -14,12 +14,13 @@
 ##   upstream to the Debian package faketime. This is to avoid a conflict, when
 ##   the new file timeprivacy gets installed by faketime.
 
-## Debugging.
-#set -x
+if [ ! "$uwtwrapper_verbose" = "" ]; then
+   if [ "$uwtwrapper_verbose" -ge 1 ]; then
+      set -x
+   fi
+fi
 
-set -o pipefail
-
-SCRIPTNAME="$(basename "$BASH_SOURCE")"
+set -e
 
 error_handler() {
    echo "
@@ -33,6 +34,11 @@ error_handler() {
 }
 
 trap "error_handler" ERR
+
+set -o pipefail
+set -o errtrace
+
+SCRIPTNAME="$(basename "$BASH_SOURCE")"
 
 show_help() {
    echo "\
@@ -74,6 +80,14 @@ https://github.com/Whonix/uwt"
 }
 
 parse_cmd() {
+   ## Only use the command line parser if $uwtwrapper_parent is empty. I.e. when
+   ## manually called from command line instead by a wrapper. Otherwise it would
+   ## interfere with the forwarded options to application. I.e. for example
+   ## 'apt-get --help' would break.
+   if [ ! "$uwtwrapper_parent" = "" ]; then
+      return 0
+   fi
+
    ## Thanks to:
    ## http://mywiki.wooledge.org/BashFAQ/035
 
@@ -98,6 +112,37 @@ parse_cmd() {
    # will remain in the "$@" positional parameters.
 }
 
+preparation() {
+   declare -A -g timeprivacy
+   declare -A -g uwtwrapper
+   declare -A -g uwtport
+   declare -A -g bindp_use
+
+   ## Remove the leading '.anondist' file extension. This is useful in case for
+   ## example uwtwrapper_parent is called by running
+   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+   uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+}
+
+alternatives_support() {
+   if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
+      ## For example /usr/bin/aptitude.anondist-orig does not exist.
+
+      ## Example basename_uwtwrapper_parent:
+      ## aptitude
+      basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
+
+      ## Lets see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
+      if [ -e "/etc/alternatives/$basename_uwtwrapper_parent" ]; then
+         ## Lets see where for example /etc/alternatives/aptitude links to and use it.
+         if readlink_result="$(readlink "/etc/alternatives/$basename_uwtwrapper_parent")" ; then
+            ## Symlink could be read. Lets use it.
+            uwtwrapper_parent="$readlink_result"
+         fi
+      fi
+   fi
+}
+
 sanity_tests_general() {
    if [ "$uwtwrapper_parent" = "" ]; then
       echo "ERROR: You are not supposed to run $0 manually from the command line."
@@ -106,9 +151,7 @@ sanity_tests_general() {
       exit 255
    fi
    if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
-      local command_v_exit_code="0"
-      command -v command-not-found >/dev/null 2>/dev/null || { command_v_exit_code="$?" ; true; };
-      if [ ! "$command_v_exit_code" = "0" ]; then
+      if ! command -v command-not-found >/dev/null 2>/dev/null ; then
          echo "$SCRIPTNAME uwt wrapper ERROR: $uwtwrapper_parent.anondist-orig does not exist."
          exit 1
       fi
@@ -117,9 +160,7 @@ sanity_tests_general() {
       basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
       ## --ignore-installed is used, because the uwt wrapper (for example
       ## /usr/bin/aptitude) will already be installed.
-      local command_not_found_exit_code="0"
-      exec command-not-found --ignore-installed "$basename_uwtwrapper_parent" || { command_not_found_exit_code="$?" ; true; };
-      exit "$command_not_found_exit_code"
+      exec command-not-found --ignore-installed "$basename_uwtwrapper_parent"
    fi
    if [ ! -x "$uwtwrapper_parent.anondist-orig" ]; then
       echo "$SCRIPTNAME uwt wrapper ERROR: $uwtwrapper_parent.anondist-orig is not executable."
@@ -127,94 +168,34 @@ sanity_tests_general() {
    fi
 }
 
-sanity_tests_uwt() {
-   if [ ! -e "$(command -v "uwt")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "uwt") does not exist."
-      exit 1
-   fi
-   if [ ! -x "$(command -v "uwt")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "uwt") is not executable."
-      exit 1
-   fi
-   if [ ! -e "$(command -v "torsocks")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "torsocks") does not exist."
-      exit 1
-   fi
-   if [ ! -x "$(command -v "torsocks")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "torsocks") is not executable."
-      exit 1
-   fi
+variables() {
+   [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
+   [ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
+
+   [ -n "${uwtport["/usr/bin/git"]}" ] || uwtport["/usr/bin/git"]="9107"
+   [ -n "${uwtport["/usr/bin/apt-get"]}" ] || uwtport["/usr/bin/apt-get"]="9104"
+   [ -n "${uwtport["/usr/bin/curl"]}" ] || uwtport["/usr/bin/curl"]="9117"
+   [ -n "${uwtport["/usr/bin/gpg"]}" ] || uwtport["/usr/bin/gpg"]="9105"
+   [ -n "${uwtport["/usr/bin/mixmaster-update"]}" ] || uwtport["/usr/bin/mixmaster-update"]="9120"
+   [ -n "${uwtport["/usr/bin/rawdog"]}" ] || uwtport["/usr/bin/rawdog"]="9118"
+   [ -n "${uwtport["/usr/bin/ssh"]}" ] || uwtport["/usr/bin/ssh"]="9106"
+   [ -n "${uwtport["/usr/bin/wget"]}" ] || uwtport["/usr/bin/wget"]="9109"
+   [ -n "${uwtport["/usr/bin/aptitude-curses"]}" ] || uwtport["/usr/bin/aptitude-curses"]="9124"
+   [ -n "${uwtport["/usr/bin/yum"]}" ] || uwtport["/usr/bin/yum"]="9125"
+   [ -n "${uwtport["/usr/bin/yumdownloader"]}" ] || uwtport["/usr/bin/yumdownloader"]="9125"
+
+   [ -n "${bindp_use["/usr/bin/onionshare"]}" ] || bindp_use["/usr/bin/onionshare"]="true"
+   [ -n "${bindp_use["/usr/bin/onionshare-gui"]}" ] || bindp_use["/usr/bin/onionshare-gui"]="true"
+
+   for bindp_use_item in "${!bindp_use[@]}" ; do
+     if [ "$uwtwrapper_parent" = "$bindp_use_item" ]; then
+        if [ "${bindp_use[$bindp_use_item]}" = "true" ]; then
+           bindp_dispatch="true"
+           break
+        fi
+     fi
+   done
 }
-
-sanity_tests_timeprivacy() {
-   if [ ! -e "$(command -v "faketime")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "faketime") does not exist."
-      exit 1
-   fi
-   if [ ! -x "$(command -v "faketime")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "faketime") is not executable."
-      exit 1
-   fi
-   if [ ! -e "$(command -v "time_privacy")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "faketime") does not exist."
-      exit 1
-   fi
-   if [ ! -x "$(command -v "time_privacy")" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $(command -v "faketime") is not executable."
-      exit 1
-   fi
-}
-
-## Only use the command line parser if $uwtwrapper_parent is empty. I.e. when
-## manually called from command line instead by a wrapper. Otherwise it would
-## interfere with the forwarded options to application. I.e. for example
-## 'apt-get --help' would break.
-if [ "$uwtwrapper_parent" = "" ]; then
-   parse_cmd ${1+"$@"}
-fi
-
-## Remove the leading '.anondist' file extension. This is useful in case for
-## example uwtwrapper_parent is called by running
-## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
-uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
-
-## {{{ Debian 'alternatives' mechanism support
-if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
-   ## For example /usr/bin/aptitude.anondist-orig does not exist.
-
-   ## Example basename_uwtwrapper_parent:
-   ## aptitude
-   basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
-
-   ## Lets see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
-   if [ -e "/etc/alternatives/$basename_uwtwrapper_parent" ]; then
-      ## Lets see where for example /etc/alternatives/aptitude links to and use it.
-      if readlink_result="$(readlink "/etc/alternatives/$basename_uwtwrapper_parent")" ; then
-         ## Symlink could be read. Lets use it.
-         uwtwrapper_parent="$readlink_result"
-      fi
-   fi
-fi
-## }}}
-
-declare -A -g timeprivacy
-declare -A -g uwtwrapper
-declare -A -g uwtport
-
-[ -n "$timeprivacy_global" ] || timeprivacy_global="0"
-[ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
-
-[ -n "$uwtport" ] || uwtport["/usr/bin/git"]="9107"
-[ -n "$uwtport" ] || uwtport["/usr/bin/apt-get"]="9104"
-[ -n "$uwtport" ] || uwtport["/usr/bin/curl"]="9117"
-[ -n "$uwtport" ] || uwtport["/usr/bin/gpg"]="9105"
-[ -n "$uwtport" ] || uwtport["/usr/bin/mixmaster-update"]="9120"
-[ -n "$uwtport" ] || uwtport["/usr/bin/rawdog"]="9118"
-[ -n "$uwtport" ] || uwtport["/usr/bin/ssh"]="9106"
-[ -n "$uwtport" ] || uwtport["/usr/bin/wget"]="9109"
-[ -n "$uwtport" ] || uwtport["/usr/bin/aptitude-curses"]="9124"
-[ -n "$uwtport" ] || uwtport["/usr/bin/yum"]="9125"
-[ -n "$uwtport" ] || uwtport["/usr/bin/yumdownloader"]="9125"
 
 settings_detection() {
    if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
@@ -251,13 +232,32 @@ anon-gw-base-files or anon-ws-base-files package.
 If you are not using a Custom-Workstation: please report this bug!"
 }
 
+source_config_folder() {
+   shopt -s nullglob
+   for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
+      bash -n "$i"
+      source "$i"
+   done
+}
+
+source_config_folder
+parse_cmd ${1+"$@"}
+preparation
+variables
+alternatives_support
+sanity_tests_general
 settings_detection
 
-shopt -s nullglob
-for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
-   bash -n "$i"
-   source "$i"
-done
+if [ "$bindp_dispatch" = "true" ]; then
+   [ -n "$bindp_so" ] || bindp_so="/usr/lib/uwt/libindp.so"
+   [ -n "$bindp_interface" ] || bindp_interface="eth0"
+   [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet addr:\K\S+')" || true
+   [ -n "$BIND_ADDR" ] || BIND_ADDR="127.0.0.1"
+   LD_PRELOAD+=" $bindp_so"
+   export BIND_ADDR
+   export LD_PRELOAD
+   exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+fi
 
 port="${uwtport["$uwtwrapper_parent"]}"
 
@@ -274,53 +274,24 @@ else
    fi
 fi
 
-## Using "|| { exit_code="$?" ; true; };" to prevent invoking error_handler in case
-## the executed application exits with a non-zero value.
-##
-## Bash syntax: command1 || command2
-##
-## Setting default exit_code="0" beforehand, because
-## command2 does only get executed, if command1 exits non-zero.
-## So in case it's zero, the default exit_code value must be already set.
-
 if [ "$uwtwrapper_global" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      sanity_tests_general ${1+"$@"}
-      sanity_tests_timeprivacy
-      exit_code="0"
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
    else
-      sanity_tests_general ${1+"$@"}
-      exit_code="0"
-      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
    fi
-   exit "$exit_code"
 fi
 
 if [ "${uwtwrapper["$uwtwrapper_parent"]}" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      sanity_tests_general ${1+"$@"}
-      sanity_tests_timeprivacy
-      exit_code="0"
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
    else
-      sanity_tests_general ${1+"$@"}
-      exit_code="0"
-      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
    fi
-   exit "$exit_code"
 fi
 
 if [ "$fake_time" = "faketime" ]; then
-   sanity_tests_general ${1+"$@"}
-   sanity_tests_uwt
-   sanity_tests_timeprivacy
-   exit_code="0"
-   exec "$fake_time" "$privacy_time" "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+   exec "$fake_time" "$privacy_time" "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
 else
-   sanity_tests_general ${1+"$@"}
-   sanity_tests_uwt
-   exit_code="0"
-   exec "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"} || { exit_code="$?" ; true; };
+   exec "/usr/bin/uwt" -t 5 -i "$GATEWAY_IP" -p "$port" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
 fi
-exit "$exit_code"
