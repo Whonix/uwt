@@ -40,6 +40,21 @@ set -o errtrace
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
 
+preparation() {
+   declare -A -g timeprivacy
+   declare -A -g uwtwrapper
+   declare -A -g uwtport
+   declare -A -g bindp_use
+}
+
+source_config_folder() {
+   shopt -s nullglob
+   for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
+      bash -n "$i"
+      source "$i"
+   done
+}
+
 show_help() {
    echo "\
 $0 help.
@@ -112,11 +127,39 @@ parse_cmd() {
    # will remain in the "$@" positional parameters.
 }
 
-preparation() {
-   declare -A -g timeprivacy
-   declare -A -g uwtwrapper
-   declare -A -g uwtport
-   declare -A -g bindp_use
+variables() {
+   ## Remove the leading '.anondist' file extension. This is useful in case for
+   ## example uwtwrapper_parent is called by running
+   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+   uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+
+   [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
+   [ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
+
+   [ -n "${uwtport["/usr/bin/git"]}" ] || uwtport["/usr/bin/git"]="9107"
+   [ -n "${uwtport["/usr/bin/apt-get"]}" ] || uwtport["/usr/bin/apt-get"]="9104"
+   [ -n "${uwtport["/usr/bin/curl"]}" ] || uwtport["/usr/bin/curl"]="9117"
+   [ -n "${uwtport["/usr/bin/gpg"]}" ] || uwtport["/usr/bin/gpg"]="9105"
+   [ -n "${uwtport["/usr/bin/mixmaster-update"]}" ] || uwtport["/usr/bin/mixmaster-update"]="9120"
+   [ -n "${uwtport["/usr/bin/rawdog"]}" ] || uwtport["/usr/bin/rawdog"]="9118"
+   [ -n "${uwtport["/usr/bin/ssh"]}" ] || uwtport["/usr/bin/ssh"]="9106"
+   [ -n "${uwtport["/usr/bin/wget"]}" ] || uwtport["/usr/bin/wget"]="9109"
+   [ -n "${uwtport["/usr/bin/aptitude-curses"]}" ] || uwtport["/usr/bin/aptitude-curses"]="9124"
+   [ -n "${uwtport["/usr/bin/yum"]}" ] || uwtport["/usr/bin/yum"]="9125"
+   [ -n "${uwtport["/usr/bin/yumdownloader"]}" ] || uwtport["/usr/bin/yumdownloader"]="9125"
+
+   [ -n "${bindp_use["/usr/bin/onionshare"]}" ] || bindp_use["/usr/bin/onionshare"]="true"
+   [ -n "${bindp_use["/usr/bin/onionshare-gui"]}" ] || bindp_use["/usr/bin/onionshare-gui"]="true"
+   [ -n "${bindp_use["/usr/bin/ricochet"]}" ] || bindp_use["/usr/bin/ricochet"]="true"
+
+   for bindp_use_item in "${!bindp_use[@]}" ; do
+     if [ "$uwtwrapper_parent" = "$bindp_use_item" ]; then
+        if [ "${bindp_use[$bindp_use_item]}" = "true" ]; then
+           bindp_dispatch="true"
+           break
+        fi
+     fi
+   done
 }
 
 alternatives_support() {
@@ -163,41 +206,6 @@ sanity_tests_general() {
    fi
 }
 
-variables() {
-   ## Remove the leading '.anondist' file extension. This is useful in case for
-   ## example uwtwrapper_parent is called by running
-   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
-   uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
-
-   [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
-   [ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
-
-   [ -n "${uwtport["/usr/bin/git"]}" ] || uwtport["/usr/bin/git"]="9107"
-   [ -n "${uwtport["/usr/bin/apt-get"]}" ] || uwtport["/usr/bin/apt-get"]="9104"
-   [ -n "${uwtport["/usr/bin/curl"]}" ] || uwtport["/usr/bin/curl"]="9117"
-   [ -n "${uwtport["/usr/bin/gpg"]}" ] || uwtport["/usr/bin/gpg"]="9105"
-   [ -n "${uwtport["/usr/bin/mixmaster-update"]}" ] || uwtport["/usr/bin/mixmaster-update"]="9120"
-   [ -n "${uwtport["/usr/bin/rawdog"]}" ] || uwtport["/usr/bin/rawdog"]="9118"
-   [ -n "${uwtport["/usr/bin/ssh"]}" ] || uwtport["/usr/bin/ssh"]="9106"
-   [ -n "${uwtport["/usr/bin/wget"]}" ] || uwtport["/usr/bin/wget"]="9109"
-   [ -n "${uwtport["/usr/bin/aptitude-curses"]}" ] || uwtport["/usr/bin/aptitude-curses"]="9124"
-   [ -n "${uwtport["/usr/bin/yum"]}" ] || uwtport["/usr/bin/yum"]="9125"
-   [ -n "${uwtport["/usr/bin/yumdownloader"]}" ] || uwtport["/usr/bin/yumdownloader"]="9125"
-
-   [ -n "${bindp_use["/usr/bin/onionshare"]}" ] || bindp_use["/usr/bin/onionshare"]="true"
-   [ -n "${bindp_use["/usr/bin/onionshare-gui"]}" ] || bindp_use["/usr/bin/onionshare-gui"]="true"
-   [ -n "${bindp_use["/usr/bin/ricochet"]}" ] || bindp_use["/usr/bin/ricochet"]="true"
-
-   for bindp_use_item in "${!bindp_use[@]}" ; do
-     if [ "$uwtwrapper_parent" = "$bindp_use_item" ]; then
-        if [ "${bindp_use[$bindp_use_item]}" = "true" ]; then
-           bindp_dispatch="true"
-           break
-        fi
-     fi
-   done
-}
-
 settings_detection() {
    if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
       ## Can be the case when building Whonix from source code.
@@ -231,14 +239,6 @@ Variable GATEWAY_IP does not exist early enough in /etc/uwt.d.
 If you are using a Custom-Workstation, please consider installing the
 anon-gw-base-files or anon-ws-base-files package.
 If you are not using a Custom-Workstation: please report this bug!"
-}
-
-source_config_folder() {
-   shopt -s nullglob
-   for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
-      bash -n "$i"
-      source "$i"
-   done
 }
 
 preparation
