@@ -117,11 +117,6 @@ preparation() {
    declare -A -g uwtwrapper
    declare -A -g uwtport
    declare -A -g bindp_use
-
-   ## Remove the leading '.anondist' file extension. This is useful in case for
-   ## example uwtwrapper_parent is called by running
-   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
-   uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
 }
 
 alternatives_support() {
@@ -169,6 +164,11 @@ sanity_tests_general() {
 }
 
 variables() {
+   ## Remove the leading '.anondist' file extension. This is useful in case for
+   ## example uwtwrapper_parent is called by running
+   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+   uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+
    [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
    [ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
 
@@ -241,9 +241,9 @@ source_config_folder() {
    done
 }
 
+preparation
 source_config_folder
 parse_cmd ${1+"$@"}
-preparation
 variables
 alternatives_support
 sanity_tests_general
