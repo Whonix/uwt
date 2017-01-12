@@ -1,3 +1,48 @@
+commit c757766777d1eccdf0246582a6145fa40f29679a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 11 21:36:06 2017 +0000
+
+    refactoring
+
+commit e1c0b00aef415e0f32704bfaa83118839a3e6080
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 11 21:32:47 2017 +0000
+
+    shuffle
+
+commit 20f9e00db8f8ad9ace67b8aa4626f90b2e9bd9a7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 10 15:43:30 2017 +0000
+
+    ricochet lintian warning fix
+    
+    https://phabricator.whonix.org/T444
+
+commit 2a516b92849f3dd55c0d5cec6a01510f13268c33
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 10 15:40:16 2017 +0000
+
+    add ricochet to bindp
+    
+    https://phabricator.whonix.org/T444
+
+commit f3688a6813abe82597399da5bf05f0bca7771ff8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jan 10 10:06:07 2017 +0000
+
+    onionshare support
+    package bindp
+    uwtwrapper_verbose
+    uwt rewrite
+    code simplification
+    refactoring
+
+commit 3dafd3b83441d4cf55eaec9ff6da6454391edd63
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Dec 10 02:35:45 2016 +0000
+
+    bumped changelog version
+
 commit 0568a2a6c0b7b17b66289b4256655ed3a4e389f4
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Nov 21 17:43:41 2016 +0000
