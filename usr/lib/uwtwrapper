@@ -128,6 +128,12 @@ parse_cmd() {
 }
 
 variables() {
+   ## Disable torsocks warning spam such as.
+   ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
+   ## https://phabricator.whonix.org/T317
+   [ -n "$TORSOCKS_LOG_LEVEL" ] || TORSOCKS_LOG_LEVEL=1
+   export TORSOCKS_LOG_LEVEL
+
    ## Remove the leading '.anondist' file extension. This is useful in case for
    ## example uwtwrapper_parent is called by running
    ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
