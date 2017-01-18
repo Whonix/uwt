@@ -41,4 +41,4 @@ OnionAddrRange 127.42.42.0/24
 # different circuit from other existing streams in Tor on a per-process basis.
 # If set, the SOCKS5Username and SOCKS5Password options must not be set.
 # (Default: 0)
-#IsolatePID 1
+IsolatePID 1
