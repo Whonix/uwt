@@ -34,7 +34,7 @@ OnionAddrRange 127.42.42.0/24
 # bypassing Tor. If set to 2, in addition to TCP connect(), UDP operations to
 # the loopback interface will also be allowed, bypassing Tor. This option
 # should not be used by most users. (Default: 0)
-#AllowOutboundLocalhost 1
+AllowOutboundLocalhost 1
 
 # Set Torsocks to use an automatically generated SOCKS5 username/password based
 # on the process ID and current time, that makes the connections to Tor use a
