@@ -1,3 +1,59 @@
+commit 66447a54d37a88a78bb9a2056cd410c0c2bf12ab
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 09:07:00 2017 +0000
+
+    abolish /usr/bin/uwt thanks to TORSOCKS_ISOLATE_PID
+    
+    https://phabricator.whonix.org/T356
+
+commit b7d4101af1c7d8c95872b03abb52c0a2bbcda87f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:47:22 2017 +0000
+
+    /etc/tor/torsocks.conf AllowInbound 1
+
+commit 86d553a63a3a90d7e9b57edc9e2998df6cc17a70
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:43:55 2017 +0000
+
+    /etc/tor/torsocks.conf AllowOutboundLocalhost 1
+    
+    https://phabricator.whonix.org/T357
+
+commit c2f471d97573680bf00992ac775296da0fe9ac35
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:42:31 2017 +0000
+
+    enable /etc/tor/torsocks.conf IsolatePID 1
+    
+    https://phabricator.whonix.org/T356
+
+commit d1a64bd9a6016ee527b127b380676f97aa1d53ca
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:41:11 2017 +0000
+
+    add original /etc/tor/torsocks.conf and config-package-dev displace it
+    
+    from /etc/tor/torsocks.conf.anondist
+
+commit 174f593e3491ec3e36d8e511550cd0da62788f42
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:36:06 2017 +0000
+
+    move TORSOCKS_LOG_LEVEL from uwt to uwtwrapper
+
+commit 60ede1d9988abb79fbc27ab6428db3c0d400d9ab
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 08:31:41 2017 +0000
+
+    make variables TORSOCKS_CONF_FILE and TORSOCKS_LOG_LEVEL overwriteable
+
+commit 56214ac53c3064f08c284cafbe044a9112987bbd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sun Jan 15 15:37:08 2017 +0000
+
+    bumped changelog version
+
 commit 0b776f47dcb980e30f8522bab04496f9dd78ab52
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Sun Jan 15 08:35:43 2017 +0100
