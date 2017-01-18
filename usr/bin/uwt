@@ -182,7 +182,7 @@ if [ ! -d "$sub_folder" ]; then
 fi
 
 ## Define our torsocks config file.
-TORSOCKS_CONF_FILE="$(mktemp --tmpdir="$sub_folder")"
+[ -n "$TORSOCKS_CONF_FILE" ] || TORSOCKS_CONF_FILE="$(mktemp --tmpdir="$sub_folder")"
 export TORSOCKS_CONF_FILE
 
 cleanup_function() {
@@ -267,12 +267,12 @@ if [ ! -r "$TORSOCKS_CONF_FILE" ]; then
   exit 1
 fi
 
-if [ "$TORSOCKS_LOG_LEVEL" = "" ]; then
-   ## Disable torsocks warning spam such as.
-   ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
-   ## https://phabricator.whonix.org/T317
-   export TORSOCKS_LOG_LEVEL=1
-fi
+
+## Disable torsocks warning spam such as.
+## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
+## https://phabricator.whonix.org/T317
+[ -n "$TORSOCKS_LOG_LEVEL" ] || TORSOCKS_LOG_LEVEL=1
+export TORSOCKS_LOG_LEVEL
 
 UWT_LOCALHOST="0"
 
