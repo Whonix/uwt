@@ -1,3 +1,15 @@
+commit affaa2fbc56e895bdc0991ddbd21c340c206cfdc
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 14:40:06 2017 +0000
+
+    re-implement UWT_DEV_PASSTHROUGH
+
+commit 19448c17d88d34aa2fd305654ee65a9a44af594f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 14:33:58 2017 +0000
+
+    bumped changelog version
+
 commit 66447a54d37a88a78bb9a2056cd410c0c2bf12ab
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 18 09:07:00 2017 +0000
