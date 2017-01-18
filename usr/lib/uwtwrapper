@@ -136,6 +136,10 @@ variables() {
 
    [ -n "$torsocks_bin" ] || torsocks_bin=torsocks
 
+   if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
+      torsocks_bin=""
+   fi
+
    ## Remove the leading '.anondist' file extension. This is useful in case for
    ## example uwtwrapper_parent is called by running
    ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
