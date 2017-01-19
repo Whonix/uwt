@@ -1,3 +1,18 @@
+commit 8e50fd61f9b662abfd9a2b55c8e061737de126d1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 19 08:27:06 2017 +0000
+
+    add gpg2 uwt wrapper
+    add symlink support
+    cleanup
+    refactoring
+
+commit 1526be13b2eed7604ffc9b0471531209af4230ec
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jan 18 14:40:42 2017 +0000
+
+    bumped changelog version
+
 commit affaa2fbc56e895bdc0991ddbd21c340c206cfdc
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed Jan 18 14:40:06 2017 +0000
