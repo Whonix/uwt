@@ -34,6 +34,7 @@ Description: Use Applications over Tor with Stream Isolation and Time Privacy
   - curl
   - git
   - gpg
+  - gpg2
   - mixmaster-update
   - rawdog
   - ssh

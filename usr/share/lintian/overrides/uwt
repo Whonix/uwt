@@ -5,6 +5,7 @@ uwt: binary-without-manpage usr/bin/aptitude-curses.anondist
 uwt: binary-without-manpage usr/bin/curl.anondist
 uwt: binary-without-manpage usr/bin/git.anondist
 uwt: binary-without-manpage usr/bin/gpg.anondist
+uwt: binary-without-manpage usr/bin/gpg2.anondist
 uwt: binary-without-manpage usr/bin/mixmaster-update.anondist
 uwt: binary-without-manpage usr/bin/rawdog.anondist
 uwt: binary-without-manpage usr/bin/ssh.anondist

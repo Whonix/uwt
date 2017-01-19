@@ -43,8 +43,10 @@ SCRIPTNAME="$(basename "$BASH_SOURCE")"
 preparation() {
    declare -A -g timeprivacy
    declare -A -g uwtwrapper
-   declare -A -g uwtport
    declare -A -g bindp_use
+
+   ## Keep for backwards compatibility with legacy config files.
+   declare -A -g uwtport
 }
 
 source_config_folder() {
@@ -140,10 +142,29 @@ variables() {
       torsocks_bin=""
    fi
 
+   ## uwtwrapper_parent examples:
+   ## /usr/bin/gpg2
+   ## /usr/bin/gpg2.anondist
+
    ## Remove the leading '.anondist' file extension. This is useful in case for
    ## example uwtwrapper_parent is called by running
    ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
    uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
+
+   ## uwtwrapper_parent example:
+   ## /usr/bin/gpg2
+
+   ## Let's see if $uwtwrapper_parent.anondist-orig
+   ## (for example /usr/bin/gpg2.anondist-orig) is actually a symlink.
+   if test -h "$uwtwrapper_parent.anondist-orig" ; then
+      ## Yes, it's a symlink.
+      local readlink_result
+      if readlink_result="$(readlink "$uwtwrapper_parent.anondist-orig")" ; then
+         ## readlink_result example:
+         ## gpg
+         exec "$readlink_result" "$@"
+      fi
+   fi
 
    [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
    [ -n "$uwtwrapper_global" ] || uwtwrapper_global="1"
@@ -172,6 +193,7 @@ alternatives_support() {
 
       ## Lets see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
       if [ -e "/etc/alternatives/$basename_uwtwrapper_parent" ]; then
+         local readlink_result
          ## Lets see where for example /etc/alternatives/aptitude links to and use it.
          if readlink_result="$(readlink "/etc/alternatives/$basename_uwtwrapper_parent")" ; then
             ## Symlink could be read. Lets use it.
@@ -206,12 +228,12 @@ sanity_tests_general() {
    fi
 }
 
-preparation
-source_config_folder
-parse_cmd ${1+"$@"}
-variables
-alternatives_support
-sanity_tests_general
+preparation "$@"
+source_config_folder "$@"
+parse_cmd "$@"
+variables "$@"
+alternatives_support "$@"
+sanity_tests_general "$@"
 
 if [ "$bindp_dispatch" = "true" ]; then
    [ -n "$bindp_so" ] || bindp_so="/usr/lib/uwt/libindp.so"
@@ -221,7 +243,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    LD_PRELOAD+=" $bindp_so"
    export BIND_ADDR
    export LD_PRELOAD
-   exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+   exec "$uwtwrapper_parent.anondist-orig" "$@"
 fi
 
 if [ "${timeprivacy["$uwtwrapper_parent"]}" = "1" ]; then
@@ -239,22 +261,22 @@ fi
 
 if [ "$uwtwrapper_global" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" "$@"
    else
-      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+      exec "$uwtwrapper_parent.anondist-orig" "$@"
    fi
 fi
 
 if [ "${uwtwrapper["$uwtwrapper_parent"]}" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" "$@"
    else
-      exec "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+      exec "$uwtwrapper_parent.anondist-orig" "$@"
    fi
 fi
 
 if [ "$fake_time" = "faketime" ]; then
-   exec "$fake_time" "$privacy_time" $torsocks_bin "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+   exec "$fake_time" "$privacy_time" $torsocks_bin "$uwtwrapper_parent.anondist-orig" "$@"
 else
-   exec $torsocks_bin "$uwtwrapper_parent.anondist-orig" ${1+"$@"}
+   exec $torsocks_bin "$uwtwrapper_parent.anondist-orig" "$@"
 fi
