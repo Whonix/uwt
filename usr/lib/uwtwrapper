@@ -238,7 +238,7 @@ sanity_tests_general "$@"
 if [ "$bindp_dispatch" = "true" ]; then
    [ -n "$bindp_so" ] || bindp_so="/usr/lib/uwt/libindp.so"
    [ -n "$bindp_interface" ] || bindp_interface="eth0"
-   [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet addr:\K\S+')" || true
+   [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet \K\S+')" || true
    [ -n "$BIND_ADDR" ] || BIND_ADDR="127.0.0.1"
    LD_PRELOAD+=" $bindp_so"
    export BIND_ADDR
