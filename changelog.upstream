@@ -1,3 +1,15 @@
+commit b6188aaf3c95b30602153f49645778097f427eb1
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 2 19:23:47 2017 +0100
+
+    fix bindp eth0 ip detection for debian stretch
+
+commit dc1d2930bdc3067a33e30eac959ccc826e392bd6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Jan 19 10:27:13 2017 +0000
+
+    bumped changelog version
+
 commit 8e50fd61f9b662abfd9a2b55c8e061737de126d1
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Jan 19 08:27:06 2017 +0000
