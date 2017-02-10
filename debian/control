@@ -7,7 +7,7 @@ Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@riseup.net>
 Build-Depends: debhelper (>= 9), faketime, genmkfile, ruby-ronn (>= 0.7.3),
- config-package-dev (>= 5.1)
+ config-package-dev
 Homepage: https://github.com/Whonix/uwt
 Vcs-Browser: https://github.com/Whonix/uwt
 Vcs-Git: https://github.com/Whonix/uwt.git
