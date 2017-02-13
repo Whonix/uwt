@@ -14,6 +14,7 @@ uwtwrapper, Tor and stream isolation:
 - curl
 - git
 - gpg
+- gpg2
 - mixmaster-update
 - rawdog
 - ssh
