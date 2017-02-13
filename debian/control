@@ -14,9 +14,9 @@ Vcs-Git: https://github.com/Whonix/uwt.git
 Standards-Version: 3.9.8
 
 Package: uwt
-Architecture: any
-Depends: torsocks, faketime, ${shlibs:Depends}, ${misc:Depends}
-Recommends: timezone-utc
+Architecture: all
+Depends: torsocks, faketime, ${misc:Depends}
+Recommends: timezone-utc, bindp
 Provides: ${diverted-files}
 Conflicts: ${diverted-files}
 Description: Use Applications over Tor with Stream Isolation and Time Privacy
