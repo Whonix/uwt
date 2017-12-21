@@ -28,7 +28,7 @@ specific or all uwt wrappers by using the stackable .d-style configuration
 folder /etc/uwt.d.
 
 Uwt can only work only as good as torsocks. If torsocks is unable to route all
-of an application’s traffic over Tor, ex. if there is an leak, there will
+of an application's traffic over Tor, ex. if there is an leak, there will
 also be one when using uwt. For that reason, it is recommended to use
 Anonymity Distributions, that prevent such leaks.
 
