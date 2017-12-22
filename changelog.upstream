@@ -1,3 +1,15 @@
+commit 269aaf079abec2644f1d344c594631d696e5b6e6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Dec 22 00:15:46 2017 +0000
+
+    fix path to bindp
+
+commit 4d9fa12e85b9fba1b8ee3cda6f1fcee9a3e43443
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Dec 21 20:36:44 2017 +0000
+
+    bumped changelog version
+
 commit 73e81e3a57d4cd8c738f78504cdea1b55d2f5f38
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Thu Dec 21 20:26:30 2017 +0000
