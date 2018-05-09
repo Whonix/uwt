@@ -1,3 +1,24 @@
+commit 907f8e1ee93a0ec47febecce3e86266c681764fa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed May 9 09:46:59 2018 +0000
+
+    ricochet does not have unix domain socket file support, therefore it depends
+    on the TOR_CONTROL_HOST and TOR_CONTROL_PORT environment variables being
+    set. Otherwise it would try to start its own Tor instance.
+    https://phabricator.whonix.org/T444
+    
+    set environment variables required for ricochet
+    
+    Thanks to @Tibo for providing the problem solution!
+    
+    https://phabricator.whonix.org/T444
+
+commit 4d6ab4fe4b9b28a85f164c2038775fecf4f4721f
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Thu Feb 1 15:27:18 2018 +0000
+
+    bumped changelog version
+
 commit 7f91f7b5fae97b6c1f9a7e4aa0bf9fa87ffdb27c
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Jan 29 15:50:40 2018 +0000
