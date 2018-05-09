@@ -3,5 +3,14 @@
 ## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+## ricochet does not have unix domain socket file support, therefore it depends
+## on the TOR_CONTROL_HOST and TOR_CONTROL_PORT environment variables being
+## set. Otherwise it would try to start its own Tor instance.
+## https://phabricator.whonix.org/T444
+TOR_CONTROL_HOST="127.0.0.1"
+TOR_CONTROL_PORT="9151"
+export TOR_CONTROL_HOST
+export TOR_CONTROL_PORT
+
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
 exec /usr/lib/uwtwrapper "$@"
