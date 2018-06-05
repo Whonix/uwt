@@ -132,6 +132,7 @@ nested_protection() {
    [ -n "$uwtwrapper_max" ] || uwtwrapper_max=10
    [ -n "$uwtwrapper_counter" ] || uwtwrapper_counter=0
    uwtwrapper_counter=$(( uwtwrapper_counter + 1 ))
+   export uwtwrapper_counter
    if [ "$uwtwrapper_counter" -ge "$uwtwrapper_max" ]; then
       echo "$SCRIPTNAME uwt wrapper ERROR: More than uwtwrapper_counter $uwtwrapper_counter nested executions (uwtwrapper_max: $uwtwrapper_max)."
       exit 255
