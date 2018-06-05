@@ -1,5 +1,7 @@
 # No need to ship man pages for displaced files, because the original man pages
 # are still available.
+uwt: binary-without-manpage usr/bin/apt.anondist
+uwt: binary-without-manpage usr/bin/apt-file.anondist
 uwt: binary-without-manpage usr/bin/apt-get.anondist
 uwt: binary-without-manpage usr/bin/aptitude-curses.anondist
 uwt: binary-without-manpage usr/bin/curl.anondist
