@@ -161,8 +161,10 @@ variables() {
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
          ## readlink_result example:
          ## git
-         ## Determine if $uwtwrapper_parent does not have a wrapper script
+         ## Determine if $uwtwrapper_parent.anondist does not have a wrapper script
          if [ ! -e "$uwtwrapper_parent.anondist" ]; then
+            ## $uwtwrapper_parent does not have a wrapper script.
+            ## Therefore, execute what $uwtwrapper_parent symlinks to.
             exec "$readlink_result" "$@"
          fi
       fi
