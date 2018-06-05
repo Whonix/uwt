@@ -154,7 +154,7 @@ variables() {
    ## /usr/bin/gpg2
 
    true "Let us see if uwtwrapper_parent $uwtwrapper_parent is actually a symlink."
-   ## (For example /usr/bin/git-receive-pack) is actually a symlink.)
+   ## (For example '/usr/bin/git-receive-pack' is actually a symlink to 'git'.)
    if test -h "$uwtwrapper_parent" ; then
       true "Yes, it is a symlink."
       local readlink_result
@@ -175,7 +175,7 @@ variables() {
    fi
 
    true "Let us see if uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is actually a symlink."
-   ## (For example /usr/bin/gpg2.anondist-orig is actually a symlink.)
+   ## (For example '/usr/bin/gpg2.anondist-orig' is actually a symlink to 'gpg'.)
    if test -h "$uwtwrapper_parent.anondist-orig" ; then
       true "Yes, it is a symlink."
       local readlink_result
