@@ -153,18 +153,18 @@ variables() {
    ## uwtwrapper_parent example:
    ## /usr/bin/gpg2
 
-   ## Let's see if $uwtwrapper_parent
-   ## (for example /usr/bin/git-receive-pack) is actually a symlink.
+   true "Let us see if $uwtwrapper_parent is actually a symlink."
+   ## (for example /usr/bin/git-receive-pack) is actually a symlink.)
    if test -h "$uwtwrapper_parent" ; then
-      ## Yes, it's a symlink.
+      true "Yes, it's a symlink."
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
          ## readlink_result example:
          ## git
-         ## Determine if $uwtwrapper_parent.anondist does not have a wrapper script
+         true "Determine if $uwtwrapper_parent.anondist does not have a wrapper script"
          if [ ! -e "$uwtwrapper_parent.anondist" ]; then
-            ## $uwtwrapper_parent does not have a wrapper script.
-            ## Therefore, execute what $uwtwrapper_parent symlinks to.
+            true "uwtwrapper_parent $uwtwrapper_parent does not have a wrapper script."
+            true "Therefore, execute what uwtwrapper_parent $uwtwrapper_parent symlinks to."
             exec "$readlink_result" "$@"
          fi
       fi
