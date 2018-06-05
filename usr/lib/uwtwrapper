@@ -128,6 +128,16 @@ parse_cmd() {
    # will remain in the "$@" positional parameters.
 }
 
+nested_protection() {
+   [ -n "$uwtwrapper_max" ] || uwtwrapper_max=10
+   [ -n "$uwtwrapper_counter" ] || uwtwrapper_counter=0
+   uwtwrapper_counter=$(( uwtwrapper_counter + 1 ))
+   if [ "$uwtwrapper_counter" -ge "$uwtwrapper_max" ]; then
+      echo "$SCRIPTNAME uwt wrapper ERROR: More than uwtwrapper_counter $uwtwrapper_counter nested executions (uwtwrapper_max: $uwtwrapper_max)."
+      exit 255
+   fi
+}
+
 variables() {
    ## Disable torsocks warning spam such as.
    ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
@@ -254,6 +264,7 @@ sanity_tests_general() {
 preparation "$@"
 source_config_folder "$@"
 parse_cmd "$@"
+nested_protection
 variables "$@"
 alternatives_support "$@"
 sanity_tests_general "$@"
