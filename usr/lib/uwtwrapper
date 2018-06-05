@@ -161,13 +161,17 @@ variables() {
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
          ## readlink_result example:
          ## git
-         true "Determine if $uwtwrapper_parent.anondist does not have a uwt wrapper script"
-         if [ ! -e "$uwtwrapper_parent.anondist" ]; then
-            true "uwtwrapper_parent $uwtwrapper_parent does not have a uwt wrapper script."
+         true "Determine if $uwtwrapper_parent.anondist has a uwt wrapper script."
+         if [ -e "$uwtwrapper_parent.anondist" ]; then
+            true "Yes, uwtwrapper_parent $uwtwrapper_parent has a uwt wrapper script."
+         else
+            true "No, uwtwrapper_parent $uwtwrapper_parent does not have a uwt wrapper script."
             true "Therefore, execute what uwtwrapper_parent $uwtwrapper_parent symlinks to."
             exec "$readlink_result" "$@"
          fi
       fi
+   else
+      true "No, it is not a symlink."
    fi
 
    true "Let us see if uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is actually a symlink."
@@ -181,6 +185,8 @@ variables() {
          true "Therefore, execute readlink_result $readlink_result."
          exec "$readlink_result" "$@"
       fi
+   else
+      true "No, it is not a symlink."
    fi
 
    [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
