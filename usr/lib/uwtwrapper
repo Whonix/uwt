@@ -159,10 +159,10 @@ variables() {
       ## Yes, it's a symlink.
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
+         ## readlink_result example:
+         ## git
          ## Determine if $uwtwrapper_parent does not have a wrapper script
          if [ ! -e "$uwtwrapper_parent.anondist" ]; then
-            ## readlink_result example:
-            ## git
             exec "$readlink_result" "$@"
          fi
       fi
