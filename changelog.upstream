@@ -1,3 +1,89 @@
+commit dd1061d46de19a08d13cb3a53df2a60f70c6cf75
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 16:45:17 2018 +0000
+
+    fix
+
+commit 6976659065abc8c85e883fa975247e5645ba0817
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 16:37:11 2018 +0000
+
+    add protection against endless nested execution
+
+commit 90f8fccf635615e816fc27e80a5c07db40ea49f4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 16:06:43 2018 +0000
+
+    comments
+
+commit 8f87485760ba1d4d78d4d5f39fc56c3e6cd180fa
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:59:53 2018 +0000
+
+    debugging
+
+commit 22670da3133fa2575e82da22c15a358440d91881
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:53:23 2018 +0000
+
+    debugging
+
+commit 95dc6160a5910e325b8ca4b9a56ca2cd11dbda31
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:50:53 2018 +0000
+
+    debugging
+
+commit 0f3b7e7f4c30d59372f48fab9727df6c91467b5b
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:34:15 2018 +0000
+
+    comments
+
+commit fe50217eb88cdb90aa74806039632507be861ef4
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:29:55 2018 +0000
+
+    move comment
+
+commit 2eb726dca180353446c342dd2dc1b49be7a337ff
+Merge: 03cc4c8 1ed03f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 15:25:58 2018 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 1ed03f70f080dfc90d40927f169a3b5a0e12e7cf
+Merge: 03cc4c8 164701d
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 17:22:24 2018 +0200
+
+    Merge pull request #5 from yzxd/master
+    
+    Fix issue with symbolic links to binaries
+
+commit 03cc4c8568564d5993fcc8ea975cf00e851f7052
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Jun 5 17:09:52 2018 +0200
+
+    uwt: add apt and apt-file
+    
+    Thanks to @starius for the bug report!
+    
+    https://github.com/QubesOS/qubes-issues/issues/3882
+
+commit 164701d072851a62ccee44986e53dddc838ed972
+Author: yzxd <dxzy@protonmail.com>
+Date:   Mon May 28 04:05:49 2018 +0000
+
+    fix issue with symbolic links to binaries
+
+commit a95b6c6dc70b28a98b2eca534e04d43ee874ec0a
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed May 9 12:25:13 2018 +0000
+
+    bumped changelog version
+
 commit 907f8e1ee93a0ec47febecce3e86266c681764fa
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Wed May 9 09:46:59 2018 +0000
