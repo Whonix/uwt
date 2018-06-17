@@ -161,6 +161,11 @@ variables() {
    ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
    uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
 
+   ## Export the zeroth argument for use in the uwtexec script.
+   ## This allows uwtexec to supply the original zeroth argument.
+   [ -n "$uwtwrapper_zeroarg" ] || uwtwrapper_zeroarg=$uwtwrapper_parent
+   export uwtwrapper_zeroarg
+
    ## uwtwrapper_parent example:
    ## /usr/bin/gpg2
 
@@ -278,7 +283,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    LD_PRELOAD+=" $bindp_so"
    export BIND_ADDR
    export LD_PRELOAD
-   exec "$uwtwrapper_parent.anondist-orig" "$@"
+   exec "/usr/lib/uwtexec" "$@"
 fi
 
 if [ "${timeprivacy["$uwtwrapper_parent"]}" = "1" ]; then
@@ -296,22 +301,22 @@ fi
 
 if [ "$uwtwrapper_global" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" "$@"
+      exec "$fake_time" "$privacy_time" "/usr/lib/uwtexec" "$@"
    else
-      exec "$uwtwrapper_parent.anondist-orig" "$@"
+      exec "/usr/lib/uwtexec" "$@"
    fi
 fi
 
 if [ "${uwtwrapper["$uwtwrapper_parent"]}" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "$uwtwrapper_parent.anondist-orig" "$@"
+      exec "$fake_time" "$privacy_time" "/usr/lib/uwtexec" "$@"
    else
-      exec "$uwtwrapper_parent.anondist-orig" "$@"
+      exec "/usr/lib/uwtexec" "$@"
    fi
 fi
 
 if [ "$fake_time" = "faketime" ]; then
-   exec "$fake_time" "$privacy_time" $torsocks_bin "$uwtwrapper_parent.anondist-orig" "$@"
+   exec "$fake_time" "$privacy_time" $torsocks_bin "/usr/lib/uwtexec" "$@"
 else
-   exec $torsocks_bin "$uwtwrapper_parent.anondist-orig" "$@"
+   exec $torsocks_bin "/usr/lib/uwtexec" "$@"
 fi
