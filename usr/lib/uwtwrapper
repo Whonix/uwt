@@ -163,7 +163,7 @@ variables() {
 
    ## Export the zeroth argument for use in the uwtexec script.
    ## This allows uwtexec to supply the original zeroth argument.
-   [ -n "$uwtwrapper_zeroarg" ] || uwtwrapper_zeroarg=$uwtwrapper_parent
+   [ -n "$uwtwrapper_zeroarg" ] || uwtwrapper_zeroarg="$uwtwrapper_parent"
    export uwtwrapper_zeroarg
 
    ## uwtwrapper_parent example:
