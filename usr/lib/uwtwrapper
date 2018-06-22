@@ -147,6 +147,7 @@ variables() {
    export TORSOCKS_LOG_LEVEL
 
    [ -n "$torsocks_bin" ] || torsocks_bin=torsocks
+   [ -n "$uwtexec_bin" ] || uwtexec_bin=/usr/lib/uwtexec
 
    if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
       torsocks_bin=""
@@ -286,7 +287,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    ## Environment variable BIND_ADDR gets used by bindp.
    export BIND_ADDR
    export LD_PRELOAD
-   exec "/usr/lib/uwtexec" "$@"
+   exec $uwtexec_bin "$@"
 fi
 
 if [ "${timeprivacy["$uwtwrapper_parent"]}" = "1" ]; then
@@ -304,22 +305,22 @@ fi
 
 if [ "$uwtwrapper_global" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "/usr/lib/uwtexec" "$@"
+      exec "$fake_time" "$privacy_time" $uwtexec_bin "$@"
    else
-      exec "/usr/lib/uwtexec" "$@"
+      exec $uwtexec_bin "$@"
    fi
 fi
 
 if [ "${uwtwrapper["$uwtwrapper_parent"]}" = "0" ]; then
    if [ "$fake_time" = "faketime" ]; then
-      exec "$fake_time" "$privacy_time" "/usr/lib/uwtexec" "$@"
+      exec "$fake_time" "$privacy_time" $uwtexec_bin "$@"
    else
-      exec "/usr/lib/uwtexec" "$@"
+      exec $uwtexec_bin "$@"
    fi
 fi
 
 if [ "$fake_time" = "faketime" ]; then
-   exec "$fake_time" "$privacy_time" $torsocks_bin "/usr/lib/uwtexec" "$@"
+   exec "$fake_time" "$privacy_time" $torsocks_bin $uwtexec_bin "$@"
 else
-   exec $torsocks_bin "/usr/lib/uwtexec" "$@"
+   exec $torsocks_bin $uwtexec_bin "$@"
 fi
