@@ -1,0 +1,11 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
+## See the file COPYING for copying conditions.
+
+## This script is used by uwtwrapper as a workaround to preserve the zeroth
+## argument when executing programs with other wrappers like faketime or torsocks.
+
+## Execute $uwtwrapper_parent.anondist-orig with the zeroth argument set to
+## $uwtwrapper_zeroarg and the other arguments set to $@
+exec -a "$uwtwrapper_zeroarg" "$uwtwrapper_parent.anondist-orig" "$@"
