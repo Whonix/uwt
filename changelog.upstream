@@ -1,3 +1,69 @@
+commit a6c82b13cf08985590ec967044a522c28fbf1599
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:19:54 2018 +0000
+
+    comment
+
+commit 433832c65986e14ec23c9add749f4e8f87f420f7
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:17:52 2018 +0000
+
+    cosmetic, store /usr/lib/uwtexec in variable uwtexec_bin rather than hardcoding it
+    
+    https://github.com/Whonix/uwt/pull/6
+    
+    https://phabricator.whonix.org/T797
+
+commit 5d256caa490a7449d1cc50378ac4a06d08c0e873
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:15:38 2018 +0000
+
+    comments
+
+commit 15e864342138c0b7ae8c3970b23fc6e8c83f8ed6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:14:04 2018 +0000
+
+    comment
+
+commit b93a65f79bf67fef723a2b3755561790e2867454
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:08:12 2018 +0000
+
+    quotes
+    
+    https://github.com/Whonix/uwt/pull/6
+    
+    https://phabricator.whonix.org/T797
+
+commit 6a9ae340cf634825ee35521c5548e040c65e8447
+Merge: 875cc8c 2d46a83
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:06:41 2018 +0000
+
+    Merge remote-tracking branch 'origin/master'
+
+commit 2d46a83ee2d0b6f9cd56f7d4f6d9a158c0d40fb4
+Merge: 875cc8c 4003bb0
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 10:03:58 2018 +0800
+
+    Merge pull request #6 from yzxd/master
+    
+    Preserve zeroth argument when executing scripts with multiple wrappers
+
+commit 4003bb068971adf11932b7a4f96beb366df36b7a
+Author: yzxd <dxzy@protonmail.com>
+Date:   Sun Jun 17 23:42:04 2018 +0000
+
+    preserve zeroth argument when executing scripts with multiple wrappers
+
+commit 875cc8c18942b83f6a6699471a02e8a0aac62329
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Wed Jun 13 07:13:26 2018 +0000
+
+    bumped changelog version
+
 commit dd1061d46de19a08d13cb3a53df2a60f70c6cf75
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Jun 5 16:45:17 2018 +0000
