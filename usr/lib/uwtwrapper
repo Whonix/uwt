@@ -281,6 +281,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet \K\S+')" || true
    [ -n "$BIND_ADDR" ] || BIND_ADDR="127.0.0.1"
    LD_PRELOAD+=" $bindp_so"
+   ## Environment variable BIND_ADDR gets used by bindp.
    export BIND_ADDR
    export LD_PRELOAD
    exec "/usr/lib/uwtexec" "$@"
