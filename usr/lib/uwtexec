@@ -6,6 +6,12 @@
 ## This script is used by uwtwrapper as a workaround to preserve the zeroth
 ## argument when executing programs with other wrappers like faketime or torsocks.
 
+if [ ! "$uwtwrapper_verbose" = "" ]; then
+   if [ "$uwtwrapper_verbose" -ge 1 ]; then
+      set -x
+   fi
+fi
+
 ## Execute $uwtwrapper_parent.anondist-orig with the zeroth argument set to
 ## $uwtwrapper_zeroarg and the other arguments set to $@
 exec -a "$uwtwrapper_zeroarg" "$uwtwrapper_parent.anondist-orig" "$@"
