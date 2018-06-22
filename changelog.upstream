@@ -1,3 +1,15 @@
+commit c9498e4bebdd60358f87a19d707aa2bcafd5c9ca
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:46:06 2018 +0000
+
+    add uwtexec verbose support
+
+commit a7ee19bca2da7061c47159608b5fc772038454a6
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Fri Jun 22 02:25:40 2018 +0000
+
+    bumped changelog version
+
 commit a6c82b13cf08985590ec967044a522c28fbf1599
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Fri Jun 22 02:19:54 2018 +0000
