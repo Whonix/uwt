@@ -164,6 +164,7 @@ variables() {
 
    ## Export the zeroth argument for use in the uwtexec script.
    ## This allows uwtexec to supply the original zeroth argument.
+   ## https://phabricator.whonix.org/T797
    [ -n "$uwtwrapper_zeroarg" ] || uwtwrapper_zeroarg="$uwtwrapper_parent"
    export uwtwrapper_zeroarg
 
