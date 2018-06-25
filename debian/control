@@ -14,8 +14,8 @@ Standards-Version: 3.9.8
 
 Package: uwt
 Architecture: all
-Depends: torsocks, faketime, ${misc:Depends}
-Recommends: timezone-utc, bindp
+Depends: torsocks, faketime, bindp, net-tools, ${misc:Depends}
+Recommends: timezone-utc
 Provides: ${diverted-files}
 Conflicts: ${diverted-files}
 Description: Use Applications over Tor with Stream Isolation and Time Privacy
