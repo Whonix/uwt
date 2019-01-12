@@ -1,3 +1,17 @@
+commit e29bf650d777deabf2cb9ef900ac0e3d535b95dd
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Sat Jan 12 01:22:14 2019 -0500
+
+    magic-wormhole support
+    
+    https://phabricator.whonix.org/T771
+
+commit e76e159cefcabdf62257422f6b268becdb8c2189
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Aug 27 16:56:26 2018 +0000
+
+    bumped changelog version
+
 commit 2cd7bdb074a62d7d67c3df1866a5fb0e9f8f6c0f
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Tue Aug 21 05:18:41 2018 +0800
