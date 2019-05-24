@@ -23,6 +23,7 @@ uwtwrapper, Tor and stream isolation:
 - wget
 - yum
 - yumdownloader
+- wormhole
 
 To circumvent a uwt wrapper on a by case base, you append ".anondist-real" to
 the command, for example "apt-get.anondist-real". You can also deactivate
@@ -60,7 +61,7 @@ sudo apt-key --keyring /etc/apt/trusted.gpg.d/whonix.gpg adv --keyserver hkp://i
 3\. Add Whonix's APT repository.
 
 ```
-echo "deb http://deb.whonix.org buster main" | sudo tee /etc/apt/sources.list.d/whonix.list
+echo "deb http://deb.whonix.org buster main contrib non-free" | sudo tee /etc/apt/sources.list.d/whonix.list
 ```
 
 4\. Update your package lists.
@@ -84,6 +85,6 @@ Replace `apparmor-profile-torbrowser` with the actual name of this package with 
 * [Free Forum Support](https://forums.whonix.org)
 * [Professional Support](https://www.whonix.org/wiki/Professional_Support)
 
-## Payments ##
+## Donate ##
 
-`uwt` requires [payments](https://www.whonix.org/wiki/Payments) to stay alive!
+`uwt` requires [donations](https://www.whonix.org/wiki/Donate) to stay alive!
