@@ -1,7 +1,21 @@
 ## Copyright (C) 2012 - 2018 ENCRYPTED SUPPORT LP <adrelanos@riseup.net>
 ## See the file COPYING for copying conditions.
 
+#### meta start
+#### project Whonix
+#### category networking
+#### description
+## replace the following files with the <code>uwt</code> version
+##
+## Using <code>config-package-dev</code> <code>displace</code>.
+
+## <code>/etc/tor/torsocks</code> configuration file
 /etc/tor/torsocks.conf.anondist
+
+## Replace <code>apt</code>, <code>wget</code>, <code>curl</code>,
+## <code>ssh</code>, <code>onionshare</code>, <code>ricochet</code>,
+## <code>wormhole</code> with <code>uwt</code> wrapper which then calls
+## <code>/usr/lib/uwtwrapper</code>.
 /usr/bin/apt.anondist
 /usr/bin/apt-file.anondist
 /usr/bin/apt-get.anondist
@@ -20,3 +34,5 @@
 /usr/bin/onionshare-gui.anondist
 /usr/bin/ricochet.anondist
 /usr/bin/wormhole.anondist
+
+#### meta end

@@ -5,6 +5,48 @@
 
 ## $uwtwrapper_parent uwt wrapper.
 
+#### meta start
+#### project Whonix
+#### category networking
+#### description
+## When running uwt wrapped applications (such as <code>apt</code>,
+## <code>wget</code>, <code>curl</code>, <code>onionshare</code> or others)
+## automatically prepend <code>torsocks</code> or <code>bindp</code>. I.e.
+##
+## When for example <code>apt</code> or <code>curl</code> is executed, what
+## really happens is running <code>torsocks apt</code> or
+## <code>torsocks curl</code>.
+##
+## uwtwrappers and <code>/usr/lib/uwtwrapper</code> are hacks to socksify applications
+## that do
+## not support native socks proxy settings. Used to implement Stream Isolation.
+## https://www.whonix.org/wiki/Stream_Isolation
+##
+## In essence, uwtwrappers are installed so users can type commands like
+## apt-get normally while transparently injecting torsocks, thereby stream
+## isolating them.
+##
+## To understand better how uwt wrappers function, you could for example open
+## /usr/bin/apt-get.anondist in an editor.
+##
+## Also useful to run:
+## ls -la /usr/bin/apt-get*
+##
+## You will see, that /usr/bin/apt-get has been replaced with a symlink to
+## /usr/bin/apt-get.anondist. (This was done using config-package-dev.)
+##
+## /usr/bin/apt-get.anondist is a uwt wrapper.
+##
+## /usr/bin/apt-get.anondist-orig is the original apt-get binary.
+##
+## <code>bindp</code> is used to make applications which listen on the internal
+## IP by default such as <code>onionshare</code> (which is the right thing to
+## outside of Whonix) listen on the external IP instead. See also:
+##
+## * https://github.com/Whonix/bindp
+## * https://phabricator.whonix.org/T561
+#### meta end
+
 ## If you want to enable/disable uwt and/or privacy
 ## globally or for certain applications, see /etc/uwt.d/.
 

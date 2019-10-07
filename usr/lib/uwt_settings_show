@@ -20,8 +20,15 @@ if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
 fi
 
 if [ "$enabled" = "true" ]; then
+#### meta start
+#### project Whonix
+#### category networking
+#### description
+
    echo "uwt INFO: Stream isolation for some applications enabled. uwt / torsocks will be automatically prepended to some commands. What is that? See:"
    echo "uwt INFO: https://www.whonix.org/wiki/Stream_Isolation/Easy"
+
+#### meta end
 else
    echo "uwt INFO: disabled."
 fi

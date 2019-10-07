@@ -46,7 +46,8 @@ IsolatePID 1
 #### meta start
 #### project Whonix
 #### category networking and dns
-#### description <code>torsocks</code> configuration
+#### description
+## <code>torsocks</code> configuration
 ## * <code>AllowInbound 1</code>
 ## * <code>AllowOutboundLocalhost 1</code>
 ## * <code>IsolatePID 1</code>
