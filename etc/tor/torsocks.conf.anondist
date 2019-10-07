@@ -42,3 +42,12 @@ AllowOutboundLocalhost 1
 # If set, the SOCKS5Username and SOCKS5Password options must not be set.
 # (Default: 0)
 IsolatePID 1
+
+#### meta start
+#### project Whonix
+#### category networking and dns
+#### description <code>torsocks</code> configuration
+## * <code>AllowInbound 1</code>
+## * <code>AllowOutboundLocalhost 1</code>
+## * <code>IsolatePID 1</code>
+#### meta end
