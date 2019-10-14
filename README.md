@@ -4,9 +4,6 @@ Can add "torsocks" and/or "timeprivacy" before invocation of applications when
 configured to do so. For example, when simply typing "apt-get" instead of
 "torsocks apt-get", "apt-get" can still be routed over Tor.
 
-Uwt is a hack, which can be used to add stream isolation support to torsocks
-as long as torsocks does not feature native stream isolation support.
-
 The uwt package comes with the following applications pre-configured to use
 uwtwrapper, Tor and stream isolation:
 - apt
