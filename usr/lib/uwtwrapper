@@ -92,7 +92,7 @@ preparation() {
 
 source_config_folder() {
    shopt -s nullglob
-   for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf; do
+   for i in /etc/uwt.d/*.conf /rw/config/uwt.d/*.conf /usr/local/etc/uwt.d/*.conf; do
       bash -n "$i"
       source "$i"
    done
