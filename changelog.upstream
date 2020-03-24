@@ -1,3 +1,21 @@
+commit 5172abf3c0f9e521226fdede64ad16710dc274b8
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Mar 24 03:45:37 2020 -0400
+
+    /usr/local/etc/uwt.d/*.conf
+
+commit 7f8f4751124311141a1e23319da36446c8b4409e
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Tue Mar 24 03:45:10 2020 -0400
+
+    /usr/local/etc/uwt.d/*.conf
+
+commit 4f1e18814a0d8a5b8844235ea239d7d6cf59fbf2
+Author: Patrick Schleizer <adrelanos@riseup.net>
+Date:   Mon Oct 14 10:23:44 2019 +0000
+
+    bumped changelog version
+
 commit 5b2573f5025e4b5384e0d17edc45c7613b18d256
 Author: Patrick Schleizer <adrelanos@riseup.net>
 Date:   Mon Oct 14 10:10:10 2019 +0000
