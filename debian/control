@@ -5,7 +5,7 @@ Source: uwt
 Section: misc
 Priority: optional
 Maintainer: Patrick Schleizer <adrelanos@riseup.net>
-Build-Depends: debhelper (>= 12), genmkfile, ronn,
+Build-Depends: debhelper (>= 12), ronn,
  config-package-dev
 Homepage: https://github.com/Whonix/uwt
 Vcs-Browser: https://github.com/Whonix/uwt
