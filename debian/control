@@ -15,7 +15,6 @@ Standards-Version: 4.3.0
 Package: uwt
 Architecture: all
 Depends: torsocks, faketime, bindp, net-tools, ${misc:Depends}
-Recommends: timezone-utc
 Provides: ${diverted-files}
 Conflicts: ${diverted-files}
 Description: Use Applications over Tor with Stream Isolation and Time Privacy
@@ -59,8 +58,7 @@ Description: Use Applications over Tor with Stream Isolation and Time Privacy
  applications and timeprivacy will feed those applications with a fake time,
  which obfuscates at which time you really used that applications (such as when
  you made the git commit or when you signed that document). It does NOT set
- your time zone to UTC. (You could manually set your timezone to UTC or install
- the timezone-utc package.)
+ your time zone to UTC.
  .
  This package is probably most useful for Anonymity Distributions.
  .
