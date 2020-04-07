@@ -1,0 +1,7 @@
+#!/bin/bash
+
+## Output uwt settings.
+## https://phabricator.whonix.org/T73
+if test -x /usr/lib/uwt_settings_show ; then
+   /usr/lib/uwt_settings_show
+fi
