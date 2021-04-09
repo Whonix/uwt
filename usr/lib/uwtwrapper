@@ -294,18 +294,22 @@ sanity_tests_general() {
       exit 255
    fi
    if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
+      ## Example basename_uwtwrapper_parent:
+      ## aptitude
+      basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
       if ! command -v command-not-found >/dev/null 2>/dev/null ; then
          echo "$SCRIPTNAME uwt wrapper ERROR: file '$uwtwrapper_parent.anondist-orig' does not exist.
 
 Is the package that includes file '$uwtwrapper_parent' installed?
 
+Just a guess: Perhaps install the '$basename_uwtwrapper_parent' package?
+sudo apt update
+sudo apt install $basename_uwtwrapper_parent
+
 'command-not-found' is a tool that might be able to suggest the name of the missing package. But it is not installed either. The user could consider to install 'command-not-found' as per documentation:
 https://www.whonix.org/wiki/command-not-found"
          exit 1
       fi
-      ## Example basename_uwtwrapper_parent:
-      ## aptitude
-      basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
       ## --ignore-installed is used, because the uwt wrapper (for example
       ## /usr/bin/aptitude) will already be installed.
       exec command-not-found --ignore-installed "$basename_uwtwrapper_parent"
