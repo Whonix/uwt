@@ -1,3 +1,25 @@
+commit 21aa111631f17e71b989636f62748d5f77d37c30
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 9 07:35:39 2021 -0400
+
+    guess, tell user which package needs to be installed
+    
+    https://forums.whonix.org/t/whonix-workstation-xfce-15-0-1-5-4-sudo-git-uwtwrapper-uwt-wrapper-error-usr-bin-git-anondist-orig-does-not-exist/11399
+
+commit 7e6b623ffaf2d7359774904d1344387c7f746432
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 9 07:31:53 2021 -0400
+
+    improve output
+    
+    https://forums.whonix.org/t/whonix-workstation-xfce-15-0-1-5-4-sudo-git-uwtwrapper-uwt-wrapper-error-usr-bin-git-anondist-orig-does-not-exist/11399
+
+commit 413ee2039ab1117d810f9a4bf221a53d06527cde
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Mar 18 09:14:27 2021 -0400
+
+    bumped changelog version
+
 commit dde159bc44b6cdb1965dd2b9bcb282ee2f6cebd2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Mar 18 08:57:24 2021 -0400
