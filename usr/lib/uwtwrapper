@@ -66,9 +66,9 @@ set -e
 error_handler() {
    echo "
 ## uwtwrapper BUG.
-## SCRIPTNAME: $SCRIPTNAME
-## uwtwrapper_parent: $uwtwrapper_parent
-## BASH_COMMAND: $BASH_COMMAND
+## SCRIPTNAME: '$SCRIPTNAME'
+## uwtwrapper_parent: '$uwtwrapper_parent'
+## BASH_COMMAND: '$BASH_COMMAND'
 ## Please report this BUG!
 "
    exit 1
@@ -176,7 +176,7 @@ nested_protection() {
    uwtwrapper_counter=$(( uwtwrapper_counter + 1 ))
    export uwtwrapper_counter
    if [ "$uwtwrapper_counter" -ge "$uwtwrapper_max" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: More than uwtwrapper_counter $uwtwrapper_counter nested executions (uwtwrapper_max: $uwtwrapper_max)."
+      echo "$SCRIPTNAME uwt wrapper ERROR: More than uwtwrapper_counter '$uwtwrapper_counter' nested executions (uwtwrapper_max: '$uwtwrapper_max')."
       exit 255
    fi
 }
@@ -288,14 +288,19 @@ alternatives_support() {
 
 sanity_tests_general() {
    if [ "$uwtwrapper_parent" = "" ]; then
-      echo "ERROR: You are not supposed to run $0 manually from the command line."
+      echo "ERROR: You are not supposed to run '$0' manually from the command line."
       echo "See:" >&2
       echo "$0 --help" >&2
       exit 255
    fi
    if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
       if ! command -v command-not-found >/dev/null 2>/dev/null ; then
-         echo "$SCRIPTNAME uwt wrapper ERROR: $uwtwrapper_parent.anondist-orig does not exist."
+         echo "$SCRIPTNAME uwt wrapper ERROR: file '$uwtwrapper_parent.anondist-orig' does not exist.
+
+Is the package that includes file '$uwtwrapper_parent' installed?
+
+'command-not-found' is a tool that might be able to suggest the name of the missing package. But it is not installed either. The user could consider to install 'command-not-found' as per documentation:
+https://www.whonix.org/wiki/command-not-found"
          exit 1
       fi
       ## Example basename_uwtwrapper_parent:
@@ -306,7 +311,7 @@ sanity_tests_general() {
       exec command-not-found --ignore-installed "$basename_uwtwrapper_parent"
    fi
    if [ ! -x "$uwtwrapper_parent.anondist-orig" ]; then
-      echo "$SCRIPTNAME uwt wrapper ERROR: $uwtwrapper_parent.anondist-orig is not executable."
+      echo "$SCRIPTNAME uwt wrapper ERROR: file '$uwtwrapper_parent.anondist-orig' is not executable."
       exit 1
    fi
 }
