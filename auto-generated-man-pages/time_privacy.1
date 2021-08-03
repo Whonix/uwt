@@ -1,11 +1,10 @@
-.\" generated with Ronn-NG/v0.8.0
-.\" http://github.com/apjanke/ronn-ng/tree/0.8.0
-.TH "TIME_PRIVACY" "1" "April 2020" "uwt" "uwt Manual"
+.\" generated with Ronn-NG/v0.9.1
+.\" http://github.com/apjanke/ronn-ng/tree/0.9.1
+.TH "TIME_PRIVACY" "1" "January 2020" "uwt" "uwt Manual"
 .SH "NAME"
 \fBtime_privacy\fR \- keep your time private
-.P
 .SH "SYNOPSIS"
-\fBtime_privacy\fR \fI\%#OPTIONS\fR
+\fBtime_privacy\fR \fIoptions\fR
 .SH "DESCRIPTION"
 Timeprivacy can keep your time private\. You can create wrappers for applications (such as git, gpg, etc\.) and timeprivacy will feed those applications with a fake time, which obfuscates at which time you really used that applications (such as when you made the git commit or when you signed that document)\.
 .P
@@ -75,7 +74,7 @@ Fri May  3 00:00:05 UTC 2013`
 .fi
 .IP "" 0
 .P
-Let\'s try something more interesting\. Let\'s add timeprivacy to git\. We need to create a wrapper\. It will take precedence over /usr/bin/git, thus run faketime and timeprivacy before git itself\. Create a file /usr/local/bin/git\.
+Let's try something more interesting\. Let's add timeprivacy to git\. We need to create a wrapper\. It will take precedence over /usr/bin/git, thus run faketime and timeprivacy before git itself\. Create a file /usr/local/bin/git\.
 .IP "" 4
 .nf
 #!/bin/bash
@@ -84,11 +83,11 @@ faketime "$(time_privacy)" $prog "$@"
 .fi
 .IP "" 0
 .SH "UPSTREAMING"
-This script has been merged \fI\%https://github\.com/wolfcw/libfaketime/pull/16#issuecomment\-17706741\fR into libfaketime \fI\%https://github\.com/wolfcw/libfaketime\fR (src \fI\%https://github\.com/wolfcw/libfaketime/blob/master/src/timeprivacy\fR)\.
+This script has been merged \fIhttps://github\.com/wolfcw/libfaketime/pull/16#issuecomment\-17706741\fR into libfaketime \fIhttps://github\.com/wolfcw/libfaketime\fR (src \fIhttps://github\.com/wolfcw/libfaketime/blob/master/src/timeprivacy\fR)\.
 .P
 It may show up as \fBtimeprivacy\fR in the faketime package at some point\. Therefore timeprivacy is called time_privacy to avoid a conflict when that happens\.
 .SH "DEVELOPMENT / PATCHES / FEATURE REQUESTS / BUG REPORTS"
-You can leave feedback and/or contribute in adrelanos\'s timeprivacy github repository \fI\%https://github\.com/adrelanos/timeprivacy\fR or to libfaketime \fI\%https://github\.com/wolfcw/libfaketime/issues\fR and mention @adrelanos as far as timeprivacy is concerned\.
+You can leave feedback and/or contribute in adrelanos's timeprivacy github repository \fIhttps://github\.com/adrelanos/timeprivacy\fR or to libfaketime \fIhttps://github\.com/wolfcw/libfaketime/issues\fR and mention @adrelanos as far as timeprivacy is concerned\.
 .SH "SEE ALSO"
 \fBfaketime\fR(1)
 .SH "AUTHOR"
