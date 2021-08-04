@@ -7,9 +7,9 @@
 #### project Whonix
 #### category networking
 #### description
-## <code>/etc/profile.d</code> hook to source <code>/usr/lib/uwt/uwt.sh</code>
+## <code>/etc/profile.d</code> hook to source <code>/usr/libexec/uwt/uwt.sh</code>
 #### meta end
 
-if [ -x /usr/lib/uwt/uwt.sh ]; then
-   . /usr/lib/uwt/uwt.sh
+if [ -x /usr/libexec/uwt/uwt.sh ]; then
+   . /usr/libexec/uwt/uwt.sh
 fi

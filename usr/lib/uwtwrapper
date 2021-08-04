@@ -17,7 +17,7 @@
 ## really happens is running <code>torsocks apt</code> or
 ## <code>torsocks curl</code>.
 ##
-## uwtwrappers and <code>/usr/lib/uwtwrapper</code> are hacks to socksify applications
+## uwtwrappers and <code>/usr/libexec/uwt/uwtwrapper</code> are hacks to socksify applications
 ## that do
 ## not support native socks proxy settings. Used to implement Stream Isolation.
 ## https://www.whonix.org/wiki/Stream_Isolation
@@ -189,7 +189,7 @@ variables() {
    export TORSOCKS_LOG_LEVEL
 
    [ -n "$torsocks_bin" ] || torsocks_bin=torsocks
-   [ -n "$uwtexec_bin" ] || uwtexec_bin=/usr/lib/uwtexec
+   [ -n "$uwtexec_bin" ] || uwtexec_bin=/usr/libexec/uwt/uwtexec
 
    if [ "$UWT_DEV_PASSTHROUGH" = "1" ]; then
       torsocks_bin=""

@@ -10,6 +10,6 @@
 ## uwt wrapped application
 
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
-exec /usr/lib/uwtwrapper "$@"
+exec /usr/libexec/uwt/uwtwrapper "$@"
 
 #### meta end

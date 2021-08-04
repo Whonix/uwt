@@ -15,7 +15,7 @@
 ## Replace <code>apt</code>, <code>wget</code>, <code>curl</code>,
 ## <code>ssh</code>, <code>onionshare</code>, <code>ricochet</code>,
 ## <code>wormhole</code> with <code>uwt</code> wrapper which then calls
-## <code>/usr/lib/uwtwrapper</code>.
+## <code>/usr/libexec/uwt/uwtwrapper</code>.
 /usr/bin/apt.anondist
 /usr/bin/apt-file.anondist
 /usr/bin/apt-get.anondist
