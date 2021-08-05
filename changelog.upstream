@@ -1,3 +1,57 @@
+commit f3103608afb395cf224084751ed76ff92b313cf7
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 4 07:43:20 2021 -0400
+
+    lintian FHS
+
+commit f5b57881a3f7245de5af275c29bb397ea5abf068
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 4 07:42:38 2021 -0400
+
+    litian FHS
+
+commit 8fad01d11eddc1f44cd15cef50903bc96156dfe3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Aug 4 07:37:15 2021 -0400
+
+    usr/lib/uwt_settings_show -> usr/bin/uwt_settings_show
+
+commit 7624f9fad309a9ce654db2e354b9aa732b08748c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 11:51:32 2021 -0400
+
+    update lintian tag name
+
+commit a3d54a6fa7c6ab3cf17ed795c0efbcfc26459cb5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 11:47:36 2021 -0400
+
+    re-generate man pages (generated using "genmkfile manpages")
+
+commit dc4f6650c283c957cd3291e9b7d476a14e4a3e3c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 11:45:00 2021 -0400
+
+    man page
+
+commit 58548548b54bef29d8803a384524b786281d8356
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Aug 3 05:48:28 2021 -0400
+
+    bullseye
+
+commit 9012b433ee79ed054863ee946314ddc10e1c0d24
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Aug 1 16:24:49 2021 -0400
+
+    readme
+
+commit 1b663a90837e0c8d90002b27f8cd6daa743208f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Apr 9 07:43:47 2021 -0400
+
+    bumped changelog version
+
 commit 21aa111631f17e71b989636f62748d5f77d37c30
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Fri Apr 9 07:35:39 2021 -0400
