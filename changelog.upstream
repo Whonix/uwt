@@ -1,3 +1,15 @@
+commit a28af519d97bd13ae3ec81310da49c7964af3b8a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Aug 6 17:01:08 2021 -0400
+
+    lintian FHS
+
+commit b75e932be23ded9edf2fe3b249293787416577c3
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Thu Aug 5 17:11:42 2021 -0400
+
+    bumped changelog version
+
 commit f3103608afb395cf224084751ed76ff92b313cf7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Aug 4 07:43:20 2021 -0400
