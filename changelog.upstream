@@ -1,3 +1,21 @@
+commit bd48b023a99b575ea7cd3ea598ea98f43fb8eded
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 20 14:32:33 2021 -0400
+
+    Added uwt wrapper for `dnf-3`.
+    
+    For Qubes-Whonix 16 dom0 UpdateVM support.
+    
+    https://github.com/QubesOS/qubes-issues/issues/6913
+    
+    https://github.com/QubesOS/qubes-issues/issues/6891#issuecomment-920220943
+
+commit 603b5826374b67afdeead0b972deede4e8dd13b5
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 12 12:03:59 2021 -0400
+
+    bumped changelog version
+
 commit eb659d9d55d01321ef3b20984f1a2179c295c130
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sat Sep 11 16:31:44 2021 -0400
