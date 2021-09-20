@@ -30,6 +30,7 @@
 /usr/bin/wget.anondist
 /usr/bin/yum.anondist
 /usr/bin/yumdownloader.anondist
+/usr/bin/dnf-3.anondist
 /usr/bin/onionshare.anondist
 /usr/bin/onionshare-gui.anondist
 /usr/bin/ricochet.anondist

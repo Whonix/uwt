@@ -1,0 +1,14 @@
+#!/bin/bash
+
+## Copyright (C) 2012 - 2021 ENCRYPTED SUPPORT LP <adrelanos@whonix.org>
+## See the file COPYING for copying conditions.
+
+#### meta start
+#### project Whonix
+#### category networking
+#### description
+## uwt wrapped application
+#### meta end
+
+export uwtwrapper_parent="${BASH_SOURCE[0]}"
+exec /usr/libexec/uwt/uwtwrapper "$@"
