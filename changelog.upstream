@@ -1,3 +1,17 @@
+commit f406cb6e0476cafcbebeb10c6868526bec468e43
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Dec 8 11:36:01 2024 -0500
+
+    disable no longer needed sudoers exception `Defaults:ALL env_keep += "TORSOCKS_LOG_LEVEL"`
+    
+    https://www.kicksecure.com/wiki/Dev/todo/archived#uwt_torsocks_TORSOCKS_LOG_LEVEL
+
+commit 797725844d4dac40fe2f20c5543fb25db28c3056
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Nov 12 09:13:03 2024 +0000
+
+    bumped changelog version
+
 commit faf1a4463ee7fee5bcd92b29dd4fdc876d8f77fd
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Nov 12 03:25:28 2024 -0500
