@@ -11,5 +11,5 @@
 #### meta end
 
 if [ -x /usr/libexec/uwt/uwt.sh ]; then
-   . /usr/libexec/uwt/uwt.sh
+   . /usr/libexec/uwt/uwt.sh >/dev/null 2>/dev/null
 fi
