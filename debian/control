@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 13), debhelper-compat (= 13),
 Homepage: https://github.com/Whonix/uwt
 Vcs-Browser: https://github.com/Whonix/uwt
 Vcs-Git: https://github.com/Whonix/uwt.git
-Standards-Version: 4.6.2
+Standards-Version: 4.7.2
 Rules-Requires-Root: no
 
 Package: uwt
