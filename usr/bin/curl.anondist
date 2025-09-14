@@ -7,9 +7,91 @@
 #### project Whonix
 #### category networking
 #### description
-## uwt wrapped application
+## curl tor wrapper
 
-export uwtwrapper_parent="${BASH_SOURCE[0]}"
-exec /usr/libexec/uwt/uwtwrapper "$@"
+## NOTE: We do NOT use uwtwrapper here. curl is incompatible with torsocks; it
+## will not resolve .onion addresses if used with torsocks, and DNS will break
+## completely if using IPv6 with torsocks, thus we instead instruct curl to
+## connect to a Tor proxy itself. We randomize the proxy username and password
+## for each invocation so Tor will provide stream isolation.
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+curl_args=( "$@" )
+curl_binary="$(command -v curl.anondist-orig)" || true
+pwgen_binary="$(command -v pwgen)" || true
+
+if [ -z "${curl_binary}" ]; then
+  printf '%s\n' "ERROR: curl is not installed. Try: 'sudo apt install curl'" 1>&2
+  exit 1
+fi
+
+if [ -z "${pwgen_binary}" ]; then
+  printf '%s\n' "WARNING: pwgen is not installed. Stream isolation will be disabled." 1>&2
+  exec "${curl_binary}" "${curl_args[@]}"
+fi
+
+found_proxy_arg='false'
+found_ipv6_arg='false'
+
+for curl_arg in "${curl_args[@]}"; do
+  ## Unfortunately curl's argument parser makes it impossible to determine
+  ## what is an option, what is an argument to an option, and what is a URL,
+  ## without knowing all the options it supports and parsing them accordingly.
+  ## This is because rather than having short options like `-oarg` and long
+  ## options like `--option=arg`, curl uses `-o arg` and `--option arg`. We
+  ## can make a good guess that if a proxy-related argument is present in the
+  ## command line, the user is probably manging proxying manually, but this
+  ## will break if someone passes `-U` or `-x` as an argument to some other
+  ## option (which could happen if the user is attempting to reference a file
+  ## named `-U` or `-x`). Beyond that, the user might have their own proxy
+  ## setup stored in a config file that they pass using the `-K` or `--config`
+  ## argument, meaning we either have to parse curl config files too, or we
+  ## have to live with an incomplete solution and tell people to call the
+  ## original curl binary if things don't quite work.
+  ##
+  ## Using a simple but incomplete solution for now.
+  if [ "${curl_arg}" = '--proxy' ] \
+    || [ "${curl_arg}" = '-x' ]; then
+    printf '%s\n' "WARNING: Detected '--proxy' or '-x' argument. Stream isolation will be disabled." 1>&2
+    found_proxy_arg='true'
+  fi
+  if [ "${curl_arg}" = '--proxy-user' ] \
+    || [ "${curl_arg}" = '-U' ]; then
+    printf '%s\n' "WARNING: Detected '--proxy-user' or '-U' argument. Stream isolation will be disabled." 1>&2
+    found_proxy_arg='true'
+  fi
+  if [ "${curl_arg}" = '--ipv6' ] \
+    || [ "${curl_arg}" = '-6' ]; then
+    found_ipv6_arg='true'
+  fi
+  if [ "${curl_arg}" = '--config' ] \
+    || [ "${curl_arg}" = '-K' ]; then
+    printf '%s\n' "ERROR: Detected '--config' or '-K' argument. The uwt curl wrapper cannot handle this. Please use curl.anondist-orig instead." 1>&2
+    exit 1
+  fi
+done
+
+if [ "${found_proxy_arg}" = 'true' ]; then
+  exec "${curl_binary}" "${curl_args[@]}"
+fi
+
+curl_args+=( '--proxy' )
+if [ "${found_ipv6_arg}" = 'true' ]; then
+  printf '%s\n' "NOTICE: Detected '--ipv6' or '-6' argument, will attempt to use IPv6 Tor proxy."
+  curl_args+=( 'socks5h://[::1]:9050' )
+else
+  curl_args+=( 'socks5h://127.0.0.1:9050' )
+fi
+## `pwgen -s` creates passwords composed of capital and lowercase letters and
+## numbers. thus, there are 62 possible values in each position, thus over 5
+## bits of entropy per position. 52 characters will provide >256 bits of
+## entropy per curl invocation.
+curl_args+=( '--proxy-user' "$("${pwgen_binary}" -s 26 1):$("${pwgen_binary}" -s 26 1)" )
+
+exec "${curl_binary}" "${curl_args[@]}"
 
 #### meta end
