@@ -183,7 +183,7 @@ HOURS_FILE="$TIMEDIR/hours_file"
 
 read_date_file() {
    if [ ! -d "$TIMEDIR" ]; then
-      mkdir -p "$TIMEDIR"
+      mkdir -p -- "$TIMEDIR"
    fi
 
    if [ ! -f "$SECONDS_FILE" ]; then
