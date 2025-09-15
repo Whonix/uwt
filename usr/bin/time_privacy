@@ -7,7 +7,7 @@
 #### project Whonix
 #### category networking
 #### description
-## undocumented
+## Undocumented.
 #### meta end
 
 ## Copyright (c) 2013, adrelanos@whonix.org
@@ -80,9 +80,9 @@ while [ -n "$1" ]; do
           ;;
       *)
           command="$(command -v $1)"
-          ## From now on the complete to-be wrapped command + its args
-          ## are stored in $@, which will expand like we want it for
-          ## handling quoted arguments with whitespaces in it, etc.
+          ## From now on, the complete to-be-wrapped command and its args
+          ## are stored in $@, which expands as intended for
+          ## handling quoted arguments with whitespace, etc.
           break
   esac
   shift
@@ -171,11 +171,11 @@ HOURS_FILE="$TIMEDIR/hours_file"
 #YEARS_FILE="$TIMEDIR/years_file"
 
 #true "TIMEDIR: $TIMEDIR"
-#true "year: $_year"
-#true "month: $_month"
-#true "day: $_day"
-#true "_randomincrement: $_randomincrement"
-#true "_increment: $_increment"
+#true "Year: $_year"
+#true "Month: $_month"
+#true "Day: $_day"
+#true "Random increment: $_randomincrement"
+#true "Increment: $_increment"
 
 read_date_file() {
    if [ ! -d "$TIMEDIR" ]; then
