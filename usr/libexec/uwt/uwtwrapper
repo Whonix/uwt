@@ -81,7 +81,7 @@ trap "error_handler" ERR
 set -o pipefail
 set -o errtrace
 
-SCRIPTNAME="$(basename "$BASH_SOURCE")"
+SCRIPTNAME="$(basename -- "$BASH_SOURCE")"
 
 preparation() {
    declare -A -g timeprivacy
