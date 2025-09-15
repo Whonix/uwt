@@ -70,7 +70,7 @@ for curl_arg in "${curl_args[@]}"; do
   fi
   if [ "${curl_arg}" = '--config' ] \
     || [ "${curl_arg}" = '-K' ]; then
-    printf '%s\n' "ERROR: Detected '--config' or '-K' argument. The uwt curl wrapper cannot handle this. Please use curl.anondist-orig instead." 1>&2
+    printf '%s\n' "ERROR: Detected '--config' or '-K' argument. The uwt curl wrapper cannot handle this. Please use '${curl_binary}' instead." 1>&2
     exit 1
   fi
 done
