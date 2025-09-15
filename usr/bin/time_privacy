@@ -34,6 +34,10 @@
 ## SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #set -x
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
 
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
 
@@ -48,8 +52,8 @@ Example: $SCRIPTNAME -d 30 -m 12 -y 2013 -i 10 -f /tmp/$SCRIPTNAMEtest
 _randomincrement="none"
 _increment="none"
 
-while [ -n "$1" ]; do
-  case "$1" in
+while [ -n "${1-}" ]; do
+  case "${1-}" in
       -h)
           usage
           exit 0
@@ -79,7 +83,7 @@ while [ -n "$1" ]; do
           shift
           ;;
       *)
-          command="$(command -v $1)"
+          command="$(command -v "${1-}")"
           ## From now on, the complete to-be-wrapped command and its args
           ## are stored in $@, which expands as intended for
           ## handling quoted arguments with whitespace, etc.
@@ -88,19 +92,19 @@ while [ -n "$1" ]; do
   shift
 done
 
-if [ -z "$_day" ]; then
+if [ -z "${_day-}" ]; then
    _day="$(date +"%d")"
 fi
 
-if [ -z "$_month" ]; then
+if [ -z "${_month-}" ]; then
    _month="$(date +"%m")"
 fi
 
-if [ -z "$_year" ]; then
+if [ -z "${_year-}" ]; then
    _year="$(date +"%Y")"
 fi
 
-if [ "$_randomincrement" = "none" ] && [ "$_increment" = "none" ]; then
+if [ "${_randomincrement}" = "none" ] && [ "${_increment}" = "none" ]; then
    _increment="1"
 fi
 
@@ -122,7 +126,7 @@ else
    exit 1
 fi
 
-if [ -z "$TIMEDIR" ]; then
+if [ -z "${TIMEDIR-}" ]; then
    TIMEDIR=~/.timeprivacy
 fi
 
