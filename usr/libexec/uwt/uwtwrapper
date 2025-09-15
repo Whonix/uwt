@@ -347,7 +347,7 @@ fi
 
 if [ "${timeprivacy["$uwtwrapper_parent"]}" = "1" ]; then
    fake_time="faketime"
-   privacy_time="$("time_privacy" -f "/tmp/timeprivacy_$SCRIPTNAME_CLEANED")"
+   privacy_time="$("time_privacy" -f ~"/.timeprivacy/$SCRIPTNAME_CLEANED")"
 else
    if [ "$timeprivacy_global" = "1" ]; then
       fake_time="faketime"
