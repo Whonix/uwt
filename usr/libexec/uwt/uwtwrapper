@@ -51,9 +51,9 @@
 ## globally or for certain applications, see /etc/uwt.d/.
 
 ## Technical comment:
-## - time_privacy is called time_privacy because this script may get added
-##   upstream to the Debian package faketime. This is to avoid a conflict when
-##   the new file 'timeprivacy' gets installed by faketime.
+## - 'time_privacy' is called 'time_privacy' because this script may get added
+##   upstream to the Debian package 'faketime'. This is to avoid a conflict when
+##   the new file 'timeprivacy' gets installed by 'faketime'.
 
 if [ ! "$uwtwrapper_verbose" = "" ]; then
    if [ "$uwtwrapper_verbose" -ge 1 ]; then
