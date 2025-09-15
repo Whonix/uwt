@@ -44,7 +44,7 @@
 ## outside of Whonix) listen on the external IP instead. See also:
 ##
 ## * https://github.com/Whonix/bindp
-## * https://phabricator.whonix.org/T561
+## * https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
 #### meta end
 
 ## If you want to enable/disable uwt and/or privacy
@@ -184,7 +184,7 @@ nested_protection() {
 variables() {
    ## Disable torsocks warning spam such as.
    ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
-   ## https://phabricator.whonix.org/T317
+   ## https://forums.whonix.org/t/disable-torsocks-warning-spam/19084
    [ -n "$TORSOCKS_LOG_LEVEL" ] || TORSOCKS_LOG_LEVEL=1
    export TORSOCKS_LOG_LEVEL
 
@@ -206,7 +206,7 @@ variables() {
 
    ## Export the zeroth argument for use in the uwtexec script.
    ## This allows uwtexec to supply the original zeroth argument.
-   ## https://phabricator.whonix.org/T797
+   ## https://forums.whonix.org/t/issue-with-symbolic-links/18637
    [ -n "$uwtwrapper_zeroarg" ] || uwtwrapper_zeroarg="$uwtwrapper_parent"
    export uwtwrapper_zeroarg
 
@@ -330,7 +330,7 @@ sanity_tests_general "$@"
 
 if [ "$bindp_dispatch" = "true" ]; then
    ## https://github.com/Whonix/bindp
-   ## https://phabricator.whonix.org/T561
+   ## https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
    [ -n "$bindp_so" ] || bindp_so="/usr/lib/libindp.so"
    [ -n "$bindp_interface" ] || bindp_interface="eth0"
    [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet \K\S+')" || true
