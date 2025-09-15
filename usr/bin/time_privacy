@@ -38,7 +38,7 @@
 SCRIPTNAME="$(basename "$BASH_SOURCE")"
 
 usage() {
-   echo "$SCRIPTNAME
+   printf '%s\n' "$SCRIPTNAME
 
 Usage: $SCRIPTNAME [-h help] [-d day] [-m month] [-y year] [-i increment in seconds (0-60)] [-r random increment in seconds (0-60)] [-f history folder]
 Example: $SCRIPTNAME -d 30 -m 12 -y 2013 -i 10 -f /tmp/$SCRIPTNAMEtest
@@ -110,7 +110,7 @@ if [ "$_randomincrement" = "none" ]; then
    fi
 elif [ "$_increment" = "none" ]; then
    if [ "$_randomincrement" = "" ]; then
-      echo "randomincrement must be a positive number."
+      printf '%s\n' "randomincrement must be a positive number."
       exit 1
    else
       ## random number between 1 and $_randomincrement
@@ -118,7 +118,7 @@ elif [ "$_increment" = "none" ]; then
       _increment="$random_number"
    fi
 else
-   echo "You can not combine -r and -i."
+   printf '%s\n' "You can not combine -r and -i."
    exit 1
 fi
 
@@ -126,39 +126,39 @@ if [ -z "$TIMEDIR" ]; then
    TIMEDIR=~/.timeprivacy
 fi
 
-nodigits="$(echo $_increment | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' $_increment | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "increment is not a digit."
+   printf '%s\n' "increment is not a digit."
    exit 1
 fi
 
-nodigits="$(echo "$_year" | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' "$_year" | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "_day is not a digit."
+   printf '%s\n' "_day is not a digit."
    exit 1
 fi
 
-nodigits="$(echo "$_year" | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' "$_year" | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "year is not a digit."
+   printf '%s\n' "year is not a digit."
    exit 1
 fi
 
-nodigits="$(echo "$_month" | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' "$_month" | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "month is not a digit."
+   printf '%s\n' "month is not a digit."
    exit 1
 fi
 
-nodigits="$(echo "$_day" | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' "$_day" | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "day is not a digit."
+   printf '%s\n' "day is not a digit."
    exit 1
 fi
 
-nodigits="$(echo $_increment | sed 's/[[:digit:]]//g')"
+nodigits="$(printf '%s\n' $_increment | sed 's/[[:digit:]]//g')"
 if [ ! -z "$nodigits" ]; then
-   echo "increment is not a digit."
+   printf '%s\n' "increment is not a digit."
    exit 1
 fi
 
@@ -183,27 +183,27 @@ read_date_file() {
    fi
 
    if [ ! -f "$SECONDS_FILE" ]; then
-      echo "0" > "$SECONDS_FILE"
+      printf '%s\n' "0" > "$SECONDS_FILE"
    fi
 
    if [ ! -f "$MINUTES_FILE" ]; then
-      echo "0" > "$MINUTES_FILE"
+      printf '%s\n' "0" > "$MINUTES_FILE"
    fi
 
    if [ ! -f "$HOURS_FILE" ]; then
-      echo "0" > "$HOURS_FILE"
+      printf '%s\n' "0" > "$HOURS_FILE"
    fi
 
    #if [ ! -f "$DAYS_FILE" ]; then
-      #echo "1" > "$DAYS_FILE"
+      #printf '%s\n' "1" > "$DAYS_FILE"
    #fi
 
    #if [ ! -f "$MONTHS_FILE" ]; then
-      #echo "1" > "$MONTHS_FILE"
+      #printf '%s\n' "1" > "$MONTHS_FILE"
    #fi
 
    #if [ ! -f "$YEARS_FILE" ]; then
-      #echo "2013" > "$YEARS_FILE"
+      #printf '%s\n' "2013" > "$YEARS_FILE"
    #fi
 
    SECONDS="$(cat "$SECONDS_FILE")"
@@ -222,17 +222,17 @@ read_date_file() {
       HOURS="0"
    fi
 
-   local nodigits="$(echo "$SECONDS" | sed 's/[[:digit:]]//g')"
+   local nodigits="$(printf '%s\n' "$SECONDS" | sed 's/[[:digit:]]//g')"
    if [ ! -z "$nodigits" ]; then
       SECONDS="0"
    fi
 
-   local nodigits="$(echo "$MINUTES" | sed 's/[[:digit:]]//g')"
+   local nodigits="$(printf '%s\n' "$MINUTES" | sed 's/[[:digit:]]//g')"
    if [ ! -z "$nodigits" ]; then
       MINUTES="0"
    fi
 
-   local nodigits="$(echo "$HOURS" | sed 's/[[:digit:]]//g')"
+   local nodigits="$(printf '%s\n' "$HOURS" | sed 's/[[:digit:]]//g')"
    if [ ! -z "$nodigits" ]; then
       HOURS="0"
    fi
@@ -249,16 +249,16 @@ read_date_file() {
          if [ "$HOURS" -ge "24" ]; then
             HOURS="0"
          fi
-         echo "$HOURS" > "$HOURS_FILE"
+         printf '%s\n' "$HOURS" > "$HOURS_FILE"
 
       fi
-      echo "$MINUTES" > "$MINUTES_FILE"
+      printf '%s\n' "$MINUTES" > "$MINUTES_FILE"
 
    fi
 
-   echo "$SECONDS" > "$SECONDS_FILE"
+   printf '%s\n' "$SECONDS" > "$SECONDS_FILE"
 
-   #echo "$HOURS $MINUTES $SECONDS"
+   #printf '%s\n' "$HOURS $MINUTES $SECONDS"
 }
 
 need_new_date() {
@@ -270,10 +270,10 @@ need_new_date() {
    read_date_file
 
    ## Testing
-   #echo "faketime '$_year-$_month-$_day $HOURS:$MINUTES:$SECONDS' /bin/date"
+   #printf '%s\n' "faketime '$_year-$_month-$_day $HOURS:$MINUTES:$SECONDS' /bin/date"
    #faketime "$_year-$_month-$_day $HOURS:$MINUTES:$SECONDS" /bin/date
 
-   echo "$_year-$_month-$_day $HOURS:$MINUTES:$SECONDS"
+   printf '%s\n' "$_year-$_month-$_day $HOURS:$MINUTES:$SECONDS"
 }
 
 need_new_date
