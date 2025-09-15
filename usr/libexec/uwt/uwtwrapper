@@ -215,40 +215,40 @@ variables() {
    ## uwtwrapper_parent example:
    ## /usr/bin/gpg2
 
-   true "Checking whether uwtwrapper_parent $uwtwrapper_parent is a symlink."
+   true "$0: Checking whether uwtwrapper_parent $uwtwrapper_parent is a symlink."
    ## (For example, '/usr/bin/git-receive-pack' is actually a symlink to 'git'.)
    if test -h "$uwtwrapper_parent" ; then
-      true "Yes, it is a symlink."
+      true "$0: Yes, it is a symlink."
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
          ## readlink_result example:
          ## git
-         true "Checking whether $uwtwrapper_parent.anondist has a uwt wrapper script."
+         true "$0: Checking whether $uwtwrapper_parent.anondist has a uwt wrapper script."
          if [ -e "$uwtwrapper_parent.anondist" ]; then
-            true "Yes, uwtwrapper_parent $uwtwrapper_parent has a uwt wrapper script."
+            true "$0: Yes, uwtwrapper_parent $uwtwrapper_parent has a uwt wrapper script."
          else
-            true "No, uwtwrapper_parent $uwtwrapper_parent does not have a uwt wrapper script."
-            true "Therefore, execute the target of the symlink for uwtwrapper_parent $uwtwrapper_parent."
+            true "$0: No, uwtwrapper_parent $uwtwrapper_parent does not have a uwt wrapper script."
+            true "$0: Therefore, execute the target of the symlink for uwtwrapper_parent $uwtwrapper_parent."
             exec "$readlink_result" "$@"
          fi
       fi
    else
-      true "No, it is not a symlink."
+      true "$0: No, it is not a symlink."
    fi
 
-   true "Checking whether uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is a symlink."
+   true "$0: Checking whether uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is a symlink."
    ## (For example, '/usr/bin/gpg2.anondist-orig' is actually a symlink to 'gpg'.)
    if test -h "$uwtwrapper_parent.anondist-orig" ; then
-      true "Yes, it is a symlink."
+      true "$0: Yes, it is a symlink."
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent.anondist-orig")" ; then
          ## readlink_result example:
          ## gpg
-         true "Therefore, execute readlink_result: $readlink_result."
+         true "$0: Therefore, execute readlink_result: $readlink_result."
          exec "$readlink_result" "$@"
       fi
    else
-      true "No, it is not a symlink."
+      true "$0: No, it is not a symlink."
    fi
 
    [ -n "$timeprivacy_global" ] || timeprivacy_global="0"
