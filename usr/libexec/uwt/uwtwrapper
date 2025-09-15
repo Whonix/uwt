@@ -61,6 +61,8 @@ if [ ! "$uwtwrapper_verbose" = "" ]; then
    fi
 fi
 
+true "$0: START"
+
 set -e
 
 error_handler() {

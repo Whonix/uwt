@@ -15,23 +15,29 @@
 ## connect to a Tor proxy itself. We randomize the proxy username and password
 ## for each invocation so Tor will provide stream isolation.
 
+if [ ! "$uwtwrapper_verbose" = "" ]; then
+   if [ "$uwtwrapper_verbose" -ge 1 ]; then
+      set -x
+   fi
+fi
+
+true "$0: START"
+
 set -o errexit
 set -o nounset
 set -o errtrace
 set -o pipefail
 
+export uwtwrapper_parent="${BASH_SOURCE[0]}"
+export UWT_DEV_PASSTHROUGH=1
+
 curl_args=( "$@" )
 curl_binary="$(command -v curl.anondist-orig)" || true
 pwgen_binary="$(command -v pwgen)" || true
 
-if [ -z "${curl_binary}" ]; then
-  printf '%s\n' "ERROR: curl is not installed. Try: 'sudo apt install curl'" 1>&2
-  exit 1
-fi
-
 if [ -z "${pwgen_binary}" ]; then
   printf '%s\n' "WARNING: pwgen is not installed. Stream isolation will be disabled." 1>&2
-  exec "${curl_binary}" "${curl_args[@]}"
+  exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 fi
 
 found_proxy_arg='false'
@@ -76,7 +82,7 @@ for curl_arg in "${curl_args[@]}"; do
 done
 
 if [ "${found_proxy_arg}" = 'true' ]; then
-  exec "${curl_binary}" "${curl_args[@]}"
+  exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 fi
 
 curl_args+=( '--proxy' )
@@ -92,6 +98,6 @@ fi
 ## entropy per curl invocation.
 curl_args+=( '--proxy-user' "$("${pwgen_binary}" -s 26 1):$("${pwgen_binary}" -s 26 1)" )
 
-exec "${curl_binary}" "${curl_args[@]}"
+exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 
 #### meta end
