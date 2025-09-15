@@ -9,30 +9,30 @@
 #### project Whonix
 #### category networking
 #### description
-## When running uwt wrapped applications (such as <code>apt</code>,
-## <code>wget</code>, <code>curl</code>, <code>onionshare</code> or others)
-## automatically prepend <code>torsocks</code> or <code>bindp</code>. I.e.
+## When running uwt-wrapped applications (such as <code>apt</code>,
+## <code>wget</code>, <code>curl</code>, <code>onionshare</code>, or others)
+## automatically prepend <code>torsocks</code> or <code>bindp</code>, i.e.
 ##
-## When for example <code>apt</code> or <code>curl</code> is executed, what
+## When, for example, <code>apt</code> or <code>curl</code> is executed, what
 ## really happens is running <code>torsocks apt</code> or
 ## <code>torsocks curl</code>.
 ##
 ## uwtwrappers and <code>/usr/libexec/uwt/uwtwrapper</code> are hacks to socksify applications
 ## that do
-## not support native socks proxy settings. Used to implement Stream Isolation.
+## not support native SOCKS proxy settings. Used to implement Stream Isolation.
 ## https://www.whonix.org/wiki/Stream_Isolation
 ##
 ## In essence, uwtwrappers are installed so users can type commands like
 ## apt-get normally while transparently injecting torsocks, thereby stream
 ## isolating them.
 ##
-## To understand better how uwt wrappers function, you could for example open
+## To better understand how uwt wrappers function, you could, for example, open
 ## /usr/bin/apt-get.anondist in an editor.
 ##
 ## Also useful to run:
 ## ls -la /usr/bin/apt-get*
 ##
-## You will see, that /usr/bin/apt-get has been replaced with a symlink to
+## You will see that /usr/bin/apt-get has been replaced with a symlink to
 ## /usr/bin/apt-get.anondist. (This was done using config-package-dev.)
 ##
 ## /usr/bin/apt-get.anondist is a uwt wrapper.
@@ -40,8 +40,8 @@
 ## /usr/bin/apt-get.anondist-orig is the original apt-get binary.
 ##
 ## <code>bindp</code> is used to make applications which listen on the internal
-## IP by default such as <code>onionshare</code> (which is the right thing to
-## outside of Whonix) listen on the external IP instead. See also:
+## IP by default, such as <code>onionshare</code> (which is the right thing to
+## do outside of Whonix), listen on the external IP instead. See also:
 ##
 ## * https://github.com/Whonix/bindp
 ## * https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
@@ -51,9 +51,9 @@
 ## globally or for certain applications, see /etc/uwt.d/.
 
 ## Technical comment:
-## - time_privacy is called time_privacy, because this script may get added
-##   upstream to the Debian package faketime. This is to avoid a conflict, when
-##   the new file timeprivacy gets installed by faketime.
+## - time_privacy is called time_privacy because this script may get added
+##   upstream to the Debian package faketime. This is to avoid a conflict when
+##   the new file 'timeprivacy' gets installed by faketime.
 
 if [ ! "$uwtwrapper_verbose" = "" ]; then
    if [ "$uwtwrapper_verbose" -ge 1 ]; then
@@ -140,9 +140,9 @@ https://github.com/Whonix/uwt"
 }
 
 parse_cmd() {
-   ## Only use the command line parser if $uwtwrapper_parent is empty. I.e. when
-   ## manually called from command line instead by a wrapper. Otherwise it would
-   ## interfere with the forwarded options to application. I.e. for example
+   ## Only use the command line parser if $uwtwrapper_parent is empty, i.e., when
+   ## manually called from the command line instead of by a wrapper. Otherwise, it would
+   ## interfere with the forwarded options to the application. For example,
    ## 'apt-get --help' would break.
    if [ ! "$uwtwrapper_parent" = "" ]; then
       return 0
@@ -184,7 +184,7 @@ nested_protection() {
 }
 
 variables() {
-   ## Disable torsocks warning spam such as.
+   ## Disable torsocks warning spam such as:
    ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
    ## https://forums.whonix.org/t/disable-torsocks-warning-spam/19084
    [ -n "$TORSOCKS_LOG_LEVEL" ] || TORSOCKS_LOG_LEVEL=1
@@ -201,9 +201,9 @@ variables() {
    ## /usr/bin/gpg2
    ## /usr/bin/gpg2.anondist
 
-   ## Remove the leading '.anondist' file extension. This is useful in case for
-   ## example uwtwrapper_parent is called by running
-   ## 'exec /usr/bin/apt-get.anondist', such as eatmydata is doing.
+   ## Remove the trailing '.anondist' file extension. This is useful if, for example,
+   ## uwtwrapper_parent is called by running
+   ## 'exec /usr/bin/apt-get.anondist', as eatmydata does.
    uwtwrapper_parent="${uwtwrapper_parent%".anondist"}"
 
    ## Export the zeroth argument for use in the uwtexec script.
@@ -215,20 +215,20 @@ variables() {
    ## uwtwrapper_parent example:
    ## /usr/bin/gpg2
 
-   true "Let us see if uwtwrapper_parent $uwtwrapper_parent is actually a symlink."
-   ## (For example '/usr/bin/git-receive-pack' is actually a symlink to 'git'.)
+   true "Checking whether uwtwrapper_parent $uwtwrapper_parent is a symlink."
+   ## (For example, '/usr/bin/git-receive-pack' is actually a symlink to 'git'.)
    if test -h "$uwtwrapper_parent" ; then
       true "Yes, it is a symlink."
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent")" ; then
          ## readlink_result example:
          ## git
-         true "Determine if $uwtwrapper_parent.anondist has a uwt wrapper script."
+         true "Checking whether $uwtwrapper_parent.anondist has a uwt wrapper script."
          if [ -e "$uwtwrapper_parent.anondist" ]; then
             true "Yes, uwtwrapper_parent $uwtwrapper_parent has a uwt wrapper script."
          else
             true "No, uwtwrapper_parent $uwtwrapper_parent does not have a uwt wrapper script."
-            true "Therefore, execute what uwtwrapper_parent $uwtwrapper_parent symlinks to."
+            true "Therefore, execute the target of the symlink for uwtwrapper_parent $uwtwrapper_parent."
             exec "$readlink_result" "$@"
          fi
       fi
@@ -236,15 +236,15 @@ variables() {
       true "No, it is not a symlink."
    fi
 
-   true "Let us see if uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is actually a symlink."
-   ## (For example '/usr/bin/gpg2.anondist-orig' is actually a symlink to 'gpg'.)
+   true "Checking whether uwtwrapper_parent.anondist-orig $uwtwrapper_parent.anondist-orig is a symlink."
+   ## (For example, '/usr/bin/gpg2.anondist-orig' is actually a symlink to 'gpg'.)
    if test -h "$uwtwrapper_parent.anondist-orig" ; then
       true "Yes, it is a symlink."
       local readlink_result
       if readlink_result="$(readlink "$uwtwrapper_parent.anondist-orig")" ; then
          ## readlink_result example:
          ## gpg
-         true "Therefore, execute readlink_result $readlink_result."
+         true "Therefore, execute readlink_result: $readlink_result."
          exec "$readlink_result" "$@"
       fi
    else
@@ -270,18 +270,18 @@ variables() {
 
 alternatives_support() {
    if [ ! -e "$uwtwrapper_parent.anondist-orig" ]; then
-      ## For example /usr/bin/aptitude.anondist-orig does not exist.
+      ## For example, /usr/bin/aptitude.anondist-orig does not exist.
 
       ## Example basename_uwtwrapper_parent:
       ## aptitude
       basename_uwtwrapper_parent="${uwtwrapper_parent##*/}"
 
-      ## Lets see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
+      ## Let's see if /usr/bin/aptitude is actually a symlink to /etc/alternatives/aptitude.
       if [ -e "/etc/alternatives/$basename_uwtwrapper_parent" ]; then
          local readlink_result
-         ## Lets see where for example /etc/alternatives/aptitude links to and use it.
+         ## Let's see where, for example, /etc/alternatives/aptitude links to and use it.
          if readlink_result="$(readlink "/etc/alternatives/$basename_uwtwrapper_parent")" ; then
-            ## Symlink could be read. Lets use it.
+            ## The symlink could be read. Let's use it.
             uwtwrapper_parent="$readlink_result"
          fi
       fi
@@ -339,7 +339,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet \K\S+')" || true
    [ -n "$BIND_ADDR" ] || BIND_ADDR="127.0.0.1"
    LD_PRELOAD+=" $bindp_so"
-   ## Environment variable BIND_ADDR gets used by bindp.
+   ## The environment variable BIND_ADDR is used by bindp.
    export BIND_ADDR
    export LD_PRELOAD
    exec $uwtexec_bin "$@"
