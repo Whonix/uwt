@@ -1,3 +1,112 @@
+commit e3f6a29e3f0196b1a9ed6690cf9c147aaff03600
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:40:32 2025 -0400
+
+    end-of-options
+
+commit 4c9d6ec912d822eff6b1688d7b204d0d28e64b20
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:39:55 2025 -0400
+
+    comments
+
+commit 57c536ad09c5b34f62b32e68bbf122c2652f6677
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:39:22 2025 -0400
+
+    output
+
+commit 3317d435678b5d91836ecaf1e0a2dbc015f41d14
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:38:08 2025 -0400
+
+    safer use of time_privacy TMP
+
+commit 6db183085496fd1205dcc4f0271b430a8cc6e5fd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:37:03 2025 -0400
+
+    end-of-options
+
+commit cf11aafc3184538431d8e4781caccf0f93649ace
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:34:21 2025 -0400
+
+    stcat
+
+commit 051abb976a2659a41be3c0a5a8d71ea34c04b278
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:33:11 2025 -0400
+
+    time_privacy: stricter shell options
+
+commit 9b3732a836a31afdabeb28caa671cba413736648
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:30:10 2025 -0400
+
+    printf
+
+commit ff82fc9d14226edb41e747c1a114436513c3a3be
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:29:18 2025 -0400
+
+    comments
+
+commit a6bf1e45655a09d9c2cae144ecb2e6c5db88e766
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:12:17 2025 -0400
+
+    output
+
+commit 078436da18cc7e03cafa1a0d466d1af228d0e798
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 05:10:55 2025 -0400
+
+    output
+
+commit b505c1071b33e78a4400e357e1369c23f99d52ac
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:55:54 2025 -0400
+
+    re-integrate curl wrapper with uwtwrapper
+
+commit c59464fedc32d612966eeeb8b3e6e82451999106
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:38:41 2025 -0400
+
+    comment
+
+commit ee4bf8ada07549f53f7f277a80a4daa8e74b54a2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:29:38 2025 -0400
+
+    comments
+
+commit 3eef8ac8208f588943134d8720aafab0849b824b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:10:30 2025 -0400
+
+    output
+
+commit 58080ea6e363c132dd89f30b8685a21ea5fbc1a4
+Merge: 7fa9bd9 fb4a8d2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 15 04:08:42 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit fb4a8d2cee31aadfccce5b46d55e39b12f4f9b7d
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 14 17:07:07 2025 -0500
+
+    Rework curl wrapper
+
+commit 7fa9bd9180ab0ec85c2cf5abdf4273c1e6fe9540
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Tue Sep 2 15:37:40 2025 +0000
+
+    bumped changelog version
+
 commit 3773ba02dbd8f1beb76ac81d0ad369c9a831dca7
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Tue Aug 26 09:45:08 2025 +0000
