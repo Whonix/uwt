@@ -333,6 +333,7 @@ if [ "$bindp_dispatch" = "true" ]; then
    ## https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
    [ -n "$bindp_so" ] || bindp_so="/usr/lib/libindp.so"
    [ -n "$bindp_interface" ] || bindp_interface="eth0"
+   ## TODO: IPv6
    [ -n "$BIND_ADDR" ] || BIND_ADDR="$(/sbin/ifconfig "$bindp_interface" | grep -oP 'inet \K\S+')" || true
    [ -n "$BIND_ADDR" ] || BIND_ADDR="127.0.0.1"
    LD_PRELOAD+=" $bindp_so"
