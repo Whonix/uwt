@@ -210,9 +210,9 @@ read_date_file() {
       #printf '%s\n' "2013" > "$YEARS_FILE"
    #fi
 
-   SECONDS="$(cat "$SECONDS_FILE")"
-   MINUTES="$(cat "$MINUTES_FILE")"
-   HOURS="$(cat "$HOURS_FILE")"
+   SECONDS="$(stcat "$SECONDS_FILE")"
+   MINUTES="$(stcat "$MINUTES_FILE")"
+   HOURS="$(stcat "$HOURS_FILE")"
 
    if [ -z "$SECONDS" ]; then
       SECONDS="0"
