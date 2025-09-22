@@ -1,3 +1,22 @@
+commit 0ce01c04fdfb575dde1b659cd0b6c51762a219b5
+Merge: e3fd22e ae6fbbd
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 22 13:11:24 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit ae6fbbd03e23403a5ed44b0bea7559e0284ffba7
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 21 20:09:47 2025 -0500
+
+    Fix handling of loopback addresses in curl
+
+commit e3fd22e72c908c62ff81cdd1ccdc7f4f9f049514
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Fri Sep 19 16:28:19 2025 +0000
+
+    bumped changelog version
+
 commit a66a89c9ce92f9d959a1253e6aec4f11868f33df
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Thu Sep 18 10:09:05 2025 -0400
