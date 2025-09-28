@@ -1,3 +1,22 @@
+commit faccd395190fbb7d85502ed5d89fbcff6fe12b87
+Merge: 728a9c9 1398437
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Sep 28 17:06:10 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 13984371a370ec330c25b721a48c24f25034ddc2
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Sun Sep 28 15:44:29 2025 -0500
+
+    Disable curl stream isolation if the Tor proxy isn't reachable
+
+commit 728a9c957dc0a1a173b456056902bfe38ba8ea88
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Sep 22 17:32:59 2025 +0000
+
+    bumped changelog version
+
 commit 0ce01c04fdfb575dde1b659cd0b6c51762a219b5
 Merge: e3fd22e ae6fbbd
 Author: Patrick Schleizer <adrelanos@whonix.org>
