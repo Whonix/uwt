@@ -9,11 +9,11 @@
 #### description
 ## curl tor wrapper
 
-## NOTE: We do NOT use uwtwrapper here. curl is incompatible with torsocks; it
-## will not resolve .onion addresses if used with torsocks, and DNS will break
-## completely if using IPv6 with torsocks, thus we instead instruct curl to
-## connect to a Tor proxy itself. We randomize the proxy username and password
-## for each invocation so Tor will provide stream isolation.
+## NOTE: curl is incompatible with torsocks; it will not resolve .onion
+## addresses if used with torsocks, and DNS will break completely if using IPv6
+## with torsocks, thus we instead instruct curl to connect to a Tor proxy
+## itself. We randomize the proxy username and password for each invocation so
+## Tor will provide stream isolation.
 
 if [ ! "$uwtwrapper_verbose" = "" ]; then
    if [ "$uwtwrapper_verbose" -ge 1 ]; then
@@ -90,18 +90,32 @@ if [ "${disable_stream_isolation}" = 'true' ]; then
   exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 fi
 
-extra_curl_args=( '--proxy')
+curl_proxy_addr=""
 if [ "${found_ipv6_arg}" = 'true' ]; then
-  printf '%s\n' "NOTICE: Detected '--ipv6' or '-6' argument, will attempt to use IPv6 Tor proxy."
-  extra_curl_args+=( 'socks5h://[::1]:9050' )
+   printf '%s\n' "NOTICE: Detected '--ipv6' or '-6' argument, will attempt to use IPv6 Tor proxy." 1>&2
+   curl_proxy_addr="[::1]:9050"
 else
-  extra_curl_args+=( 'socks5h://127.0.0.1:9050' )
+   curl_proxy_addr="127.0.0.1:9050"
 fi
-## `pwgen -s` creates passwords composed of capital and lowercase letters and
-## numbers. thus, there are 62 possible values in each position, thus over 5
-## bits of entropy per position. 52 characters will provide >256 bits of
-## entropy per curl invocation.
-extra_curl_args+=( '--proxy-user' "$("${pwgen_binary}" -s 26 1):$("${pwgen_binary}" -s 26 1)" )
+
+if ! "${curl_binary}" "http://${curl_proxy_addr}" --output /dev/null 2>/dev/null; then
+   printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled."
+   disable_stream_isolation='true'
+fi
+
+if [ "${disable_stream_isolation}" = 'true' ]; then
+  exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
+fi
+
+extra_curl_args=(
+  '--proxy' "socks5h://${curl_proxy_addr}"
+
+  ## `pwgen -s` creates passwords composed of capital and lowercase letters
+  ## and numbers. thus, there are 62 possible values in each position, thus
+  ## over 5 bits of entropy per position. 52 characters will provide >256 bits
+  ## of entropy per curl invocation.
+  '--proxy-user' "$("${pwgen_binary}" -s 26 1):$("${pwgen_binary}" -s 26 1)"
+)
 
 curl_args=( "${extra_curl_args[@]}" "${curl_args[@]}" )
 
