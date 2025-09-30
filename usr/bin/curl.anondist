@@ -99,7 +99,7 @@ else
 fi
 
 if ! "${curl_binary}" "http://${curl_proxy_addr}" --output /dev/null 2>/dev/null; then
-   printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled."
+   printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled." 1>&2
    disable_stream_isolation='true'
 fi
 
