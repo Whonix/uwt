@@ -1,3 +1,21 @@
+commit 4bba356666cfd4990011d8d7b351b2a1eafa97e1
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 07:44:50 2025 -0400
+
+    curl.anondist: fix, obey UWT_DEV_PASSTHROUGH=1 environment variable
+
+commit a89aaa2b42c01aac3667faa5e043248a872fb922
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 07:37:29 2025 -0400
+
+    comment
+
+commit 1222cc2ecd7db468177726c2eead1f5867e43a20
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 10:45:12 2025 +0000
+
+    bumped changelog version
+
 commit 369e23d6fd97d3974248095361c903f0de05d4ed
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 06:38:27 2025 -0400
