@@ -16,9 +16,9 @@
 ## Tor will provide stream isolation.
 
 if [ ! "$uwtwrapper_verbose" = "" ]; then
-   if [ "$uwtwrapper_verbose" -ge 1 ]; then
-      set -x
-   fi
+  if [ "$uwtwrapper_verbose" -ge 1 ]; then
+    set -x
+  fi
 fi
 
 true "$0: START"
@@ -28,18 +28,16 @@ set -o nounset
 set -o errtrace
 set -o pipefail
 
+if test -o xtrace; then
+   uwtwrapper_verbose=1
+   export uwtwrapper_verbose
+fi
+
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
 export UWT_DEV_PASSTHROUGH=1
 
 curl_args=( "$@" )
 curl_binary="$(command -v curl.anondist-orig)" || true
-pwgen_binary="$(command -v pwgen)" || true
-
-if [ -z "${pwgen_binary}" ]; then
-  printf '%s\n' "WARNING: pwgen is not installed. Stream isolation will be disabled." 1>&2
-  exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
-fi
-
 disable_stream_isolation='false'
 found_ipv6_arg='false'
 
@@ -107,14 +105,15 @@ if [ "${disable_stream_isolation}" = 'true' ]; then
   exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 fi
 
+random_alpha_numeric() {
+  local n="${1:-43}"
+  LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c "$n"; echo
+}
+
+## https://spec.torproject.org/proposals/351-socks-auth-extensions.html
 extra_curl_args=(
   '--proxy' "socks5h://${curl_proxy_addr}"
-
-  ## `pwgen -s` creates passwords composed of capital and lowercase letters
-  ## and numbers. thus, there are 62 possible values in each position, thus
-  ## over 5 bits of entropy per position. 52 characters will provide >256 bits
-  ## of entropy per curl invocation.
-  '--proxy-user' "$("${pwgen_binary}" -s 26 1):$("${pwgen_binary}" -s 26 1)"
+  '--proxy-user' "$(random_alpha_numeric 43):password"
 )
 
 curl_args=( "${extra_curl_args[@]}" "${curl_args[@]}" )
