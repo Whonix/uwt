@@ -34,7 +34,19 @@ if test -o xtrace; then
 fi
 
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
+
+[[ -v UWT_DEV_PASSTHROUGH ]] || UWT_DEV_PASSTHROUGH=""
+
+if [ "$UWT_DEV_PASSTHROUGH" = 1 ]; then
+  ## UWT_DEV_PASSTHROUGH=1 is already set. Obey it.
+  ## For example, this is useful to prevent 'qubes-whonix-torified-updates-proxy-check.service'
+  ## from picking up output by this script such as the following.
+  ## > NOTE: Detected loopback address. Stream isolation will be disabled.
+  exec /usr/libexec/uwt/uwtwrapper "${@}"
+fi
+
 ## Prevent 'uwtwrapper' from prepending 'torsocks'.
+## This script injects 'curl' with the '--proxy' option, so torsocks should not be used.
 export UWT_DEV_PASSTHROUGH=1
 
 curl_args=( "$@" )
