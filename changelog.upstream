@@ -1,3 +1,15 @@
+commit 3f2724e87cb4c0f3f1931eb4c1c4019ed3d8a807
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 05:55:57 2025 -0400
+
+    fix: drop missing dependency on `pwgen`
+
+commit 3d013c36f80ce503f8f76293568611e52d88579e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 1 09:43:55 2025 +0000
+
+    bumped changelog version
+
 commit ed1293e3337314af71268fe0bdc6ff31c2aad6ca
 Merge: 8e69037 028b880
 Author: Patrick Schleizer <adrelanos@whonix.org>

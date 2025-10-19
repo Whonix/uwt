@@ -1,3 +1,9 @@
+uwt (3:9.2-1) unstable; urgency=medium
+
+  * New upstream version (local package).
+
+ -- Patrick Schleizer <adrelanos@whonix.org>  Sun, 19 Oct 2025 09:59:19 +0000
+
 uwt (3:9.1-1) unstable; urgency=medium
 
   * New upstream version (local package).
