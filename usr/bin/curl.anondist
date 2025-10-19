@@ -108,7 +108,7 @@ fi
 ## NOTE: Duplicated in package 'helper-scripts' file 'strings.sh'.
 random_alpha_numeric() {
   local n="${1:-43}"
-  LC_ALL=C tr -dc 'A-Za-z0-9' </dev/random | head -c "$n" || true
+  LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/random | head --bytes="$n" || true
   printf '%s\n' ""
 }
 
