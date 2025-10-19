@@ -34,6 +34,7 @@ if test -o xtrace; then
 fi
 
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
+## Prevent 'uwtwrapper' from prepending 'torsocks'.
 export UWT_DEV_PASSTHROUGH=1
 
 curl_args=( "$@" )
