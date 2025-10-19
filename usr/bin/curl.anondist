@@ -105,6 +105,7 @@ if [ "${disable_stream_isolation}" = 'true' ]; then
   exec /usr/libexec/uwt/uwtwrapper "${curl_args[@]}"
 fi
 
+## NOTE: Duplicated in package 'helper-scripts' file 'strings.sh'.
 random_alpha_numeric() {
   local n="${1:-43}"
   LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c "$n"; echo
