@@ -1,3 +1,45 @@
+commit 369e23d6fd97d3974248095361c903f0de05d4ed
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:38:27 2025 -0400
+
+    refactoring
+
+commit 277b15028a977d4a4e89d1383cc99d4cef1f726e
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:30:43 2025 -0400
+
+    fix
+
+commit 158b91445162b89918a91660921271a89940a97a
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:24:32 2025 -0400
+
+    fix
+
+commit 7a3dd627e4e9e515bcd6575eace39669203d3cbf
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:08:48 2025 -0400
+
+    fix
+
+commit ce35e990ea055766bd747f5c640e0fc919b1fadc
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:08:16 2025 -0400
+
+    minor
+
+commit b58232c819acb1ba82835abee948e69184f519f0
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 06:03:09 2025 -0400
+
+    minor
+
+commit 5dcd8db87fe07c41312254f07081338372628e7b
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 09:59:19 2025 +0000
+
+    bumped changelog version
+
 commit 3f2724e87cb4c0f3f1931eb4c1c4019ed3d8a807
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 05:55:57 2025 -0400
