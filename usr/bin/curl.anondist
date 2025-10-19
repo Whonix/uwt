@@ -112,10 +112,12 @@ random_alpha_numeric() {
   printf '%s\n' ""
 }
 
+random_socks_user_name="$(random_alpha_numeric 43)"
+
 ## TODO: https://spec.torproject.org/proposals/351-socks-auth-extensions.html
 extra_curl_args=(
   '--proxy' "socks5h://${curl_proxy_addr}"
-  '--proxy-user' "curl_$(random_alpha_numeric 43):password"
+  '--proxy-user' "curl_${random_socks_user_name}:password"
 )
 
 curl_args=( "${extra_curl_args[@]}" "${curl_args[@]}" )
