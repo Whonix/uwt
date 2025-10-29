@@ -7,8 +7,103 @@
 #### project Whonix
 #### category networking
 #### description
-## uwt wrapped application
+## dnf tor wrapper
 #### meta end
 
+## NOTE: dnf uses curl, which is incompatible with torsocks; it will not
+## resolve .onion addresses if used with torsocks. Thus we instead instruct
+## dnf to connect to a Tor proxy itself. We randomize the proxy username and
+## password for each invocation so Tor will provide stream isolation.
+
+if [ ! "$uwtwrapper_verbose" = "" ]; then
+  if [ "$uwtwrapper_verbose" -ge 1 ]; then
+    set -x
+  fi
+fi
+
+true "$0: START"
+
+set -o errexit
+set -o nounset
+set -o errtrace
+set -o pipefail
+
+if test -o xtrace; then
+   uwtwrapper_verbose=1
+   export uwtwrapper_verbose
+fi
+
 export uwtwrapper_parent="${BASH_SOURCE[0]}"
-exec /usr/libexec/uwt/uwtwrapper "$@"
+
+[[ -v UWT_DEV_PASSTHROUGH ]] || UWT_DEV_PASSTHROUGH=""
+
+if [ "$UWT_DEV_PASSTHROUGH" = 1 ]; then
+  ## UWT_DEV_PASSTHROUGH=1 is already set. Obey it.
+  ## For example, this is useful to prevent 'qubes-whonix-torified-updates-proxy-check.service'
+  ## from picking up output by this script such as the following.
+  ## > NOTE: Detected loopback address. Stream isolation will be disabled.
+  exec /usr/libexec/uwt/uwtwrapper "${@}"
+fi
+
+## Prevent 'uwtwrapper' from prepending 'torsocks'.
+## This script injects 'dnf' with the '--setopt=proxy' option, so torsocks
+## should not be used.
+export UWT_DEV_PASSTHROUGH=1
+
+/usr/libexec/helper-scripts/try-wait-for-tor-service-running
+
+dnf_args=( "$@" )
+curl_binary="$(command -v curl.anondist-orig)" || curl_binary=""
+disable_stream_isolation='false'
+
+for dnf_arg in "${dnf_args[@]}"; do
+  case "${dnf_arg}" in
+    --setopt=proxy=*)
+      printf '%s\n' "WARNING: Detected '--setopt=proxy' argument. Stream isolation will be disabled." 1>&2
+      disable_stream_isolation='true'
+      ;;
+    --setopt=proxy_username=*)
+      printf '%s\n' "WARNING: Detected '--setopt=proxy_username' argument. Stream isolation will be disabled." 1>&2
+      disable_stream_isolation='true'
+      ;;
+    --setopt=proxy_password=*)
+      printf '%s\n' "WARNING: Detected '--setopt=proxy_password' argument. Stream isolation will be disabled." 1>&2
+      disable_stream_isolation='true'
+      ;;
+  esac
+done
+
+if [ "${disable_stream_isolation}" = 'true' ]; then
+  exec /usr/libexec/uwt/uwtwrapper "${dnf_args[@]}"
+fi
+
+if [ -n "${curl_binary}" ]; then
+  if ! "${curl_binary}" "http://127.0.0.1:9050/" --output /dev/null 2>/dev/null; then
+    printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled." 1>&2
+    disable_stream_isolation='true'
+  fi
+fi
+
+if [ "${disable_stream_isolation}" = 'true' ]; then
+  exec /usr/libexec/uwt/uwtwrapper "${dnf_args[@]}"
+fi
+
+## NOTE: Duplicated in package 'helper-scripts' file 'strings.sh'.
+random_alpha_numeric() {
+  local n="${1:-43}"
+  LC_ALL=C tr -dc 'A-Za-z0-9' < /dev/random | head --bytes="$n" || true
+  printf '%s\n' ""
+}
+
+random_socks_user_name="$(random_alpha_numeric 43)"
+
+## TODO: https://spec.torproject.org/proposals/351-socks-auth-extensions.html
+extra_dnf_args=(
+  "--setopt=proxy=socks5h://127.0.0.1:9050/"
+  "--setopt=proxy_username=curl_${random_socks_user_name}"
+  "--setopt=proxy_password=password"
+)
+
+dnf_args=( "${extra_dnf_args[@]}" "${dnf_args[@]}" )
+
+exec /usr/libexec/uwt/uwtwrapper "${dnf_args[@]}"
