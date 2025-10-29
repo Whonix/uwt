@@ -62,7 +62,7 @@ for curl_arg in "${curl_args[@]}"; do
   ## This is because rather than having short options like `-oarg` and long
   ## options like `--option=arg`, curl uses `-o arg` and `--option arg`. We
   ## can make a good guess that if a proxy-related argument is present in the
-  ## command line, the user is probably manging proxying manually, but this
+  ## command line, the user is probably managing proxying manually, but this
   ## will break if someone passes `-U` or `-x` as an argument to some other
   ## option (which could happen if the user is attempting to reference a file
   ## named `-U` or `-x`). Beyond that, the user might have their own proxy
