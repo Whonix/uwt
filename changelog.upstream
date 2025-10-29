@@ -1,3 +1,22 @@
+commit 4d692f16bc234555a89460190c78dbd71e842616
+Merge: 40b46de 43e07ed
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 29 03:28:51 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 43e07edb6fe8849efe121d77ea09c42bf80018e3
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Tue Oct 28 22:38:56 2025 -0500
+
+    Minor curl wrapper fixes, add proxy argument injection to dnf-3 wrapper
+
+commit 40b46deb7785fa1775afdda993fa944bf1211c04
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Oct 19 11:45:40 2025 +0000
+
+    bumped changelog version
+
 commit 4bba356666cfd4990011d8d7b351b2a1eafa97e1
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Sun Oct 19 07:44:50 2025 -0400
