@@ -64,15 +64,15 @@ disable_stream_isolation='false'
 for dnf_arg in "${dnf_args[@]}"; do
   case "${dnf_arg}" in
     --setopt=proxy=*)
-      printf '%s\n' "WARNING: Detected '--setopt=proxy' argument. Stream isolation will be disabled." 1>&2
+      #printf '%s\n' "WARNING: Detected '--setopt=proxy' argument. Stream isolation will be disabled." 1>&2
       disable_stream_isolation='true'
       ;;
     --setopt=proxy_username=*)
-      printf '%s\n' "WARNING: Detected '--setopt=proxy_username' argument. Stream isolation will be disabled." 1>&2
+      #printf '%s\n' "WARNING: Detected '--setopt=proxy_username' argument. Stream isolation will be disabled." 1>&2
       disable_stream_isolation='true'
       ;;
     --setopt=proxy_password=*)
-      printf '%s\n' "WARNING: Detected '--setopt=proxy_password' argument. Stream isolation will be disabled." 1>&2
+      #printf '%s\n' "WARNING: Detected '--setopt=proxy_password' argument. Stream isolation will be disabled." 1>&2
       disable_stream_isolation='true'
       ;;
   esac
@@ -84,7 +84,7 @@ fi
 
 if [ -n "${curl_binary}" ]; then
   if ! "${curl_binary}" "http://127.0.0.1:9050/" --output /dev/null 2>/dev/null; then
-    printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled." 1>&2
+    #printf '%s\n' "WARNING: Tor proxy doesn't seem to be functional. Stream isolation will be disabled." 1>&2
     disable_stream_isolation='true'
   fi
 fi
