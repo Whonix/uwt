@@ -50,7 +50,12 @@ fi
 ## should not be used.
 export UWT_DEV_PASSTHROUGH=1
 
-/usr/libexec/helper-scripts/try-wait-for-tor-service-running
+if command -v leaprun >/dev/null \
+  && leaprun --check try-wait-for-tor-service-running >/dev/null 2>&1; then
+  leaprun try-wait-for-tor-service-running
+else
+  /usr/libexec/helper-scripts/try-wait-for-tor-service-running
+fi
 
 dnf_args=( "$@" )
 curl_binary="$(command -v curl.anondist-orig)" || curl_binary=""
