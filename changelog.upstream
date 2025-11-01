@@ -1,3 +1,28 @@
+commit 6ac731f992966ff6b3e46f740f69b90397b2bcf7
+Merge: a0859ae 0f5db4c
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 04:14:11 2025 -0400
+
+    Merge remote-tracking branch 'ArrayBolt3/arraybolt3/trixie'
+
+commit 0f5db4c890d6eb3ea28b29bbdf06819a5115a3e2
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 31 13:57:44 2025 -0500
+
+    Don't warn about disabled stream isolation in dnf-3 wrapper
+
+commit 0d405fc19b8b0f333653e447c1e60502b56f2089
+Author: Aaron Rainbolt <arraybolt3@ubuntu.com>
+Date:   Fri Oct 31 13:54:08 2025 -0500
+
+    Try to wait for Tor startup in dnf-3 wrapper via privleap
+
+commit a0859ae3d21f94c175261873bee10a4b9a12f71d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Oct 29 08:49:40 2025 +0000
+
+    bumped changelog version
+
 commit 405250a0427eabf022cd9fd5a08ae6ff9478685a
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Oct 29 04:49:28 2025 -0400
