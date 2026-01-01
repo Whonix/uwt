@@ -12,7 +12,7 @@
 ## ricochet does not have unix domain socket file support, therefore it depends
 ## on the TOR_CONTROL_HOST and TOR_CONTROL_PORT environment variables being
 ## set. Otherwise it would try to start its own Tor instance.
-## https://phabricator.whonix.org/T444
+## https://forums.whonix.org/t/test-if-ricochet-im-instructions-are-functional/18959
 TOR_CONTROL_HOST="127.0.0.1"
 TOR_CONTROL_PORT="9151"
 export TOR_CONTROL_HOST
