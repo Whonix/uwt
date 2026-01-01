@@ -10,7 +10,7 @@
 
 ## Disable torsocks warning spam such as.
 ## [May 20 11:45:27] WARNING torsocks[2645]: [syscall] Unsupported syscall number 224. Denying the call (in tsocks_syscall() at syscall.c:165)
-## https://phabricator.whonix.org/T317
+## https://forums.whonix.org/t/disable-torsocks-warning-spam/19084
 export TORSOCKS_LOG_LEVEL=1
 
 #### meta end
