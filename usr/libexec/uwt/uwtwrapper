@@ -43,7 +43,7 @@
 ## IP by default, such as <code>onionshare</code> (which is the right thing to
 ## do outside of Whonix), listen on the external IP instead. See also:
 ##
-## * https://github.com/Whonix/bindp
+## * https://github.com/Kicksecure/bindp
 ## * https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
 #### meta end
 
@@ -149,7 +149,7 @@ parse_cmd() {
    fi
 
    ## Thanks to:
-   ## http://mywiki.wooledge.org/BashFAQ/035
+   ## https://mywiki.wooledge.org/BashFAQ/035
 
    while true;
    do
@@ -309,7 +309,7 @@ sudo apt update
 sudo apt install $basename_uwtwrapper_parent
 
 'command-not-found' is a tool that might be able to suggest the name of the missing package. But it is not installed either. The user could consider to install 'command-not-found' as per documentation:
-https://www.whonix.org/wiki/command-not-found"
+https://www.kicksecure.com/wiki/Command-not-found"
          exit 1
       fi
       ## --ignore-installed is used, because the uwt wrapper (for example
@@ -331,7 +331,7 @@ alternatives_support "$@"
 sanity_tests_general "$@"
 
 if [ "$bindp_dispatch" = "true" ]; then
-   ## https://github.com/Whonix/bindp
+   ## https://github.com/Kicksecure/bindp
    ## https://forums.whonix.org/t/find-way-to-have-tor-ephermal-hidden-service-using-applications-in-whonix-workstation-bind-on-all-interfaces/18846
    [ -n "$bindp_so" ] || bindp_so="/usr/lib/libindp.so"
    [ -n "$bindp_interface" ] || bindp_interface="eth0"
