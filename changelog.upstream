@@ -1,3 +1,61 @@
+commit b8f6fb82ce97e0afdd44551bf9ae0c99d44681ee
+Merge: 953089d 6ad181d
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:44:14 2026 -0500
+
+    Merge remote-tracking branch 'github-whonix/master'
+
+commit 6ad181da05bf0ddc7ebed669cf993c330bffe1b6
+Merge: 03a9e62 c2f81f2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:33:56 2026 -0500
+
+    Merge pull request #4 from Nurmagoz/patch-3
+    
+    Update ricochet.anondist link
+
+commit 03a9e620227b0b0b7ec62ba5bd46543caf8259ee
+Merge: e7fb8c6 2c328ae
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:33:32 2026 -0500
+
+    Merge pull request #3 from Nurmagoz/patch-2
+    
+    Update uwt.sh link
+
+commit e7fb8c6e20f3f5bb84da836b8592c7449b200647
+Merge: 953089d 4304143
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 03:29:31 2026 -0500
+
+    Merge pull request #2 from Nurmagoz/patch-1
+    
+    Update uwtwrapper Links
+
+commit c2f81f2bd2ea644a4bf5c80c65a581664a6569b1
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Thu Jan 1 21:44:40 2026 +0000
+
+    Update ricochet.anondist link
+
+commit 2c328ae8c9fea6c44e80b9744b3f568f05c5b8a6
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Thu Jan 1 21:40:37 2026 +0000
+
+    Update uwt.sh link
+
+commit 430414378bc6825456dccdd2adee7fe1aaa902dd
+Author: Nurmagoz <11895339+Nurmagoz@users.noreply.github.com>
+Date:   Wed Dec 31 20:59:19 2025 +0000
+
+    Update uwtwrapper Links
+
+commit 953089d2a60c34c7d8d9cdd6d20112c8ab689f11
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sat Nov 1 09:46:04 2025 +0000
+
+    bumped changelog version
+
 commit 6ac731f992966ff6b3e46f740f69b90397b2bcf7
 Merge: a0859ae 0f5db4c
 Author: Patrick Schleizer <adrelanos@whonix.org>
