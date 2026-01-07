@@ -1,3 +1,17 @@
+commit a95df84641829763b5f73e3e0b0d26f0b22c8bb2
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 7 06:04:16 2026 -0500
+
+    `curl`, `dnf` (`uwt` wrappers`): implement `torS0X` stream isolation
+    
+    https://spec.torproject.org/socks-extensions.html
+
+commit df0dc94590ce8bfc2dc8ecde02be1dc647012dfe
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Mon Jan 5 10:33:37 2026 +0000
+
+    bumped changelog version
+
 commit b8f6fb82ce97e0afdd44551bf9ae0c99d44681ee
 Merge: 953089d 6ad181d
 Author: Patrick Schleizer <adrelanos@whonix.org>
