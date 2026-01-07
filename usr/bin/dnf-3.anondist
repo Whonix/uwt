@@ -100,13 +100,12 @@ random_alpha_numeric() {
   printf '%s\n' ""
 }
 
-random_socks_user_name="$(random_alpha_numeric 43)"
-
-## TODO: https://spec.torproject.org/proposals/351-socks-auth-extensions.html
+## https://spec.torproject.org/socks-extensions.html
+random_socks_password="$(random_alpha_numeric 43)"
 extra_dnf_args=(
   "--setopt=proxy=socks5h://127.0.0.1:9050/"
-  "--setopt=proxy_username=curl_${random_socks_user_name}"
-  "--setopt=proxy_password=password"
+  "--setopt=proxy_username=<torS0X>0"
+  "--setopt=proxy_password=dnf-wrapper_${random_socks_password}"
 )
 
 dnf_args=( "${extra_dnf_args[@]}" "${dnf_args[@]}" )
