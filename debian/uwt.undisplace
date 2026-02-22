@@ -4,3 +4,8 @@
 ## It is now /usr/bin/aptitude-curses.
 ## https://forums.whonix.org/t/aptitude-update-fails-most-of-the-time-on-whonix-gateway-only-it-turns-out
 /usr/bin/aptitude
+
+## Transition from GnuPG to Sequoia-PGP.
+## Package 'gpg-from-sq' compatibility. Avoid symlink conflicts.
+/usr/bin/gpg.anondist
+/usr/bin/gpg2.anondist

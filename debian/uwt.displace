@@ -22,8 +22,6 @@
 /usr/bin/aptitude-curses.anondist
 /usr/bin/curl.anondist
 /usr/bin/git.anondist
-/usr/bin/gpg.anondist
-/usr/bin/gpg2.anondist
 /usr/bin/mixmaster-update.anondist
 /usr/bin/rawdog.anondist
 /usr/bin/ssh.anondist
