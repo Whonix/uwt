@@ -1,3 +1,15 @@
+commit d3e9dbd7fbe91b7735e36ef032212c3f2edcfda6
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Sun Feb 22 09:44:12 2026 -0500
+
+    remove `/usr/bin/gpg.anondist` and `/usr/bin/gpg2.anondist` uwt stream isolation wrapper, reason: Transition from GnuPG to Sequoia-PGP. Package 'gpg-from-sq' compatibility. Avoid symlink conflicts.
+
+commit 2be19ec7d8e06261f4d6fd5570991ff05a249654
+Author: Patrick Schleizer <adrelanos@whonix.org>
+Date:   Wed Jan 7 11:06:12 2026 +0000
+
+    bumped changelog version
+
 commit a95df84641829763b5f73e3e0b0d26f0b22c8bb2
 Author: Patrick Schleizer <adrelanos@whonix.org>
 Date:   Wed Jan 7 06:04:16 2026 -0500
